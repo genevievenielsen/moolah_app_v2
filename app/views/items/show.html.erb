@@ -1,59 +1,49 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
+<!-- this is the display for merchandise  -->
+<div class="row">
+  <div class="com-md-12">
+    <h1><%= @item.name %></h1>
+  </div>
+</div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
+<div class="row">
+  <div class="col-md-6">
+      <img class="img-responsive" src="<%= @item.image %>">
+  </div>
 
-<p>
-  <strong>Required:</strong>
-  <%= @item.required %>
-</p>
+  <div class="col-md-6">
+    <div class="text-center">
+      <h4>$<%= @item.price %></h4>
 
-<p>
-  <strong>Owner:</strong>
-  <%= @item.owner_id %>
-</p>
+      <h4><%= @item.description %></h4>
+      <h4><%= @item.carts.where(:paid => true).count %> Sold</h4>
 
-<p>
-  <strong>Expiration date:</strong>
-  <%= @item.expiration_date %>
-</p>
+      <% if @item.required == true %>
+        <h4> Required For Members</h4>
+        <% if current_user.paid_items.include?(@item) %>
+        <% else %>
+          <h4>Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></h4>
+        <% end %>
+      <% else %>
+         <h4>Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></h4>
+      <% end %>
 
-<p>
-  <strong>Club:</strong>
-  <%= @item.club_id %>
-</p>
+      <%= render "items/cart_button", :item => @item, :cart => @cart %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Image:</strong>
-  <img class="img-rounded img-responsive" src="<%= @item.image %>">
-</p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @item.category %>
-</p>
+  <%#= "#{@item.owner.first_name} #{@item.owner.last_name}" %>
+<br>
 
-<p>
-  <strong>Color:</strong>
-  <%= @item.color %>
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <p class="lead"><%= link_to "#{@item.university.name}", university_url(@item.university) %> <i class="fa fa-chevron-right"></i> <%= link_to "#{@item.club.name}", university_url(@item.club) %> <i class="fa fa-chevron-right"></i> <%= @item.name %></p>
+  </div>
+</div>
 
-<p>
-  <strong>Size:</strong>
-  <%= @item.size %>
-</p>
-
-<p>
-  <strong>University:</strong>
-  <%= @item.university_id %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<div class="row">
+  <%= link_to 'Edit', edit_item_path(@item) %> |
+  <%= link_to 'Back', items_path %>
+</div>

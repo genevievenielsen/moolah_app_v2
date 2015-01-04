@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  # mount_uploader :image, ImageUploader
+  mount_uploader :image, ImageUploader
 
   validates :name, :presence => true
   validates :price, :presence => true
@@ -13,10 +13,6 @@ class Item < ActiveRecord::Base
   has_many :selected_items
   has_many :carts, :through => :selected_items, :source => :cart
 
-  # carts the user has paid for
-  def purchases
-    Cart.where(:paid => true, :item => self.id)
-  end
 
 
 

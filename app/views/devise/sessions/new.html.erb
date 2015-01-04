@@ -1,17 +1,44 @@
-<h2>Log in</h2>
 
+<br>
+<div class="row">
+
+<div class="text-center">
+<h2>
+  <p>Easily collect payments in your organization</p>
+  <p>No transaction fees</p>
+  <p>Never again send a reminder email</p>
+  <p>User your venmo account</p>
+</h2>
+</div>
+
+</div>
+
+<div class="row">
+<div class="col-md-offset-3 col-md-6">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+  <div class = "form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, :class => "form-control" %>
+  </div>
+
+  <div class = "form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off", :class => "form-control"  %>
+  </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <div class = "form-group">
+      <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+    </div>
   <% end -%>
 
-  <div><%= f.submit "Log in" %></div>
+  <div><%= f.submit "Sign in", :class => "btn btn-default" %></div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+</div>
+</div>
+<div class="row">
+<div class="text-center">
+  <%= render "devise/shared/links" %>
+</div>
+</div>

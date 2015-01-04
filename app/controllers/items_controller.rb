@@ -10,6 +10,8 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+      @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
+
   end
 
   # GET /items/new
@@ -69,6 +71,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :price, :required, :owner_id, :expiration_date, :club_id, :image, :category, :color, :size, :university_id)
+      params.require(:item).permit(:name, :description, :price, :required, :owner_id, :expiration_date, :club_id, :image, :category, :color, :size, :university_id)
     end
 end

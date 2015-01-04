@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104023429) do
+ActiveRecord::Schema.define(version: 20150104170303) do
 
   create_table "carts", force: true do |t|
     t.boolean  "paid"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20150104023429) do
     t.integer  "university_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "memberships", force: true do |t|

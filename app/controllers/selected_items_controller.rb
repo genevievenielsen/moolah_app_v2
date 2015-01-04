@@ -24,11 +24,15 @@ class SelectedItemsController < ApplicationController
   # POST /selected_items
   # POST /selected_items.json
   def create
-    @selected_item = SelectedItem.new(selected_item_params)
+    @selected_item = SelectedItem.new
+
+    @selected_item.user_id = params[:user_id]
+    @selected_item.item_id = params[:item_id]
+    @selected_item.cart_id = params[:cart_id]
 
     respond_to do |format|
       if @selected_item.save
-        format.html { redirect_to @selected_item, notice: 'Selected item was successfully created.' }
+        format.html { redirect_to :back, notice: 'Selected item was successfully created.' }
         format.json { render :show, status: :created, location: @selected_item }
       else
         format.html { render :new }
@@ -56,7 +60,7 @@ class SelectedItemsController < ApplicationController
   def destroy
     @selected_item.destroy
     respond_to do |format|
-      format.html { redirect_to selected_items_url, notice: 'Selected item was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Selected item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

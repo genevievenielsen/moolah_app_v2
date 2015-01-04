@@ -1,0 +1,70 @@
+<% if user_signed_in? %>
+
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/home" class="navbar-brand"><%= Rails.application.class.parent_name %></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/universities">Universities</a></li>
+        <li><a href="/selected_items">Selected Items</a></li>
+        <li><a href="/carts">Carts</a></li>
+        <li><a href="/memberships">Memberships</a></li>
+        <li><a href="/items">Items</a></li>
+        <li><a href="/emails">Emails</a></li>
+        <li><a href="/clubs">Clubs</a></li>
+        <li><a href="/club_admins">Club Admins</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="/users/edit" class="pull-right"><%= current_user.first_name %></a></li>
+          <li><a href="/users/sign_out" data-method="delete">Sign out</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+
+<% else %>
+
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand"><%= Rails.application.class.parent_name %></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">How It Works</a></li>
+        <li><a href="#">Colleges with Moolah</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="/users/sign_up">Sign up</a></li>
+          <li><a href="/users/sign_in">Sign in</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+
+
+<% end %>

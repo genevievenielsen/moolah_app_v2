@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-   # mount_uploader :image, ImageUploader
+   mount_uploader :image, ImageUploader
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   has_many :selected_items
   has_many :carts, :through => :selected_items, :source => :cart
 
+  def items_in_cart
+    Item.where(:id => self.selected_items.pluck(:item_id))
+  end
+
   # carts the user has paid for
   def paid_carts
     Cart.where(:paid => true, :user => self.id)
@@ -26,13 +30,15 @@ class User < ActiveRecord::Base
 
   # selected items the user has paid for
   def paid_selected_items
-    SelectedItem.where( :cart => self.paid_carts)
+    SelectedItem.where( :cart_id => self.paid_carts.pluck(:id))
   end
 
   # items the user has paid for
   def paid_items
-    Item.where(:selected_items => self.paid_selected_items)
+    Item.where(:id => self.paid_selected_items.pluck(:id))
   end
+
+
 
 
 

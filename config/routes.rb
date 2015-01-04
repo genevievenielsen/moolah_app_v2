@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
+  get('/home', {:controller => 'users', :action => 'home'})
+
   devise_for :users
-  root 'items#index'
+  root to: "users#home"
 
   resources :universities
 
