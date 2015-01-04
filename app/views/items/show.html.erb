@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>Required:</strong>
+  <%= @item.required %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @item.owner_id %>
+</p>
+
+<p>
+  <strong>Expiration date:</strong>
+  <%= @item.expiration_date %>
+</p>
+
+<p>
+  <strong>Club:</strong>
+  <%= @item.club_id %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @item.image %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @item.category %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @item.color %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @item.size %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= @item.university_id %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
