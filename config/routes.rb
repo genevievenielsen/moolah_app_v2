@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :clubs
+
   devise_for :users
   root 'club_admins#index'
 
