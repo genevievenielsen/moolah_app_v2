@@ -1,6 +1,18 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
+  def my_cart
+    @items = current_user.items_in_cart
+  end
+
+  def purchase_items
+    @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
+    @cart.paid = true
+    @cart.save
+    redirect_to :back, notice: 'You have successfully purchased your cart!'
+
+  end
+
   # GET /carts
   # GET /carts.json
   def index

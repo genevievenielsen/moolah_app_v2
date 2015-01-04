@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   get('/home', {:controller => 'users', :action => 'home'})
 
+  get('/my_cart', {:controller => 'carts', :action => 'my_cart'})
+  get('/purchase_items', {:controller => 'carts', :action => 'purchase_items'})
+
+
+
   devise_for :users
   root to: "users#home"
 

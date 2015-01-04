@@ -19,10 +19,6 @@ class User < ActiveRecord::Base
   has_many :selected_items
   has_many :carts, :through => :selected_items, :source => :cart
 
-  def items_in_cart
-    Item.where(:id => self.selected_items.pluck(:item_id))
-  end
-
   # carts the user has paid for
   def paid_carts
     Cart.where(:paid => true, :user => self.id)
@@ -35,7 +31,21 @@ class User < ActiveRecord::Base
 
   # items the user has paid for
   def paid_items
-    Item.where(:id => self.paid_selected_items.pluck(:id))
+    Item.where(:id => self.paid_selected_items.pluck(:item_id))
+  end
+
+  # carts the user has not paid for
+  def unpaid_carts
+    Cart.where(:paid => false, :user => self.id)
+  end
+
+  # selected items the user has not paid for
+  def unpaid_selected_items
+    SelectedItem.where( :cart_id => self.unpaid_carts.pluck(:id))
+  end
+
+  def items_in_cart
+    Item.where(:id => self.unpaid_selected_items.pluck(:item_id))
   end
 
 

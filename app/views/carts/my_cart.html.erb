@@ -1,0 +1,21 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <h1>My Cart</h1>
+    <%= render "items/purchase_button" %>
+  </div>
+</div>
+<br>
+<div class="row">
+  <% @items.each do |item| %>
+  <div class="col-sm-4 col-md-3">
+    <div class="thumbnail">
+      <img class="img-responsive" src="<%= item.image %>">
+      <div class="caption">
+      <h3><%= link_to "#{item.name}, #{item.club.name}", item %></h3>
+
+      </div>
+    </div>
+  </div>
+  <% end  %>
+</div>
