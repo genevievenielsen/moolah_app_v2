@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  root 'items#index'
+
   resources :universities
 
   resources :selected_items
@@ -13,9 +16,6 @@ Rails.application.routes.draw do
   resources :emails
 
   resources :clubs
-
-  devise_for :users
-  root 'club_admins#index'
 
   resources :club_admins
 

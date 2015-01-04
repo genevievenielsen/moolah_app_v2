@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104022545) do
+ActiveRecord::Schema.define(version: 20150104023429) do
+
+  create_table "carts", force: true do |t|
+    t.boolean  "paid"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "club_admins", force: true do |t|
     t.integer  "user_id"
@@ -27,6 +34,55 @@ ActiveRecord::Schema.define(version: 20150104022545) do
     t.integer  "university_id"
     t.string   "website"
     t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "emails", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.integer  "club_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", force: true do |t|
+    t.string   "name"
+    t.float    "price"
+    t.boolean  "required"
+    t.integer  "owner_id"
+    t.datetime "expiration_date"
+    t.integer  "club_id"
+    t.string   "image"
+    t.string   "category"
+    t.string   "color"
+    t.string   "size"
+    t.integer  "university_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "memberships", force: true do |t|
+    t.integer  "club_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "selected_items", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "cart_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "universities", force: true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.integer  "owner_id"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
