@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :universities
+
   resources :selected_items
 
   resources :carts
