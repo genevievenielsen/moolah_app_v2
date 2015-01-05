@@ -1,0 +1,99 @@
+
+<br>
+<div class="row">
+
+<div class=" col-sm-6 col-md-6 pull-left" >
+  <ul class="nav nav-pills nav-stacked" role="tablist">
+    <% @category.each_with_index do |item, index| %>
+    <% if index == 0 %>
+      <li class="active" ><a href="#item_<%= index %>" role="tab" data-toggle="tab"><%= item.name %><span class="badge pull-right">$<%= item.price %></span></a></li>
+    <% else %>
+      <li ><a href="#item_<%= index %>" role="tab" data-toggle="tab"><%= item.name %><span class="badge pull-right">$<%= item.price %></span></a></li>
+    <% end %> <!-- this ends the if statement -->
+  <% end %> <!-- this ends the loop -->
+ </ul>
+</div>
+
+<div class="tab-content">
+<% @category.each_with_index do |item, index| %>
+  <% if index == 0 %>
+     <div class="tab-pane active" id="item_<%= index %>" >
+      <div class="col-sm-6 col-md-6 pull-left merchandiseDisplay">
+
+      <div class="row">
+        <% if item.owner == current_user %>
+          <div class="pull-right">
+          <%= link_to "<i class=\"fa fa-pencil-square-o\"></i>".html_safe,
+           edit_item_path(item),
+           :class => "btn btn-xs btn-default" %>
+
+          <%= link_to "<i class=\"fa fa-times\"></i>".html_safe,
+            item,
+            :class => "btn btn-xs btn-default",
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+          </div>
+        <% end %>
+      </div>
+
+        <img class="img-circle img-responsive center-block" src="<%= item.image %>" width="70" >
+        <br>
+
+        <p class="text-center lead"><%= item.name %> </p>
+        <% if item.required == true %>
+          <p class="text-center">This item is required for all members of <%= item.club.name %>.</p>
+          <p class="text-center">Purchase it now!</p>
+        <% end  %>
+        <div class="btn col-sm-12"><%= render 'items/cart_button', item: item, cart: @cart %> </div>
+
+        <div class="clearfix"></div>
+
+        <% if item.carts.where(:paid => true).count > 0 %>
+          <p class="text-center"> <%= pluralize(item.carts.where(:paid => true).count, 'person') %> already purchased it! </p>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+    <div class="tab-pane" id="item_<%= index %>" >
+      <div class="col-sm-6 col-md-6 pull-right  merchandiseDisplay">
+
+      <div class="row">
+        <% if item.owner == current_user %>
+          <div class="pull-right">
+          <%= link_to "<i class=\"fa fa-pencil-square-o\"></i>".html_safe,
+           edit_item_path(item),
+           :class => "btn btn-xs btn-default" %>
+
+          <%= link_to "<i class=\"fa fa-times\"></i>".html_safe,
+            item,
+            :class => "btn btn-xs btn-default",
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+          </div>
+        <% end %>
+      </div>
+
+        <img class="img-circle img-responsive center-block" src="<%= item.image %>" width="150" >
+        <br>
+
+       <p class="text-center lead"><%= item.name %> </p>
+       <% if item.required == true %>
+          <p class="text-center">This item is required for all members of <%= item.club.name %></p>
+          <p class="text-center">Purchase it now!</p>
+        <% end  %>
+        <div class="btn col-sm-12"><%= render 'items/cart_button', item: item, cart: @cart %> </div>
+        <div class="clearfix"></div>
+        <br>
+        <% if item.carts.where(:paid => true).count > 0 %>
+          <p class="text-center"> <%= pluralize(item.carts.where(:paid => true).count, 'person') %> already purchased it! </p>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %> <!-- closes the if statement -->
+<% end %> <!-- closes the loop -->
+
+
+</div> <!-- closes tab content -->
+</div> <!-- closes row -->

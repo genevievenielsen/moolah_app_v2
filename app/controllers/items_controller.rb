@@ -7,7 +7,9 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = current_user.university.items
+    @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
+
   end
 
   # GET /items/1

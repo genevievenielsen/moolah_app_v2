@@ -1,5 +1,5 @@
 
-<% if current_user.items_in_cart.include?(@item) %>
+<% if current_user.items_in_cart.include?(item) %>
 
   <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id, :cart_id => cart.id)  %>
 

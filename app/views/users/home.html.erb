@@ -8,48 +8,43 @@
 </div>
 
 
+<div class="row">
+  <h3 class="pull-left"><%= pluralize(@items.count, 'Item') %></h3>
 
-<h3><%= pluralize(@items.count, 'Item') %></h3>
+   <%= link_to "New Item",
+              new_item_path,
+              :class => "btn btn-sm btn-primary pull-right"
+   %>
+   <%= link_to "All Items",
+              items_path,
+              :class => "btn btn-sm btn-primary pull-right"
+   %>
+</div>
+
 
 <div class="row">
   <% @items.each do |item| %>
-  <div class="col-sm-4 col-md-3">
-    <div class="thumbnail">
-      <img class="img-responsive" src="<%= item.image %>">
-      <div class="caption">
-      <h3><%= link_to "#{item.name}, #{item.club.name}", item %></h3>
-
-      </div>
-    </div>
-  </div>
+  <%= render "items/item_display", item: item %>
   <% end  %>
 </div>
 
 
- <h3><%= pluralize(@clubs.count, 'Club') %></h3>
+ <div class="row">
+   <h3 class="pull-left"><%= pluralize(@clubs.count, 'Club') %></h3>
+
+    <%= link_to "New Club",
+               new_club_path,
+               :class => "btn btn-sm btn-primary pull-right"
+    %>
+    <%= link_to "All Clubs",
+               clubs_path,
+               :class => "btn btn-sm btn-primary pull-right"
+    %>
+ </div>
 
 <div class="row">
   <% @clubs.each do |club| %>
-
-    <div class="col-sm-4 col-md-3">
-    <div class="thumbnail">
-      <img class="img-responsive img-thumnail" src="<%= club.image %>">
-      <div class="caption">
-      <h3><%= link_to "#{club.name}", club %></h3>
-      <div class="row col-offset-md-1 col-md-11 col-offset-sm-1 col-offset-sm-11">
-        <%= pluralize(club.members.count, 'member') %>,
-        <%= pluralize(club.items.count, 'item') %>
-      </div>
-      <div class="row">
-         <%= render "memberships/join_button", :club => club %>
-      </div>
-
-
-
-      </div>
-    </div>
-  </div>
-
+    <%= render "clubs/club_display", club: club %>
   <% end %>
 </div>
 

@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 pull-left">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a data-toggle="tab" href="#Merchandise">Merchandise</a></li>
+        <li><a data-toggle="tab" role="tab" href="#Dues">Dues</a></li>
+        <li><a data-toggle="tab" role="tab" href="#Deals">Deals</a></li>
+        <li><a data-toggle="tab" role="tab" href="#Donations">Donations</a></li>
+        <li><a data-toggle="tab" role="tab" href="#Members">Members</a></li>
+      </ul>
+    </div>
+    <div >
+      <%= link_to 'Add New Item', new_item_path, :class => "col-md-2 pull-right btn btn-sm btn-default" %>
+    </div>
+  </div>  <!-- this closes the row -->
+
+  <div class = "tab-content">
+    <div  id="Merchandise" class="tab-pane active">
+    <% @category = @items.where(:category => "Merchandise") %>
+     <%= render 'clubs/item_club_display' %>
+    </div>  <!-- this closes section A -->
+
+    <div  id="Dues" class="tab-pane ">
+    <% @category = @items.where(:category => "Dues") %>
+     <%= render 'clubs/item_club_display' %>
+    </div>
+
+    <div  id="Deals" class="tab-pane ">
+    <% @category = @items.where(:category => "Deals") %>
+     <%= render 'clubs/item_club_display' %>
+    </div>
+
+    <div  id="Donations" class="tab-pane ">
+    <% @category = @items.where(:category => "Donations") %>
+     <%= render 'clubs/item_club_display' %>
+    </div>
+
+    <div id="Members" class="tab-pane">
+    <br>
+    <h4 class="text-center">All the Club Members</h4>
+
+
+    <div class="row">
+    <% @club.members.each do |member| %>
+      <div class="col-md-2 col-sm-3">
+
+        <img src="<%= member.image %>" class="img img-circle img-responsive">
+          <p class="text-center"><%= "#{member.first_name} #{member.last_name}" %> </p>
+
+      </div>
+    <% end %>
+    </div>
+    </div>
+
+
+  </div> <!-- closes tab content -->
+</div> <!-- closes container -->

@@ -7,12 +7,14 @@ class ClubsController < ApplicationController
   # GET /clubs
   # GET /clubs.json
   def index
-    @clubs = Club.all
+    @clubs = current_user.university.clubs
   end
 
   # GET /clubs/1
   # GET /clubs/1.json
   def show
+    @items = @club.items
+    @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
   end
 
   # GET /clubs/new

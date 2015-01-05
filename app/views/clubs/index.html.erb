@@ -1,35 +1,15 @@
-<h1>Listing clubs</h1>
+<h1>All <%= current_user.university.name %> Clubs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Image</th>
-      <th>University</th>
-      <th>Website</th>
-      <th>Owner</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @clubs.each do |club| %>
-      <tr>
-        <td><%= club.name %></td>
-        <td><%= club.description %></td>
-        <td><%= club.image %></td>
-        <td><%= club.university_id %></td>
-        <td><%= club.website %></td>
-        <td><%= club.owner_id %></td>
-        <td><%= link_to 'Show', club %></td>
-        <td><%= link_to 'Edit', edit_club_path(club) %></td>
-        <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="row">
+    <div class="col-md-12">
+        <%= link_to 'New Club', new_club_path, :class => "btn btn-default"  %>
+    </div>
+</div>
 <br>
 
-<%= link_to 'New Club', new_club_path %>
+<% @clubs.each do |club| %>
+    <%= render "clubs/club_display", club: club %>
+<% end %>
+<br>
+
+

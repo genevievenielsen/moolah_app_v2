@@ -1,47 +1,16 @@
-<h1>Listing items</h1>
+<h1><%= current_user.university.name %> Items</h1>
 
-<%= current_user.paid_items %>
+<div class="row">
+    <div class="col-md-12">
+        <%= link_to 'New Item', new_item_path, :class => "btn btn-default" %>
+    </div>
+</div>
+<br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Required</th>
-      <th>Owner</th>
-      <th>Expiration date</th>
-      <th>Club</th>
-      <th>Image</th>
-      <th>Category</th>
-      <th>Color</th>
-      <th>Size</th>
-      <th>University</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.price %></td>
-        <td><%= item.required %></td>
-        <td><%= item.owner_id %></td>
-        <td><%= item.expiration_date %></td>
-        <td><%= item.club_id %></td>
-        <td><%= item.image %></td>
-        <td><%= item.category %></td>
-        <td><%= item.color %></td>
-        <td><%= item.size %></td>
-        <td><%= item.university_id %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @items.each do |item| %>
+    <%= render "items/item_display", item: item %>
+<% end %>
 
 <br>
 
-<%= link_to 'New Item', new_item_path %>
+

@@ -4,6 +4,13 @@
 
       <img class="img-responsive img-circle center-block" width="200px" src="<%= @club.image %>">
 
+      <% if current_user == @club.owner %>
+      <div class="pull-right">
+        <%= link_to 'Edit', edit_club_path(@club) %> |
+        <%= link_to 'Destroy', club_url(@club), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+      <% end %>
+
     <div class="text-center">
         <h2><%= @club.name %></h2>
         <h4><%= @club.description %></h4>
@@ -14,13 +21,12 @@
   </div>
 </div>
 
+<br>
+<%= render "clubs/items_club_display" %>
 
-
-
-<p>
+<!-- <p>
   <strong>Owner:</strong>
-  <%= @club.owner_id %>
-</p>
+  <%#= @club.owner_id %>
+</p> -->
 
-<%= link_to 'Edit', edit_club_path(@club) %> |
-<%= link_to 'Back', clubs_path %>
+
