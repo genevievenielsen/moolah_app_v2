@@ -1,24 +1,23 @@
-<p id="notice"><%= notice %></p>
+<br>
+<div class="row">
+  <div class="col-md-12">
 
-<p>
-  <strong>Name:</strong>
-  <%= @university.name %>
-</p>
+      <img class="img-responsive img-circle center-block" width="200px" src="<%= @university.image %>">
 
-<p>
-  <strong>Location:</strong>
-  <%= @university.location %>
-</p>
+    <div class="text-center">
+        <h2><%= @university.name %></h2>
+        <h4><i class="fa fa-map-marker"></i>&nbsp;&nbsp;<%= @university.location %></h4>
+    </div>
+  </div>
+</div>
+
 
 <p>
   <strong>Owner:</strong>
   <%= @university.owner_id %>
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @university.image %>
-</p>
+
 
 <%= link_to 'Edit', edit_university_path(@university) %> |
 <%= link_to 'Back', universities_path %>

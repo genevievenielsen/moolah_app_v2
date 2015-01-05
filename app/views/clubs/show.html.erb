@@ -1,29 +1,21 @@
-<p id="notice"><%= notice %></p>
+<br>
+<div class="row">
+  <div class="col-md-12">
 
-<p>
-  <strong>Name:</strong>
-  <%= @club.name %>
-</p>
+      <img class="img-responsive img-circle center-block" width="200px" src="<%= @club.image %>">
 
-<p>
-  <strong>Description:</strong>
-  <%= @club.description %>
-</p>
+    <div class="text-center">
+        <h2><%= @club.name %></h2>
+        <h4><%= @club.description %></h4>
+        <h4><%= @club.website %></h4>
 
-<p>
-  <strong>Image:</strong>
-  <%= @club.image %>
-</p>
+        <%= render "memberships/join_button", :club => @club %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>University:</strong>
-  <%= @club.university_id %>
-</p>
 
-<p>
-  <strong>Website:</strong>
-  <%= @club.website %>
-</p>
+
 
 <p>
   <strong>Owner:</strong>

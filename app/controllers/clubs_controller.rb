@@ -1,6 +1,9 @@
 class ClubsController < ApplicationController
   before_action :set_club, only: [:show, :edit, :update, :destroy]
 
+  def my_clubs
+
+  end
   # GET /clubs
   # GET /clubs.json
   def index

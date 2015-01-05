@@ -11,23 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, :class => "control-label" %><br>
+    <%= f.text_field :name, :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
+  <div class="form-group">
+    <%= f.label :location, :class => "control-label" %><br>
+    <%= f.text_field :location, :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :owner_id %><br>
-    <%= f.number_field :owner_id %>
-  </div>
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field  :image %>
+
+  <div class="form-group">
+    <%= f.label :image, :class => "control-label" %><br>
+    <%= f.file_field :image, :class => "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-default"%>
   </div>
 <% end %>

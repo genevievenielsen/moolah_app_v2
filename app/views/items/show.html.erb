@@ -29,6 +29,10 @@
       <% end %>
 
       <%= render "items/cart_button", :item => @item, :cart => @cart %>
+
+      <% if current_user.items_in_cart.include?(@item) %>
+        <%= link_to "View My Cart", my_cart_url %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,0 +1,26 @@
+
+
+ <% if club.members.include?(current_user) %>
+
+  <% membership = Membership.find_by(:user_id => current_user.id, :club_id => club.id)  %>
+
+
+     <%= link_to "<i class=\"fa fa-check-circle-o\" ></i>Member".html_safe,
+                  membership_url(membership.id),
+                  :class => "btn btn-default btn-sm",
+                  :method => "delete" %>
+
+
+
+ <% else %>
+
+    <%= link_to("Join",
+                memberships_url(:user_id => current_user.id, :club_id => club.id),
+                :method => "post",
+                :class => "btn btn-success btn-sm") %>
+
+
+ <% end %>
+
+
+

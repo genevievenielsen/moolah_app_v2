@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get('/home', {:controller => 'users', :action => 'home'})
 
   get('/my_cart', {:controller => 'carts', :action => 'my_cart'})
+  get('/my_items', {:controller => 'items', :action => 'my_items'})
+  get('/my_clubs', {:controller => 'clubs', :action => 'my_clubs'})
   get('/purchase_items', {:controller => 'carts', :action => 'purchase_items'})
 
 
