@@ -38,18 +38,18 @@
     <div id="Members" class="tab-pane">
     <br>
     <h4 class="text-center">All the Club Members</h4>
-
-
     <div class="row">
-    <% @club.members.each do |member| %>
-      <div class="col-md-2 col-sm-3">
-
-        <img src="<%= member.image %>" class="img img-circle img-responsive">
-          <p class="text-center"><%= "#{member.first_name} #{member.last_name}" %> </p>
-
-      </div>
-    <% end %>
+      <% @club.members.each do |member| %>
+        <div class="col-md-2 col-sm-3">
+          <img src="<%= member.image %>" class="img img-circle img-responsive">
+            <p class="text-center"><%= "#{member.first_name} #{member.last_name}" %> </p>
+        </div>
+      <% end %>
     </div>
+    <h4>Club Email List</h4>
+      <% Email.where(:club_id => @club.id).each do |email| %>
+        <%= email.email %>
+      <% end %>
     </div>
 
 

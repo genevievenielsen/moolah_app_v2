@@ -1,6 +1,29 @@
 class EmailsController < ApplicationController
   before_action :set_email, only: [:show, :edit, :update, :destroy]
 
+  def club_emails
+    @club = Club.find_by(:id => params[:id])
+
+  end
+
+  def import_emails
+    @club = Club.find_by(:id => params[:id])
+
+    Email.import(params[:file])
+
+    spreadsheet = Email.open_spreadsheet(params[:file])
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      email = Email.new
+      email.attributes = row.to_hash
+      email.club_id = @club.id
+      email.save!
+    end
+
+
+    redirect_to club_url(@club.id), notice: "Email list imported."
+  end
   # GET /emails
   # GET /emails.json
   def index

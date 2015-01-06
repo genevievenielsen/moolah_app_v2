@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'roo'
+
 gem "font-awesome-rails"
 
 gem 'carrierwave'

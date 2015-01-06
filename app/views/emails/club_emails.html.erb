@@ -1,0 +1,17 @@
+<br>
+
+<p class="lead">Add Your Club Email List!</p>
+<p class="lead">They will automatically receive:</p>
+<ol>
+  <li>An Invitation to join the club payments system</li>
+  <li>Payment reminder emails for required items</li>
+</ol>
+
+<p>Please upload the file in an excel or CSV format. <br>
+Please label the columns first_name, last_name and email. <br>
+If you are uploading a new list, we will remove any duplicate email addresses.</p>
+
+<%= form_tag "/import_emails/#{@club.id}", multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import Club Email list", :class => "btn btn-primary btn-sm" %>
+<% end %>

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get('/my_clubs', {:controller => 'clubs', :action => 'my_clubs'})
   get('/purchase_items', {:controller => 'carts', :action => 'purchase_items'})
 
+  get('/club_emails/:id', {:controller => 'emails', :action => 'club_emails'})
+  post('/import_emails/:id', {:controller => 'emails', :action => 'import_emails'})
 
 
   devise_for :users
