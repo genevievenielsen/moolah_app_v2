@@ -12,4 +12,8 @@ class Club < ActiveRecord::Base
   has_many :memberships
   has_many :members, :through => :memberships, :source => :user
 
+  def required_items
+    Item.where(:id => self.items.where(:required => true).pluck(:id))
+  end
+
 end

@@ -2,7 +2,7 @@ class ClubsController < ApplicationController
   before_action :set_club, only: [:show, :edit, :update, :destroy]
 
   def my_clubs
-
+    @clubs = current_user.clubs
   end
   # GET /clubs
   # GET /clubs.json

@@ -8,14 +8,6 @@
 <br>
 <div class="row">
   <% @items.each do |item| %>
-  <div class="col-sm-4 col-md-3">
-    <div class="thumbnail">
-      <img class="img-responsive" src="<%= item.image %>">
-      <div class="caption">
-      <h3><%= link_to "#{item.name}, #{item.club.name}", item %></h3>
-
-      </div>
-    </div>
-  </div>
+    <%= render "items/item_display", item: item, cart: @cart %>
   <% end  %>
 </div>

@@ -1,10 +1,10 @@
 <div class="col-sm-4 col-md-3">
-    <div class="thumbnail">
-      <img class="img-responsive" src="<%= item.image %>">
-      <div class="caption">
-      <h3><%= link_to "#{item.name}", item %></h3>
-      <h5><%= link_to "#{item.club.name}", club_url(item.club) %></h5>
-      <%= render "items/cart_button", :item => item, :cart => @cart %>
-      </div>
+  <div class="thumbnail">
+    <img class="img-responsive" src="<%= item.image %>">
+    <div class="caption">
+    <h3><%= link_to "#{item.name}", item %></h3>
+    <h5><%= link_to "#{item.club.name}", club_url(item.club) %></h5>
+    <%= render "items/cart_button", :item => item, :cart => @cart %>
     </div>
   </div>
+</div>

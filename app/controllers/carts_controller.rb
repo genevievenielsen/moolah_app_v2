@@ -3,6 +3,7 @@ class CartsController < ApplicationController
 
   def my_cart
     @items = current_user.items_in_cart
+    @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
   end
 
   def purchase_items

@@ -1,0 +1,33 @@
+<h1>My Items</h1>
+
+<div class="row">
+<h3>Need to Purchase</h3>
+<p>These are the items required by the clubs you belong to!</p>
+<br>
+<% @clubs.each do |club| %>
+  <% club.required_items.each do |item| %>
+    <% if current_user.paid_items.include?(item)  %>
+      <p>Looks like you don't have any items you need to purchase</p>
+    <% else %>
+      <%= render "items/item_display", item: item, cart: @cart %>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
+
+<div class="row">
+<h3> Purchased Items</h3>
+
+<% @paid_items.each do |item| %>
+  <%= render "items/item_display", item: item, cart: @cart %>
+<% end %>
+</div>
+
+
+<div class="row">
+<h3>My Items for Sale</h3>
+  <% @items_for_sale.each do |item| %>
+  <%= render "items/item_display", item: item, cart: @cart %>
+<% end %>
+
+</div>

@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :clubs, :through => :memberships, :source => :club
 
+  has_many :items_for_sale, :class_name => "Item", :foreign_key => "owner_id"
+
 
   # items in the cart
   has_many :selected_items
@@ -49,6 +51,11 @@ class User < ActiveRecord::Base
   end
 
 
+
+  # all the items
+  def required_items
+    Item.where(:id => self.clubs.items.where(:required => true).pluck(:id))
+  end
 
 
 
