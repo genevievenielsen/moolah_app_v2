@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'figaro'
+
+gem 'sendwithus_ruby_action_mailer'
+
 gem 'roo'
 
 gem "font-awesome-rails"
