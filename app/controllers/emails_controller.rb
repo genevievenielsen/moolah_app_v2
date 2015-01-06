@@ -9,7 +9,6 @@ class EmailsController < ApplicationController
   def import_emails
     @club = Club.find_by(:id => params[:id])
 
-    Email.import(params[:file])
 
     spreadsheet = Email.open_spreadsheet(params[:file])
     header = spreadsheet.row(1)
