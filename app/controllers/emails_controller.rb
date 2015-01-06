@@ -17,9 +17,35 @@ class EmailsController < ApplicationController
       email = Email.new
       email.attributes = row.to_hash
       email.club_id = @club.id
-      email.save!
-    end
 
+
+      #remove any duplicates
+      club_email_list = Email.where(:club_id => @club.id)
+      if club_email_list.pluck(:email).include?(email.email)
+        email.destroy
+      else
+        email.save!
+      end
+
+      #check to see if the email exists as a user
+      #if so, check to see if a membership exists
+      #if not, create one
+      club_email_list = Email.where(:club_id => @club.id).pluck(:email)
+      existing_users = User.where(:email => club_email_list)
+
+       if existing_users.present?
+        existing_users.each do |user|
+          if Membership.find_by(:user_id => user.id, :club_id => @club.id).present?
+          else
+            m = Membership.new
+            m.user_id = user.id
+            m.club_id = @club.id
+            m.save
+          end
+        end
+       end
+
+    end
 
     redirect_to club_url(@club.id), notice: "Email list imported."
   end
