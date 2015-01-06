@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get('/club_emails/:id', {:controller => 'emails', :action => 'club_emails'})
   post('/import_emails/:id', {:controller => 'emails', :action => 'import_emails'})
 
+  get('/view_report/:id', {:controller => 'items', :action => 'view_report'})
 
   devise_for :users
   root to: "users#home"

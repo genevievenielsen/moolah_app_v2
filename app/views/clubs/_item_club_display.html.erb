@@ -39,7 +39,7 @@
         <img class="img-circle img-responsive center-block" src="<%= item.image %>" width="70" >
         <br>
 
-        <p class="text-center lead"><%= item.name %> </p>
+        <p class="text-center lead"><%= link_to "#{item.name}", item_url(item) %> </p>
         <% if item.required == true %>
           <p class="text-center">This item is required for all members of <%= item.club.name %>.</p>
           <p class="text-center">Purchase it now!</p>

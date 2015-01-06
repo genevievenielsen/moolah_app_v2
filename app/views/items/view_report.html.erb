@@ -1,0 +1,23 @@
+
+<div class="row">
+  <h1><%= @item.name %> Report</h1>
+</div>
+
+<div class="row">
+  <%#= pluralize(@item.count, 'Member') Paid %>, <%#= pluralize(@item.count, 'Payment') Outstanding %>
+</div>
+<% @item.club.members.each do |member| %>
+
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag "#{member.image}", :class => "pull-left img-responsive img-circle", :width => "75px", :height => "75px" %>
+      <h4 class="pull-left"><%= "#{member.first_name} #{member.last_name}" %> </h4>
+    </div>
+    <% if member.paid_items.include?(@item) %>
+      <i class="fa fa-check-circle-o fa-2x col-md-2" style="display:inline"></i>
+    <% else %>
+      <i class="fa fa-times-circle-o fa-2x col-md-2" style="display:inline"></i>
+    <% end %>
+  </div>
+
+<% end %>

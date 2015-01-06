@@ -9,6 +9,10 @@ class ItemsController < ApplicationController
 
     @items_for_sale = current_user.items_for_sale
   end
+
+  def view_report
+     @item = Item.find(params[:id])
+  end
   # GET /items
   # GET /items.json
   def index

@@ -24,6 +24,8 @@
         <% else %>
           <h4>Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></h4>
         <% end %>
+          <%= link_to "View Report", "/view_report/#{@item.id}" %>
+          <br>
       <% else %>
          <h4>Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></h4>
       <% end %>
