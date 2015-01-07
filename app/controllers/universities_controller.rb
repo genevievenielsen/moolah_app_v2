@@ -25,6 +25,7 @@ class UniversitiesController < ApplicationController
   # POST /universities.json
   def create
     @university = University.new(university_params)
+    @university.owner_id = current_user.id
 
     respond_to do |format|
       if @university.save

@@ -5,7 +5,7 @@
 
 <div class="row">
 </div>
-<h3>Members</h3>
+<h3>Members of <%= @item.club.name %> on Moolah</h3>
 <p><%= pluralize(@purchases, 'Member') %> Paid,  <%= pluralize(@outstanding_payments, 'Payment')  %> Outstanding</p>
 
 <% @item.club.members.each do |member| %>
@@ -24,8 +24,8 @@
 
 <% end %>
 
-
-<h3>Emails</h3>
+<br>
+<h3>Email List</h3>
 <% @item.club.emails.each do |email| unless @item.club.members.pluck(:email).include?(email.email)%>
 
   <div class="row">
@@ -39,3 +39,5 @@
   </div>
 <% end %>
 <% end %>
+
+

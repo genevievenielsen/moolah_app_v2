@@ -56,6 +56,24 @@
       {prompt: "Select a Category"}, {class: "form-control"}) %>
   </div>
 
+  <div class="row">
+
+    <div class="col-md-4 ">
+      <input id="add_size_option" type="text" class="form-control pull-left" />
+    </div>
+    <div class="col-md-4">
+      <input id ="add_size_btn" class="btn btn-default pull-left" type="submit" value="Add Size" onclick="function();" />
+    </div>
+    <div class="col-md-4 pull-left">
+    <select id="size_select_box" name="SelectBox" class="form-control">
+      <!-- <option value="option1"> option1 </option>
+      <option value="option2"> option2 </option>
+      <option value="option3"> option3 </option>
+      <option value="option4"> option4 </option> -->
+    </select>
+    </div>
+
+  </div>
   <%# if @item.category == 'Merchandise' %>
    <!--  <div class = "form-group">
         <%#= f.label :size, :class => "control-label" %>

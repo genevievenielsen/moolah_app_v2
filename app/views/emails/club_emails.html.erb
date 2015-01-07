@@ -15,3 +15,15 @@ If you are uploading a new list, we will remove any duplicate email addresses.</
   <%= file_field_tag :file %>
   <%= submit_tag "Import Club Email list", :class => "btn btn-primary btn-sm" %>
 <% end %>
+
+
+
+<div class="row">
+  <% @club.emails.each do |email| %>
+
+    <div class="col-md-4">
+      <p class="pull-left"><%= "#{email.first_name} #{email.last_name}" " - " "#{email.email}"%> </p>
+
+    </div>
+  <% end %>
+</div>
