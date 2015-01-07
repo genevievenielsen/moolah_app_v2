@@ -1,12 +1,12 @@
 class Notifier < SendWithUsMailer::Base
     default from: 'no-reply@example.com'
 
-    def payment_reminder_notification(item, member)
-        assign(:account, member)
+    def payment_reminder_notification(item, email)
+        assign(:account, email)
 
         # assign(:item_image, item.image.url)
 
-        assign(:member_name, member.first_name)
+        assign(:member_name, email.first_name)
 
         assign(:club_name, item.club.name)
 
@@ -14,6 +14,12 @@ class Notifier < SendWithUsMailer::Base
 
         mail(
             email_id: ENV['EMAIL_ID'],
-            recipient_address: member.email)
+            recipient_address: email.email)
+    end
+
+    def imported_email_welcome(email, club)
+        assign(:member_name, email.first_name)
+
+        assign(:member_name, email.first_name)
     end
 end

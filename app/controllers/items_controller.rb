@@ -12,6 +12,16 @@ class ItemsController < ApplicationController
 
   def view_report
      @item = Item.find(params[:id])
+
+     @outstanding_payments = 0
+     @purchases = 0
+     @item.club.members.each do |member|
+      if member.paid_items.include?(@item)
+        @purchases += 1
+      else
+        @outstanding_payments += 1
+      end
+     end
   end
   # GET /items
   # GET /items.json
