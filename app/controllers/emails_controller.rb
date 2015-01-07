@@ -26,7 +26,7 @@ class EmailsController < ApplicationController
       else
         email.save!
         #send a welcome email
-        # Notifier.imported_email_welcome(email, @club).deliver
+        Notifier.imported_email_welcome(email, @club).deliver
       end
 
       #check to see if the email exists as a user

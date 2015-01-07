@@ -18,8 +18,12 @@ class Notifier < SendWithUsMailer::Base
     end
 
     def imported_email_welcome(email, club)
-        assign(:member_name, email.first_name)
+        assign(:email_name, email.first_name)
 
-        assign(:member_name, email.first_name)
+        assign(:club_name, club.name)
+
+        mail(
+            email_id: ENV['MPORTED_EMAIL_ID'],
+            recipient_address: email.email)
     end
 end

@@ -41,7 +41,7 @@
     <div class="row">
       <% @club.members.each do |member| %>
         <div class="col-md-2 col-sm-3">
-          <img src="<%= member.image %>" class="img img-circle img-responsive">
+          <img src="<%= member.image %>" class="img img-circle img-responsive" width="100px" height="100px">
             <p class="text-center"><%= "#{member.first_name} #{member.last_name}" %> </p>
         </div>
       <% end %>
