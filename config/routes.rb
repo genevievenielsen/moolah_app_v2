@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get('/view_report/:id', {:controller => 'items', :action => 'view_report'})
 
-  devise_for :users
+  devise_for :users, :controllers => {  :registrations => "registrations"}
   root to: "users#home"
 
   resources :universities

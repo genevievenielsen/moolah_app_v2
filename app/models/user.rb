@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  after_create :send_welcome_email
+
   validates :first_name, :presence => true
   validates :last_name, :presence => true
 
@@ -51,11 +53,22 @@ class User < ActiveRecord::Base
   end
 
 
-
-  # all the items
+  # all the required items
   def required_items
     Item.where(:id => self.clubs.items.where(:required => true).pluck(:id))
   end
+
+  # CREATE NEW USER METHODS
+  def send_welcome_email
+    Notifier.welcome_email(self).deliver
+  end
+
+  #when user registers check to see if their email is included on a club email list
+  #if it is, create a membership
+  def check_club_email_lists
+
+  end
+
 
 
 
