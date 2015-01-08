@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'whenever', :require => false
+
 gem 'figaro'
 
 gem 'sendwithus_ruby_action_mailer'
