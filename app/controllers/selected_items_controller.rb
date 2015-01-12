@@ -32,7 +32,7 @@ class SelectedItemsController < ApplicationController
 
     respond_to do |format|
       if @selected_item.save
-        format.html { redirect_to :back, notice: 'Selected item was successfully created.' }
+        format.html { redirect_to :back, notice: 'Item was successfully added to your cart.' }
         format.json { render :show, status: :created, location: @selected_item }
       else
         format.html { render :new }
@@ -60,7 +60,7 @@ class SelectedItemsController < ApplicationController
   def destroy
     @selected_item.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Selected item was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Item was successfully removed from your cart.' }
       format.json { head :no_content }
     end
   end

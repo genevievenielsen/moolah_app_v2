@@ -12,8 +12,14 @@ Rails.application.routes.draw do
 
   get('/view_report/:id', {:controller => 'items', :action => 'view_report'})
 
-  devise_for :users, :controllers => {  :registrations => "registrations"}
+  devise_for :users, :controllers => {  :registrations => "registrations" }
+  #devise_for :users, :controllers => {  :registrations => "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
+
   root to: "users#home"
+
+  post '/venmo_pay' => 'items#venmo_pay', :as => 'venmo_pay'
+  # get '/auth/venmo/callback' => 'users/omniauth_callbacks#venmo'
+
 
   resources :universities
 

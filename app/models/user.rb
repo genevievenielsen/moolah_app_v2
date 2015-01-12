@@ -18,10 +18,31 @@ class User < ActiveRecord::Base
 
   has_many :items_for_sale, :class_name => "Item", :foreign_key => "owner_id"
 
-
   # items in the cart
   has_many :selected_items
   has_many :carts, :through => :selected_items, :source => :cart
+
+  devise :omniauthable
+
+  def self.find_for_oauth(auth, signed_in_resource=nil)
+        user = User.where(:provider => auth.provider, :uid => auth.uid).first
+        if user
+          return user
+        else
+          registered_user = User.where(:email => auth.info.email).first
+          if registered_user
+            return registered_user
+          else
+            user = User.create(name:auth.extra.raw_info.name,
+                            provider:auth.provider,
+                            uid:auth.uid,
+                            email:auth.info.email.blank? ? TEMP_EMAIL : auth.info.email,
+                            password:Devise.friendly_token[0,20],
+                          )
+       end
+    end
+    user
+  end
 
   # carts the user has paid for
   def paid_carts
@@ -66,7 +87,15 @@ class User < ActiveRecord::Base
   #when user registers check to see if their email is included on a club email list
   #if it is, create a membership
   def check_club_email_lists
-
+    existing_club_memberships = Email.where(:email => self.email)
+    if existing_club_memberships.present?
+      existing_club_memberships.each do |email|
+        m = Membership.new
+        m.club_id = email.club_id
+        m.user_id = self.id
+        m.save
+      end
+    end
   end
 
 

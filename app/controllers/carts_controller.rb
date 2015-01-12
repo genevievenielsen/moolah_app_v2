@@ -3,7 +3,30 @@ class CartsController < ApplicationController
 
   def my_cart
     @items = current_user.items_in_cart
-    @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
+    @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
+    if @cart.present?
+      @cart_price = 0
+      @note = ""
+      @cart.items.each do |item|
+        @cart_price = @cart_price + item.price
+        @note = @note + " #{item.name},"
+       end
+    end
+
+    #This gets the venmo access token
+    current_user.venmo_auth_token = params[:code].to_s
+    current_user.save
+
+    @response = HTTParty.post("https://api.venmo.com/v1/oauth/access_token",
+    :query => {:client_id => ENV['VENMO_CLIENT_ID'], :client_secret => ENV['VENMO_CLIENT_SECRET'],
+    :code => "#{current_user.venmo_auth_token}"})
+
+    if @response.present? == {"error"=>{"message"=>"That Access Code has already been redeemed for an access token.", "code"=>257}}
+    else
+      current_user.venmo_access_token = @response["access_token"]
+      #current_user.venmo_email_address = @response["user"]["email"]
+      current_user.save
+    end
   end
 
   def purchase_items

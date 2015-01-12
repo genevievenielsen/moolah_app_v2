@@ -1,6 +1,37 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
+   def venmo_pay
+       # Changes order status to paid
+    @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
+    @cart.paid = true
+    @cart.save
+     # REAL
+
+     #uri = URI('https://api.venmo.com/v1/payments')
+
+     #res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
+                                     #email: params['email'],
+                                     #actor: params['actor'],
+                                     #note: params['note'],
+                                     #target: params['target'],
+                                     #amount: params['amount'],
+                                     #audience: 'private')
+
+    # SANDBOX
+      uri = URI('https://sandbox-api.venmo.com/v1')
+
+      res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
+                                     user_id: '145434160922624933',
+                                     actor: params['actor'],
+                                     note: params['note'],
+                                     target: params['target'],
+                                     amount: '0.10',
+                                     audience: 'private')
+
+    redirect_to home_url, notice: 'You have successfully paid for your cart with Venmo!'
+  end
+
   def my_items
     @clubs = current_user.clubs
     @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)

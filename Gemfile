@@ -1,4 +1,8 @@
 source 'https://rubygems.org'
+gem 'httparty'
+
+gem 'omniauth'
+gem 'omniauth-venmo'
 
 gem 'whenever', :require => false
 
@@ -18,6 +22,7 @@ gem 'starter_generators', :git => "git://github.com/rbetina/starter_generators.g
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
+# gem 'rails 3.2.14'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
