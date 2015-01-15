@@ -1,13 +1,28 @@
+<div class="color_options_display">
 <div class="row">
-
   <div class="col-md-4">
-    <input id="add_size_option" type="text" class="form-control pull-left" />
+    <input id="add_color_option" type="text" class="form-control pull-left" />
   </div>
 
   <div class="col-md-4">
-    <input id ="add_size_btn" class="btn btn-default pull-left" type="submit" value="Add Color" onclick="function();" />
+    <input id ="add_color_btn" class="btn btn-default pull-left" type="submit" value="Add Color" onclick="function();" />
   </div>
 
+  <div class="col-md-4">
+    <%= render "items/color_select_box" %>
+  </div>
 
 </div>
-<br>
+</div>
+
+<script type="text/javascript">
+  // if the add color button option is selected
+  $(document).ready(function() {
+    $("#add_color_btn").click(function() {
+      $('#color_select_box').append($("<option class=\"color_option\">" + $('#add_color_option').val() + "</option>"));
+      return false;
+    });
+  });
+
+
+</script>

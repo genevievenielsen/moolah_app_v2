@@ -1,39 +1,48 @@
+<div class="merchandise_options">
 <div class="form-group col-sm-12">
-  <label for="color_options" id="color_options" class="pull-left">Add color options</label>
-
-    <div class="col-sm-6">
-      <div id="color_options" >
-        <%= radio_button_tag 'color_options', 'color_options' %>
-
-      </div>
-    </div>
+  <label for="color_options"  class="pull-left"> Add color options</label>
+  <div class="col-sm-6">
+    <input id="color_options" type="checkbox">
+  </div>
+</div>
+<br>
+<div class="space_for_color_selector">
+  <br>
 </div>
 
-
 <div class="form-group col-sm-12">
-  <label for="sizing_options" id="sizing_options" class="pull-left">Add sizing options</label>
-
+  <label for="sizing_options" class="pull-left">Add sizing options</label>
     <div class="col-sm-6">
-      <div id="sizing_options" >
-        <%= radio_button_tag 'sizing_options', 'sizing_options' %>
-      </div>
+      <input id="sizing_options" type="checkbox">
     </div>
+</div>
+<br>
+<div class="space_for_sizing_selector">
+  <br>
+</div>
 </div>
 
 <script type="text/javascript">
-  // if the add size button option is selected
-  $("input:radio[name=sizing_options]").click(function() {
-    var value = $(this).val();
-    if (value == "sizing_options") {
-      $('.space_for_selection_buttons').append("<%= escape_javascript(render "items/sizing_options" ) %>");
+
+// if the add color option is selected
+  $('#color_options').click(function() {
+    var color_checked  = document.getElementById("color_options").checked;
+    if (color_checked == true) {
+      $('.space_for_color_selector').append("<%= escape_javascript(render "items/color_options" ) %>");
+    }
+    else {
+      $('.color_options_display').remove();
     }
   });
 
-  // if the color option is selcted
-  $("input:radio[name=color_options]").click(function() {
-    var value = $(this).val();
-    if (value == "color_options") {
-      $('.space_for_selection_buttons').append("<%= escape_javascript(render "items/color_options" ) %>");
+  // if the add size button option is selected
+  $('#sizing_options').click(function() {
+    var sizing_checked  = document.getElementById("sizing_options").checked;
+    if (sizing_checked == true) {
+      $('.space_for_sizing_selector').append("<%= escape_javascript(render "items/sizing_options" ) %>");
+    }
+    else {
+      $('.sizing_options_display').remove();
     }
   });
 

@@ -16,21 +16,3 @@
 //= require_tree .
 
 
-$(document).ready(function() {
-
-
-
-
-
-
-  // if the add size button option is selected
-
-  $("#add_size_btn").click(function() {
-    $('#size_select_box').append($("<option>" + $('#add_size_option').val() + "</option>"));
-    return false;
-
-  });
-
-
-
-});

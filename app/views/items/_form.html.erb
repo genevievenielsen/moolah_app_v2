@@ -60,11 +60,9 @@
   <div class="space_for_selection_buttons">
 
   </div>
-  <br>
-  <br>
-  <br>
+
   <div class="actions">
-    <%= f.submit :class => "btn btn-default" %>
+    <%= f.submit :class => "btn btn-default form-group " %>
   </div>
 <% end %>
 
@@ -78,6 +76,9 @@
     var value = $(this).val();
     if (value === "Merchandise") {
       $('.space_for_selection_buttons').append("<%= escape_javascript(render "items/merchandise_options" )%>");
+    }
+    else {
+      $('.merchandise_options').remove();
     }
   });
 
