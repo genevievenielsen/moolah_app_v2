@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
+
+# gem 'bootstrap-sass', '~> 3.3.1'
+
 gem 'httparty'
 
 gem 'omniauth'
+
 gem 'omniauth-venmo'
 
 gem 'whenever', :require => false

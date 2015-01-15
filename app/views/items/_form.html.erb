@@ -28,6 +28,7 @@
   </div>
   <div class="form-group">
     <%= f.label :required, :class => "control-label" %> <p>Check the box below if the item is required for all members.  If an item is required, members will receive weekly reminder emails until they pay.</p>
+
     <%= f.check_box :required, :class => "form-control pull-left" %>
   </div>
 
@@ -53,46 +54,15 @@
       ['Dues', 'Dues'],
       ['Donations', 'Dontations'],
       ['Deals', 'Deals']  ], @item.category),
-      {prompt: "Select a Category"}, {class: "form-control"}) %>
+      {prompt: "Select a Category"}, {class: "form-control category_select"}) %>
   </div>
 
-  <div class="row">
-
-    <div class="col-md-4 ">
-      <input id="add_size_option" type="text" class="form-control pull-left" />
-    </div>
-    <div class="col-md-4">
-      <input id ="add_size_btn" class="btn btn-default pull-left" type="submit" value="Add Size" onclick="function();" />
-    </div>
-    <div class="col-md-4 pull-left">
-    <select id="size_select_box" name="SelectBox" class="form-control">
-      <!-- <option value="option1"> option1 </option>
-      <option value="option2"> option2 </option>
-      <option value="option3"> option3 </option>
-      <option value="option4"> option4 </option> -->
-    </select>
-    </div>
+  <div class="space_for_selection_buttons">
 
   </div>
-  <%# if @item.category == 'Merchandise' %>
-   <!--  <div class = "form-group">
-        <%#= f.label :size, :class => "control-label" %>
-          <%#= f.select(:size, options_for_select([['XS', 'XS'],
-            ['S', 'S'],
-            ['M', 'M'],
-            ['L', 'L'],
-            ['Xl', 'XL'] ], @item.category),
-          :class => "form-control") %>
-    </div> -->
-  <%# else %>
-  <%# end %>
-
- <!--  <div class="field">
-    <%#= f.label :color %><br>
-    <%#= f.text_field :color %>
-  </div> -->
-
-
+  <br>
+  <br>
+  <br>
   <div class="actions">
     <%= f.submit :class => "btn btn-default" %>
   </div>
@@ -100,3 +70,16 @@
 
 </div>
 </div>
+
+<script type="text/javascript">
+
+ //if the merchanise option is selected
+  $(".category_select").change(function() {
+    var value = $(this).val();
+    if (value === "Merchandise") {
+      $('.space_for_selection_buttons').append("<%= escape_javascript(render "items/merchandise_options" )%>");
+    }
+  });
+
+
+</script>

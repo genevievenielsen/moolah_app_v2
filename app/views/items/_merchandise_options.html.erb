@@ -1,0 +1,40 @@
+<div class="form-group col-sm-12">
+  <label for="color_options" id="color_options" class="pull-left">Add color options</label>
+
+    <div class="col-sm-6">
+      <div id="color_options" >
+        <%= radio_button_tag 'color_options', 'color_options' %>
+
+      </div>
+    </div>
+</div>
+
+
+<div class="form-group col-sm-12">
+  <label for="sizing_options" id="sizing_options" class="pull-left">Add sizing options</label>
+
+    <div class="col-sm-6">
+      <div id="sizing_options" >
+        <%= radio_button_tag 'sizing_options', 'sizing_options' %>
+      </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  // if the add size button option is selected
+  $("input:radio[name=sizing_options]").click(function() {
+    var value = $(this).val();
+    if (value == "sizing_options") {
+      $('.space_for_selection_buttons').append("<%= escape_javascript(render "items/sizing_options" ) %>");
+    }
+  });
+
+  // if the color option is selcted
+  $("input:radio[name=color_options]").click(function() {
+    var value = $(this).val();
+    if (value == "color_options") {
+      $('.space_for_selection_buttons').append("<%= escape_javascript(render "items/color_options" ) %>");
+    }
+  });
+
+</script>
