@@ -86,7 +86,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    @color_option = @item.color_options
+    # @color_option = @item.color_options
   end
 
   # POST /items
