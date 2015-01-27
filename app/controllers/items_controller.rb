@@ -2,10 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
    def venmo_pay
-       # Changes order status to paid
-    @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
-    @cart.paid = true
-    @cart.save
+
      # REAL
 
      #uri = URI('https://api.venmo.com/v1/payments')
@@ -19,16 +16,28 @@ class ItemsController < ApplicationController
                                      #audience: 'private')
 
     # SANDBOX
-      uri = URI('https://sandbox-api.venmo.com/v1')
+      uri = URI('https://sandbox-api.venmo.com/v1/payments')
+
+      params[:items].each do |item|
+
+      puts item
 
       res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
                                      user_id: '145434160922624933',
-                                     actor: params['actor'],
-                                     note: params['note'],
-                                     target: params['target'],
+                                     note: item[1]['note'],
+                                     target: item[1]['target'],
                                      amount: '0.10',
                                      audience: 'private')
 
+      puts res.body
+      end
+
+    # Changes order status to paid
+    @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
+    # if settled then change to pay, but for each item
+    # if one fails, have that remain in the cart and the others are removed
+    @cart.paid = true
+    @cart.save
     redirect_to home_url, notice: 'You have successfully paid for your cart with Venmo!'
   end
 
@@ -72,10 +81,12 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @color_option = ColorOption.new
   end
 
   # GET /items/1/edit
   def edit
+    @color_option = @item.color_options
   end
 
   # POST /items
@@ -99,6 +110,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
+
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -128,6 +140,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :description, :price, :required, :owner_id, :expiration_date, :club_id, :image, :category, :color, :size, :university_id)
+      params.require(:item).permit(:name, :description, :price, :required, :owner_id, :expiration_date, :club_id, :image, :category, :color, :size, :university_id, items: {})
     end
 end

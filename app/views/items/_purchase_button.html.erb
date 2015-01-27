@@ -1,37 +1,30 @@
 
 <% if current_user.unpaid_selected_items.count > 0 %>
+  <% if current_user.venmo_access_token.present? %>
 
-  <%= form_tag venmo_pay_url do %>
+      <%= form_tag venmo_pay_url do %>
+        <% counter = 0 %>
+          <% while counter < current_user.unpaid_selected_items.count %>
+          <%= hidden_field_tag "items[#{counter}][email]", current_user.email %>
+          <%= hidden_field_tag "items[#{counter}][actor]", current_user %>
+          <%= hidden_field_tag "items[#{counter}][note]", @note %>
+          <%= hidden_field_tag "items[#{counter}][amount]", @cart_price %>
+          <%= hidden_field_tag "items[#{counter}][transaction_id]", @cart.id %>
 
-   <%= hidden_field_tag 'email', current_user.email %>
-   <%= hidden_field_tag 'actor', current_user %>
-   <%= hidden_field_tag 'note', @note %>
-   <%= hidden_field_tag 'amount', @cart_price %>
-   <%= hidden_field_tag 'transaction_id', @cart.id %>
+          <%= hidden_field_tag "items[#{counter}][target]", @cart.items[counter].owner.email %>
 
-  <!--  the person receiving the payment -->
-  <!-- this code is BAD because it is the owner of the first item, but if items in the cart have different
- owners this is incorrect -->
-    <%= hidden_field_tag 'target', @cart.items.first.owner.email %>
 
-    <% if current_user.venmo_access_token %>
-      <%= submit_tag "Pay For Items in Cart with Venmo", class: "btn btn-primary btn-sm" %>
-    <% else %>
-      <div class="tip">To pay with Venmo, you need to sign into your Venmo account or create an account! </div>
-      <div><%= link_to "Venmo", "https://api.venmo.com/v1/oauth/authorize?client_id=#{ENV['VENMO_CLIENT_ID']}&scope=&scope=make_payments%20access_profile%20access_email%20access_phone%20access_balance&response_type=code" %></div>
-    <% end %>
+          <% counter += 1 %>
+        <% end %>
+         <%= submit_tag "Pay For Items in Cart with Venmo", class: "btn btn-primary btn-sm" %>
+      <% end %>
+
+
+  <% else %>
+    <div class="tip">To pay with Venmo, you need to sign into your Venmo account or create an account! </div>
+    <div><%= link_to "Venmo", "https://api.venmo.com/v1/oauth/authorize?client_id=#{ENV['VENMO_CLIENT_ID']}&scope=&scope=make_payments%20access_profile%20access_email%20access_phone%20access_balance&response_type=code" %></div>
+  <% end %>
 
 <% end %>
 
-<% end %>
-
-<%# if current_user.unpaid_selected_items.count > 0 %>
-
-  <%#= link_to "Pay for Items in Cart", purchase_items_url, :class => "btn btn-default" %>
-
-<%# else %>
-
-<!--   <h3>You currently do not have any items in your cart!</h3>
- -->
-<%# end %>
 
