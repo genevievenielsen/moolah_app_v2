@@ -16,7 +16,11 @@
         <h4><%= @club.description %></h4>
         <h4><%= @club.website %></h4>
 
-        <%= render "memberships/join_button", :club => @club %>
+        <% if @club.members.include?(current_user)  %>
+            <%= render 'memberships/unjoin_button', :club => @club %>
+        <% else %>
+            <%= render 'memberships/join_button', :club => @club %>
+        <% end %>
     </div>
 
     <div class="text-center">

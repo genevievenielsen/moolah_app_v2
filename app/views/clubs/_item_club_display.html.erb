@@ -44,7 +44,13 @@
           <p class="text-center">This item is required for all members of <%= item.club.name %>.</p>
           <p class="text-center">Purchase it now!</p>
         <% end  %>
-        <div class="btn col-sm-12"><%= render 'items/cart_button', item: item, cart: @cart %> </div>
+        <div class="btn col-sm-12">
+          <% if current_user.items_in_cart.include?(item) %>
+            <%= render "items/remove_from_cart_button", :item => item, :cart => @cart %>
+          <% else %>
+            <%= render "items/add_to_cart_button", :item => item, :cart => @cart %>
+          <% end %>
+        </div>
 
         <div class="clearfix"></div>
 
