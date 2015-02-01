@@ -33,6 +33,7 @@ class MembershipsController < ApplicationController
       if @membership.save
         format.html { redirect_to :back, notice: 'Membership was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @membership.errors, status: :unprocessable_entity }
@@ -61,6 +62,7 @@ class MembershipsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Membership was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

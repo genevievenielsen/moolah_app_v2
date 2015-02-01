@@ -7,7 +7,11 @@
         <%= pluralize(club.members.count, 'member') %>,
         <%= pluralize(club.items.count, 'item') %>
       </div>
-      <%= render "memberships/join_button", :club => club %>
+      <% if club.members.include?(current_user)  %>
+          <%= render 'memberships/unjoin_button', :club => club %>
+      <% else %>
+          <%= render 'memberships/join_button', :club => club %>
+      <% end %>
 
       </div>
     </div>

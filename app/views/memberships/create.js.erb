@@ -1,0 +1,3 @@
+$('#join_button_<%= @membership.club.id %>').fadeOut(function() {
+  $(this).replaceWith('<%= j(render('memberships/unjoin_button', :club => @membership.club)) %>');
+});
