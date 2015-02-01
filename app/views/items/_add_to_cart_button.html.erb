@@ -1,0 +1,9 @@
+<%= link_to("Add to Cart",
+            selected_items_url(:user_id => current_user.id, :item_id => item.id, :cart_id => cart.id),
+            :method => "post",
+            :class => "btn btn-success",
+            :remote => "true",
+            :id => "add_to_cart_#{item.id}") %>
+
+
+

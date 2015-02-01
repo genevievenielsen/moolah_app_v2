@@ -1,0 +1,3 @@
+$('#remove_from_cart_<%= @selected_item.item.id %>').fadeOut(function() {
+  $(this).replaceWith('<%= j(render('items/add_to_cart_button', :item => @selected_item.item, :cart => @selected_item.cart)) %>');
+});

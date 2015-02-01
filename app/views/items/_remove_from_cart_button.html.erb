@@ -1,0 +1,8 @@
+<% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id, :cart_id => cart.id)  %>
+
+   <%= link_to "Remove from Cart",
+                selected_item_url(selected_item.id),
+                :class => "btn btn-default",
+                :method => "delete",
+                :remote => "true",
+                :id => "remove_from_cart_#{item.id}" %>
