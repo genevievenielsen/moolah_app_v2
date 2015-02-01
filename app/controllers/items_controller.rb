@@ -81,7 +81,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
-    @color_option = ColorOption.new
+    # @color_option = ColorOption.new
   end
 
   # GET /items/1/edit

@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
 
+#jquery
+gem "jquery-ui-rails"
+
+#styling
 gem 'sprockets'
 gem 'bootstrap-sass', '3.2.0.2'
 gem 'font-awesome-sass'
-
 
 gem 'httparty'
 

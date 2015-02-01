@@ -11,8 +11,15 @@
 // about supported directives.
 //
 //= require jquery
+
+//= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
 
+$(document).ready(function() {
 
+  $("#item_expiration_date").datepicker({ dateFormat: "DD d MM, yy" });
+
+
+  });
