@@ -30,7 +30,12 @@
          <h4>Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></h4>
       <% end %>
 
-      <%= render "items/cart_button", :item => @item, :cart => @cart %>
+      <% if current_user.items_in_cart.include?(@item) %>
+        <%= render "items/remove_from_cart_button", :item => @item, :cart => @cart %>
+      <% else %>
+
+        <%= render "items/add_to_cart_button", :item => @item, :cart => @cart %>
+      <% end %>
 
       <% if current_user.items_in_cart.include?(@item) %>
         <%= link_to "View My Cart", my_cart_url %>
