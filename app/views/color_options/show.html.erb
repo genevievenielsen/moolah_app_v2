@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @color_option.color %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @color_option.item_id %>
+</p>
+
+<%= link_to 'Edit', edit_color_option_path(@color_option) %> |
+<%= link_to 'Back', color_options_path %>

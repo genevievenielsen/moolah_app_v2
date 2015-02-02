@@ -8,6 +8,14 @@
     <input id ="add_color_btn" class="btn btn-default pull-left" type="submit" value="Add Color" onclick="function();" />
   </div>
 
+  <%= link_to("Join",
+              memberships_url(:user_id => current_user.id, :club_id => club.id),
+              :method => "post",
+              :class => "btn btn-success btn-sm",
+              :remote => "true",
+              :id => "add_color_#{club.id}") %>
+
+
   <div class="col-md-4">
     <%= render "items/color_select_box" %>
   </div>

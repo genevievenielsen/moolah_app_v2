@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :size_options
+
+  resources :color_options
+
   get('/home', {:controller => 'users', :action => 'home'})
 
   get('/my_cart', {:controller => 'carts', :action => 'my_cart'})

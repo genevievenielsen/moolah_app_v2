@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104170303) do
+ActiveRecord::Schema.define(version: 20150202212205) do
 
   create_table "carts", force: true do |t|
     t.boolean  "paid"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20150104170303) do
     t.integer  "university_id"
     t.string   "website"
     t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "color_options", force: true do |t|
+    t.string   "color"
+    t.string   "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,6 +82,15 @@ ActiveRecord::Schema.define(version: 20150104170303) do
     t.integer  "item_id"
     t.integer  "cart_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "color_option_id"
+    t.integer  "size_option_id"
+  end
+
+  create_table "size_options", force: true do |t|
+    t.string   "size"
+    t.string   "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
