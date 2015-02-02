@@ -23,7 +23,17 @@ class Notifier < SendWithUsMailer::Base
         assign(:club_name, club.name)
 
         mail(
-            email_id: ENV['MPORTED_EMAIL_ID'],
+            email_id: ENV['IMPORTED_EMAIL_ID'],
             recipient_address: email.email)
     end
+
+    def welcome_email(user)
+        assign(:email_name, user.first_name)
+
+        mail(
+            email_id: ENV['WELCOME_EMAIL_ID'],
+            recipient_address: user.email)
+    end
+
+
 end
