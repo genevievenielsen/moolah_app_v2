@@ -1,19 +1,12 @@
 <div class="color_options_display">
 <div class="row">
   <div class="col-md-4">
-    <input id="add_color_option" type="text" class="form-control pull-left" />
+    <input name="color_option" id="add_color_option" type="text" class="form-control pull-left" />
   </div>
 
   <div class="col-md-4">
-    <input id ="add_color_btn" class="btn btn-default pull-left" type="submit" value="Add Color" onclick="function();" />
+    <input id ="add_color_btn" class="btn btn-default pull-left" value="Add Color" onclick="function();" />
   </div>
-
-  <%= link_to("Join",
-              memberships_url(:user_id => current_user.id, :club_id => club.id),
-              :method => "post",
-              :class => "btn btn-success btn-sm",
-              :remote => "true",
-              :id => "add_color_#{club.id}") %>
 
 
   <div class="col-md-4">
@@ -26,11 +19,28 @@
 <script type="text/javascript">
   // if the add color button option is selected
   $(document).ready(function() {
+
+    var colors = "";
+
     $("#add_color_btn").click(function() {
       $('#color_select_box').append($("<option class=\"color_option\">" + $('#add_color_option').val() + "</option>"));
-      return false;
+      colors = colors + $('#add_color_option').val() + " ";
+      $('#add_color_option').val("");
     });
+
+
+
+  $("#new_item").submit(function( event ) {
+      var input = $("<input>")
+                     .attr("type", "hidden")
+                     .attr("name", "colors").val(colors);
+      $('#new_item').append($(input));
+    });
+
+
   });
+
+
 
 
 </script>

@@ -96,6 +96,14 @@ class ItemsController < ApplicationController
     @item.owner_id = current_user.id
     @item.university_id = current_user.university.id
 
+    if params[:colors].present?
+    color_options = params[:colors]
+    colors = color_options.split(" ")
+    colors.each do |color|
+      @color_option = @item.color_options.create(color: color)
+    end
+    end
+
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -105,6 +113,7 @@ class ItemsController < ApplicationController
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /items/1
