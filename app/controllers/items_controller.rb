@@ -96,13 +96,7 @@ class ItemsController < ApplicationController
     @item.owner_id = current_user.id
     @item.university_id = current_user.university.id
 
-    if params[:colors].present?
-    color_options = params[:colors]
-    colors = color_options.split(" ")
-    colors.each do |color|
-      @color_option = @item.color_options.create(color: color)
-    end
-    end
+
 
     respond_to do |format|
       if @item.save
@@ -111,6 +105,22 @@ class ItemsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
+
+    if params[:colors].present?
+      color_options = params[:colors]
+      colors = color_options.split(" ")
+      colors.each do |color|
+        @color_option = @item.color_options.create(color: color)
+      end
+    end
+
+    if params[:sizes].present?
+      size_options = params[:sizes]
+      sizes = size_options.split(" ")
+      sizes.each do |size|
+        @size_option = @item.size_options.create(size: size)
       end
     end
 

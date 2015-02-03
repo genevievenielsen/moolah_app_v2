@@ -1,19 +1,21 @@
 <div class="color_options_display">
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-8">
     <input name="color_option" id="add_color_option" type="text" class="form-control pull-left" />
   </div>
 
   <div class="col-md-4">
     <input id ="add_color_btn" class="btn btn-default pull-left" value="Add Color" onclick="function();" />
   </div>
-
-
-  <div class="col-md-4">
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12">
     <%= render "items/color_select_box" %>
   </div>
-
 </div>
+<br>
+
 </div>
 
 <script type="text/javascript">
@@ -23,11 +25,23 @@
     var colors = "";
 
     $("#add_color_btn").click(function() {
-      $('#color_select_box').append($("<option class=\"color_option\">" + $('#add_color_option').val() + "</option>"));
+      $('#my-tag-list').tags({
+          readOnly: true,
+          tagData: $('#add_color_option').val(),
+          beforeAddingTag: function(tag){ console.log(tag); }
+      });
+
+      $('.bootstrap-tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_color_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
+
+
       colors = colors + $('#add_color_option').val() + " ";
       $('#add_color_option').val("");
-    });
+      });
 
+    // $(".remove").click(function() {
+    //   $(this).remove();
+
+    // });
 
 
   $("#new_item").submit(function( event ) {
@@ -39,8 +53,5 @@
 
 
   });
-
-
-
 
 </script>

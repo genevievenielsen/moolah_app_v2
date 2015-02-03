@@ -30,6 +30,11 @@
          <h4>Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></h4>
       <% end %>
 
+      <% if @item.color_options.count > 1 %>
+        <%= select_tag("color_options", options_from_collection_for_select(ColorOption.where(:item_id => @item.id), :id, :color), {prompt: "Select a Color"}) %>
+      <% end %>
+      <br>
+
       <% if current_user.items_in_cart.include?(@item) %>
         <%= render "items/remove_from_cart_button", :item => @item, :cart => @cart %>
       <% else %>
