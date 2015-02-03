@@ -31,17 +31,29 @@
       <% end %>
 
       <% if @item.color_options.count > 1 %>
-        <%= select_tag("color_options", options_from_collection_for_select(ColorOption.where(:item_id => @item.id), :id, :color), {prompt: "Select a Color"}) %>
-      <% end %>
-      <br>
+      <div class="col-md-offset-3 col-md-6">
+        <%= select_tag("color_options", options_from_collection_for_select(ColorOption.where(:item_id => @item.id), :id, :color), {class: "form-control", prompt: "Select a color"}) %>
+        <br>
+      </div>
 
-      <% if current_user.items_in_cart.include?(@item) %>
-        <%= render "items/remove_from_cart_button", :item => @item, :cart => @cart %>
-      <% else %>
-
-        <%= render "items/add_to_cart_button", :item => @item, :cart => @cart %>
       <% end %>
 
+      <% if @item.size_options.count > 1 %>
+        <div class="col-md-offset-3 col-md-6">
+        <%= select_tag("size_options", options_from_collection_for_select(SizeOption.where(:item_id => @item.id), :id, :size), {prompt: "Select a Size", class: "form-control"}) %>
+        <br>
+        </div>
+
+      <% end %>
+
+
+      <div class="col-md-offset-3 col-md-6">
+        <% if current_user.items_in_cart.include?(@item) %>
+          <%= render "items/remove_from_cart_button", :item => @item, :cart => @cart %>
+        <% else %>
+          <%= render "items/add_to_cart_button", :item => @item, :cart => @cart %>
+        <% end %>
+      </div>
       <% if current_user.items_in_cart.include?(@item) %>
         <%= link_to "View My Cart", my_cart_url %>
       <% end %>
