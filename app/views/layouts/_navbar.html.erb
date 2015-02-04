@@ -10,13 +10,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/home" class="navbar-brand"><%= Rails.application.class.parent_name %></a>
+      <a href="/home" class="navbar-brand">Moolah</a>
     </div>
   <div class="container">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/my_cart">My Cart</a></li>
+        <% if current_user.items_in_cart.count > 0 %>
+          <li><a href="/my_cart">My Cart (<%= current_user.items_in_cart.count %>)</a></li>
+        <% else %>
+          <li><a href="/my_cart">My Cart</a></li>
+        <% end %>
         <li><a href="/my_items">My Items</a></li>
         <li><a href="/my_clubs">My Clubs</a></li>
 

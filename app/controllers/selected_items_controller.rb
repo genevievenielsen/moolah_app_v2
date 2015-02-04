@@ -30,6 +30,9 @@ class SelectedItemsController < ApplicationController
     @selected_item.item_id = params[:item_id]
     @selected_item.cart_id = params[:cart_id]
 
+
+
+
     respond_to do |format|
       if @selected_item.save
         format.html { redirect_to :back, notice: 'Item was successfully added to your cart.' }
@@ -75,6 +78,6 @@ class SelectedItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def selected_item_params
-      params.require(:selected_item).permit(:item_id, :cart_id, :user_id)
+      params.require(:selected_item).permit(:item_id, :cart_id, :user_id, :size_option, :color_option)
     end
 end

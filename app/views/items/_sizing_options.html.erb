@@ -33,18 +33,17 @@
 
         $('.size_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_size_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
 
-
         sizes = sizes + $('#add_size_option').val() + " ";
         $('#add_size_option').val("");
-        });
 
-      // $(".remove").click(function() {
-      //   $(this).remove();
+      });
 
-      // });
+      $(".label").click(function() {
+        $(this).remove();
+      });
 
 
-    $("#new_item").submit(function( event ) {
+      $("#new_item").submit(function( event ) {
         var input = $("<input>")
                        .attr("type", "hidden")
                        .attr("name", "sizes").val(sizes);

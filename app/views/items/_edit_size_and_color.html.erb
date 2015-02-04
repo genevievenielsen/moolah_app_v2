@@ -1,0 +1,22 @@
+
+  <div id="color_select_box" id="my-tag-list" class="tag-list">
+    <div class="bootstrap-tags bootstrap-3 color_tags" id="medium">
+    <label>Colors:</label><br>
+      <% @item.color_options.each do |color| %>
+        <div class="tag label btn-info md"> <span><%= color.color %></span> <a><i class=" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white" style="color:white"></i> </a> </div>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div id="size_select_box" id="my-tag-list" class="tag-list">
+    <div class="bootstrap-tags bootstrap-3 size_tags" id="medium">
+    <label>Sizes:</label><br>
+      <% @item.size_options.each do |size| %>
+        <div class="tag label btn-info md"> <span><%= size.size %></span> <a><i class=" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white" style="size:white"></i> </a> </div>
+      <% end %>
+    </div>
+  </div>
+
+<br>
+<br>

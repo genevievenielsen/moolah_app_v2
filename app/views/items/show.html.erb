@@ -31,42 +31,39 @@
       <% end %>
 
       <% if @item.color_options.count > 1 %>
-      <div class="col-md-offset-3 col-md-6">
-        <%= select_tag("color_options", options_from_collection_for_select(ColorOption.where(:item_id => @item.id), :id, :color), {class: "form-control", prompt: "Select a color"}) %>
+      <div class="col-md-offset-4 col-md-4">
+        <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => @item.id), :id, :color), {class: "form-control", prompt: "Select a color"}) %>
         <br>
       </div>
 
       <% end %>
 
       <% if @item.size_options.count > 1 %>
-        <div class="col-md-offset-3 col-md-6">
-        <%= select_tag("size_options", options_from_collection_for_select(SizeOption.where(:item_id => @item.id), :id, :size), {prompt: "Select a Size", class: "form-control"}) %>
+        <div class="col-md-offset-4 col-md-4">
+        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => @item.id), :id, :size), {prompt: "Select a Size", class: "form-control"}) %>
         <br>
         </div>
 
       <% end %>
 
 
-      <div class="col-md-offset-3 col-md-6">
+      <div class="col-md-offset-4 col-md-4">
         <% if current_user.items_in_cart.include?(@item) %>
           <%= render "items/remove_from_cart_button", :item => @item, :cart => @cart %>
         <% else %>
           <%= render "items/add_to_cart_button", :item => @item, :cart => @cart %>
         <% end %>
       </div>
+      <div class="col-md-offset-4 col-md-4">
       <% if current_user.items_in_cart.include?(@item) %>
         <%= link_to "View My Cart", my_cart_url %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
 <br>
-
-
-
-  <%#= "#{@item.owner.first_name} #{@item.owner.last_name}" %>
 <br>
-
 <div class="row">
   <div class="col-md-12">
     <p class="lead"><%= link_to "#{@item.university.name}", university_url(@item.university) %> <i class="fa fa-chevron-right"></i> <%= link_to "#{@item.club.name}", university_url(@item.club) %> <i class="fa fa-chevron-right"></i> <%= @item.name %></p>
@@ -79,3 +76,25 @@
     <%= link_to 'Destroy', item_url(@item), method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    var size = "";
+
+    size = $('#size_option').val();
+      $('#size_option').val("");
+    });
+
+    $(".add_to_cart").submit(function( event ) {
+        var input = $("<input>")
+                       .attr("type", "hidden")
+                       .attr("name", "sizes").val(size);
+        $('.add_to_cart').append($(input));
+      });
+
+
+  });
+
+</script>

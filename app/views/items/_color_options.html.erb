@@ -26,25 +26,21 @@
 
     $("#add_color_btn").click(function() {
       $('#my-tag-list').tags({
-          readOnly: true,
           tagData: $('#add_color_option').val(),
-          beforeAddingTag: function(tag){ console.log(tag); }
       });
 
-      $('.color_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_color_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
-
+      $('.color_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
 
       colors = colors + $('#add_color_option').val() + " ";
       $('#add_color_option').val("");
       });
 
-    // $(".remove").click(function() {
-    //   $(this).remove();
+      // $(".color_remove").click(function() {
+      //   $(".color_remove").remove();
+      // });
 
-    // });
 
-
-  $("#new_item").submit(function( event ) {
+    $("#new_item").submit(function( event ) {
       var input = $("<input>")
                      .attr("type", "hidden")
                      .attr("name", "colors").val(colors);

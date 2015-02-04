@@ -61,6 +61,11 @@
 
   </div>
 
+  <% if current_page?(new_item_url) %>
+  <% else %>
+     <%= render "items/edit_size_and_color" %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit :class => "btn btn-default form-group " %>
   </div>
