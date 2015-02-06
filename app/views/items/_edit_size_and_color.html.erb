@@ -1,22 +1,126 @@
 
+  <label>Colors:</label><br>
+
+    <div class="color_options_display">
+    <div class="row">
+      <div class="col-md-8">
+        <input name="color_option" id="add_color_option" type="text" class="form-control pull-left" />
+      </div>
+      <div class="col-md-4">
+        <input id ="add_color_btn" class="btn btn-default pull-left" value="Add Color" />
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <%= render "items/color_select_box" %>
+      </div>
+    </div>
+    </div>
+
   <div id="color_select_box" id="my-tag-list" class="tag-list">
-    <div class="bootstrap-tags bootstrap-3 color_tags" id="medium">
-    <label>Colors:</label><br>
+    <div class="bootstrap-tags bootstrap-3 edit_color_tags" id="medium">
       <% @item.color_options.each do |color| %>
         <div class="tag label btn-info md"> <span><%= color.color %></span> <a><i class=" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white" style="color:white"></i> </a> </div>
       <% end %>
+      <br>
     </div>
   </div>
   <br>
   <br>
+
+ <label>Sizes:</label><br>
+
+  <div class="sizing_options_display">
+  <div class="row">
+    <div class="col-md-8">
+      <input name="size_option" id="add_size_option" type="text" class="form-control pull-left" />
+    </div>
+
+    <div class="col-md-4">
+      <input id ="add_size_btn" class="btn btn-default pull-left" value="Add size" onclick="function();" />
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <%= render "items/size_select_box" %>
+    </div>
+  </div>
+  </div>
+
   <div id="size_select_box" id="my-tag-list" class="tag-list">
-    <div class="bootstrap-tags bootstrap-3 size_tags" id="medium">
-    <label>Sizes:</label><br>
+    <div class="bootstrap-tags bootstrap-3 edit_size_tags " id="medium">
       <% @item.size_options.each do |size| %>
-        <div class="tag label btn-info md"> <span><%= size.size %></span> <a><i class=" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white" style="size:white"></i> </a> </div>
+        <div class="tag label btn-info md pull-left"> <span><%= size.size %></span> <a><i class=" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white" style="size:white"></i> </a> </div>
       <% end %>
+      <br>
     </div>
   </div>
 
 <br>
 <br>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+      var colors = "";
+
+      $("#add_color_btn").click(function() {
+          $('#my-tag-list').tags({
+            tagData: $('#add_color_option').val(),
+          });
+
+          $('.edit_color_tags').append($("<div class=\"tag label btn-info pull-left md\"> <span> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
+
+          colors = colors + $('#add_color_option').val() + " ";
+          $('#add_color_option').val("");
+
+        });
+
+      $(".label").click(function() {
+        $(this).remove();
+      });
+
+      $("#edit_item_<%= @item.id %>").submit(function( event ) {
+        var input = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "colors").val(colors);
+        $('#edit_item_<%= @item.id %>').append($(input));
+      });
+
+
+
+
+      var sizes = "";
+
+      $("#add_size_btn").click(function() {
+        $('#my-tag-list').tags({
+            readOnly: true,
+            tagData: $('#add_size_option').val(),
+            beforeAddingTag: function(tag){ console.log(tag); }
+        });
+
+        $('.edit_size_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_size_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
+
+        sizes = sizes + $('#add_size_option').val() + " ";
+        $('#add_size_option').val("");
+        });
+
+      $("#edit_item_<%= @item.id %>").submit(function( event ) {
+        var input = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "sizes").val(sizes);
+       $('#edit_item_<%= @item.id %>').append($(input));
+      });
+
+    });
+
+
+
+// if the add color button option is selected
+
+
+
+</script>

@@ -5,7 +5,7 @@
   </div>
 
   <div class="col-md-4">
-    <input id ="add_color_btn" class="btn btn-default pull-left" value="Add Color" onclick="function();" />
+    <input id ="add_color_btn" class="btn btn-default pull-left" value="Add Color" />
   </div>
 </div>
 <br>
@@ -14,7 +14,7 @@
     <%= render "items/color_select_box" %>
   </div>
 </div>
-<br>
+
 
 </div>
 
@@ -23,24 +23,25 @@
   $(document).ready(function() {
 
     var colors = "";
+    $('#my-tag-list').tags({
+          tagData: $('#add_color_option').val(),
+    });
 
     $("#add_color_btn").click(function() {
-      $('#my-tag-list').tags({
-          tagData: $('#add_color_option').val(),
+
+        $('.color_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
+
+        colors = colors + $('#add_color_option').val() + " ";
+        $('#add_color_option').val("");
+
       });
 
-      $('.color_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
-
-      colors = colors + $('#add_color_option').val() + " ";
-      $('#add_color_option').val("");
+      $(".label").click(function() {
+        $(this).remove();
       });
-
-      // $(".color_remove").click(function() {
-      //   $(".color_remove").remove();
-      // });
-
 
     $("#new_item").submit(function( event ) {
+      console.log(colors);
       var input = $("<input>")
                      .attr("type", "hidden")
                      .attr("name", "colors").val(colors);

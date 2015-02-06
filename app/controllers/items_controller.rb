@@ -130,6 +130,22 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
 
+    if params[:colors].present?
+      color_options = params[:colors]
+      colors = color_options.split(" ")
+      colors.each do |color|
+        @color_option = @item.color_options.create(color: color)
+      end
+    end
+
+    # if params[:sizes].present?
+    #   size_options = params[:sizes]
+    #   sizes = size_options.split(" ")
+    #   sizes.each do |size|
+    #     @size_option = @item.size_options.create(size: size)
+    #   end
+    # end
+
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
