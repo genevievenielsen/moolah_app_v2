@@ -29,16 +29,17 @@
 
     $("#add_color_btn").click(function() {
 
-        $('.color_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
+        $('.color_tags').append($("<div class=\"tag label btn-info md\"> <span class=\"color_value\"> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
+
+        $(".label").click(function() {
+          $(this).remove();
+        });
 
         colors = colors + $('#add_color_option').val() + " ";
         $('#add_color_option').val("");
 
       });
 
-      $(".label").click(function() {
-        $(this).remove();
-      });
 
     $("#new_item").submit(function( event ) {
       console.log(colors);

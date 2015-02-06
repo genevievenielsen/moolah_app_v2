@@ -38,7 +38,7 @@
     </div>
 
     <div class="col-md-4">
-      <input id ="add_size_btn" class="btn btn-default pull-left" value="Add size" onclick="function();" />
+      <input id ="add_size_btn" class="btn btn-default pull-left" value="Add size" />
     </div>
   </div>
   <br>
@@ -61,27 +61,33 @@
 <br>
 <br>
 
+<% @colors = " " %>
+<% @item.color_options.each do |color| %>
+  <% @colors = @colors + color.color + " " %>
+<% end %>
 
 <script type="text/javascript">
     $(document).ready(function() {
 
-      var colors = "";
+      // the existing colors
+      var colors = "<%= @colors %>";
 
       $("#add_color_btn").click(function() {
           $('#my-tag-list').tags({
             tagData: $('#add_color_option').val(),
           });
 
-          $('.edit_color_tags').append($("<div class=\"tag label btn-info pull-left md\"> <span> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
+          $('.edit_color_tags').append($("<div class=\"tag label btn-info pull-left md\"> <span> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>" ));
 
           colors = colors + $('#add_color_option').val() + " ";
           $('#add_color_option').val("");
 
-        });
+          $(".label").click(function() {
+            $(this).remove();
+          });
 
-      $(".label").click(function() {
-        $(this).remove();
-      });
+       });
+
 
       $("#edit_item_<%= @item.id %>").submit(function( event ) {
         var input = $("<input>")
@@ -103,6 +109,10 @@
         });
 
         $('.edit_size_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_size_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
+
+        $(".label").click(function() {
+          $(this).remove();
+        });
 
         sizes = sizes + $('#add_size_option').val() + " ";
         $('#add_size_option').val("");

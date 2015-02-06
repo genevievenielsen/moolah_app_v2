@@ -5,7 +5,7 @@
     </div>
 
     <div class="col-md-4">
-      <input id ="add_size_btn" class="btn btn-default pull-left" value="Add size" onclick="function();" />
+      <input id ="add_size_btn" class="btn btn-default pull-left" value="Add size" />
     </div>
   </div>
   <br>
@@ -33,14 +33,15 @@
 
         $('.size_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_size_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
 
+
+        $(".label").click(function() {
+          $(this).remove();
+        });
+
         sizes = sizes + $('#add_size_option').val() + " ";
         $('#add_size_option').val("");
 
       });
-
-      // $(".label").click(function() {
-      //   $(this).remove();
-      // });
 
 
       $("#new_item").submit(function( event ) {
