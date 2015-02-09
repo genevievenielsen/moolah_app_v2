@@ -76,6 +76,12 @@
 
 <script type="text/javascript">
 
+  $("#new_item").on("keypress", function (e) {
+      if (e.keyCode == 13) {
+          return false;
+      }
+  });
+
  //if the merchanise option is selected
   $(".category_select").change(function() {
     var value = $(this).val();

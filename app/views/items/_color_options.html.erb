@@ -28,32 +28,41 @@
           tagData: $('#add_color_option').val(),
     });
 
+    $("#add_color_option").keyup(function(event){
+      if(event.keyCode == 13){
+        $("#add_color_btn").click();
+      }
+    });
+
     $("#add_color_btn").click(function() {
 
+      if ($('#add_color_option').val() == "") {
+
+        alert("please enter a color in the text field");
+
+      } else {
+
         $('.color_tags').append($("<div class=\"tag label btn-info md\"> <span class=\"color_value\"> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
-          // need to have an unless value here
 
         colors = colors + $('#add_color_option').val() + " ";
         $('#add_color_option').val("");
 
         $(".label").click(function() {
-          console.log($(this).text());
           colors = colors.replace($(this).text().trim(), "");
-          console.log(colors);
           $(this).remove();
         });
 
-    });
+      }
 
+    });
 
     $("#new_item").submit(function( event ) {
       console.log(colors);
       var input = $("<input>")
-                     .attr("type", "hidden")
-                     .attr("name", "colors").val(colors);
+        .attr("type", "hidden")
+        .attr("name", "colors").val(colors);
       $('#new_item').append($(input));
     });
-
 
   });
 

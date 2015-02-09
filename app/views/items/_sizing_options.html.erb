@@ -24,34 +24,43 @@
 
       var sizes = "";
 
-      $("#add_size_btn").click(function() {
-        $('#my-tag-list').tags({
-            readOnly: true,
+      $("#add_size_option").keyup(function(event){
+        if(event.keyCode == 13){
+          $("#add_size_btn").click();
+        }
+      });
+
+      $('#my-tag-list').tags({
             tagData: $('#add_size_option').val(),
-            beforeAddingTag: function(tag){ console.log(tag); }
-        });
+      });
 
-        $('.size_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_size_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
+      // add a submit by enter key button
+      $("#add_size_btn").click(function() {
 
-        sizes = sizes + $('#add_size_option').val() + " ";
-        $('#add_size_option').val("");
+        if ($('#add_size_option').val() == "") {
 
+          alert("Please enter a size in the text field");
 
-        $(".label").click(function() {
-          console.log($(this).text());
-          sizes = sizes.replace($(this).text().trim(), "");
-          console.log(sizes);
-          $(this).remove();
-        });
+        } else {
 
+          $('.size_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_size_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
+
+          sizes = sizes + $('#add_size_option').val() + " ";
+          $('#add_size_option').val("");
+
+          $(".label").click(function() {
+            sizes = sizes.replace($(this).text().trim(), "");
+            $(this).remove();
+          });
+
+        }
 
       });
 
-
       $("#new_item").submit(function( event ) {
         var input = $("<input>")
-                       .attr("type", "hidden")
-                       .attr("name", "sizes").val(sizes);
+          .attr("type", "hidden")
+          .attr("name", "sizes").val(sizes);
         $('#new_item').append($(input));
       });
 
