@@ -140,19 +140,21 @@ class ItemsController < ApplicationController
       colors.each do |color|
         @color_option = @item.color_options.create(color: color) unless ColorOption.where(:item_id => @item.id).pluck(:color).include?(color)
 
-
       end
     end
 
-    if params[:colors].present?
-      color_options = params[:colors].to_s
-      ColorOption.where(:item_id => @item.id).each do |color_option|
-        if color_options.include?(color_option.color)
-        else
-          color_option.destroy
-        end
-      end
-    end
+    # if params[:colors].present?
+    #   color_options = params[:colors].to_s
+    #   ColorOption.where(:item_id => @item.id).each do |color_option|
+    #     if color_options.include?(color_option.color)
+    #     else
+    #       color_option.destroy
+    #     end
+    #   end
+    # end
+
+
+
 
     if params[:sizes].present?
       size_options = params[:sizes]

@@ -1,0 +1,10 @@
+.item_display_panel {
+  padding: 10px;
+  padding-top:20px;
+  padding-bottom:20px;
+  border:0px;
+  border-radius: 0px;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
+  border-color:#C2C0C0;
+}

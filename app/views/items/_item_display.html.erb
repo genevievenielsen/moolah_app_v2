@@ -1,17 +1,38 @@
+
+
 <div class="col-sm-4 col-md-3">
-  <div class="thumbnail">
+  <div class="panel panel-body item_display_panel">
     <img class="img-responsive" src="<%= item.image %>">
     <div class="caption">
     <h3><%= link_to "#{item.name}", item %></h3>
     <h5><%= link_to "#{item.club.name}", club_url(item.club) %></h5>
-<!--     <%#= render "items/cart_button", :item => item, :cart => @cart %>
- -->
+
+    <div class="row">
+
+    <% if item.color_options.count > 1 %>
+    <div class="col-md-6">
+      <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Color"}) %>
+      <br>
+    </div>
+
+    <% end %>
+
+    <% if item.size_options.count > 1 %>
+      <div class="col-md-6">
+      <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control"}) %>
+      <br>
+      </div>
+
+    <% end %>
+
+    </div>
+
     <% if current_user.items_in_cart.include?(item) %>
       <%= render "items/remove_from_cart_button", :item => item, :cart => @cart %>
     <% else %>
-
       <%= render "items/add_to_cart_button", :item => item, :cart => @cart %>
     <% end %>
+
     </div>
   </div>
 </div>

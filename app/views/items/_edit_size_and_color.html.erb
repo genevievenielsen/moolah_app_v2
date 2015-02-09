@@ -70,7 +70,7 @@
     $(document).ready(function() {
 
       // the existing colors
-      var colors = "<%= @colors %>";
+      var colors = " ";
 
       $("#add_color_btn").click(function() {
           $('#my-tag-list').tags({
@@ -88,6 +88,10 @@
 
        });
 
+      $(".label").click(function() {
+        $(this).remove();
+      });
+
 
       $("#edit_item_<%= @item.id %>").submit(function( event ) {
         var input = $("<input>")
@@ -95,7 +99,6 @@
             .attr("name", "colors").val(colors);
         $('#edit_item_<%= @item.id %>').append($(input));
       });
-
 
 
 
@@ -126,10 +129,6 @@
       });
 
     });
-
-
-
-// if the add color button option is selected
 
 
 

@@ -23,6 +23,7 @@
   $(document).ready(function() {
 
     var colors = "";
+
     $('#my-tag-list').tags({
           tagData: $('#add_color_option').val(),
     });
@@ -30,15 +31,19 @@
     $("#add_color_btn").click(function() {
 
         $('.color_tags').append($("<div class=\"tag label btn-info md\"> <span class=\"color_value\"> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
-
-        $(".label").click(function() {
-          $(this).remove();
-        });
+          // need to have an unless value here
 
         colors = colors + $('#add_color_option').val() + " ";
         $('#add_color_option').val("");
 
-      });
+        $(".label").click(function() {
+          console.log($(this).text());
+          colors = colors.replace($(this).text().trim(), "");
+          console.log(colors);
+          $(this).remove();
+        });
+
+    });
 
 
     $("#new_item").submit(function( event ) {

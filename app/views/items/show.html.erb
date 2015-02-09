@@ -77,24 +77,4 @@
   </div>
 <% end %>
 
-<script type="text/javascript">
 
-  $(document).ready(function() {
-
-    var size = "";
-
-    size = $('#size_option').val();
-      $('#size_option').val("");
-    });
-
-    $(".add_to_cart").submit(function( event ) {
-        var input = $("<input>")
-                       .attr("type", "hidden")
-                       .attr("name", "sizes").val(size);
-        $('.add_to_cart').append($(input));
-      });
-
-
-  });
-
-</script>

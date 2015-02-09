@@ -15,7 +15,7 @@
  *= require_self
  */
 
-@import "bootstrap";
+/*@import "bootstrap";
 @import "bootstrap-sprockets";
 
 @import "font-awesome-sprockets";
@@ -27,5 +27,30 @@
 @import "utilities";
 @import "reset";
 @import "base";
-@import "main";
+@import "main";*/
 
+
+.background_color {
+ background: rgb(226, 225, 225);
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-size: 100%;
+  position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+}
+
+
+.btn{
+  border-radius: 0px;
+}
+
+
+.form-control {
+  border-radius: 0px;
+}
