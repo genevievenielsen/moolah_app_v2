@@ -37,11 +37,8 @@
     $("#add_color_btn").click(function() {
 
       if ($('#add_color_option').val() == "") {
-
-        alert("please enter a color in the text field");
-
+        alert("Please enter a color in the text field");
       } else {
-
         $('.color_tags').append($("<div class=\"tag label btn-info md\"> <span class=\"color_value\"> " + $('#add_color_option').val() + "</span> <a><i class=\" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white\" style=\"color:white\"></i> </a> </div>"));
 
         colors = colors + $('#add_color_option').val() + " ";
@@ -51,13 +48,10 @@
           colors = colors.replace($(this).text().trim(), "");
           $(this).remove();
         });
-
       }
-
     });
 
     $("#new_item").submit(function( event ) {
-      console.log(colors);
       var input = $("<input>")
         .attr("type", "hidden")
         .attr("name", "colors").val(colors);

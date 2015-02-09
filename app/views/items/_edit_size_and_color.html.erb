@@ -61,16 +61,12 @@
 <br>
 <br>
 
-<% @colors = " " %>
-<% @item.color_options.each do |color| %>
-  <% @colors = @colors + color.color + " " %>
-<% end %>
 
 <script type="text/javascript">
     $(document).ready(function() {
 
       // the existing colors
-      var colors = " ";
+      var colors = "<%= @colors %>";
 
       $("#add_color_btn").click(function() {
           $('#my-tag-list').tags({
@@ -83,12 +79,18 @@
           $('#add_color_option').val("");
 
           $(".label").click(function() {
+            console.log($(this).text().trim());
+            colors = colors.replace($(this).text().trim(), "");
+            console.log(colors);
             $(this).remove();
           });
 
        });
 
       $(".label").click(function() {
+        console.log($(this).text().trim());
+        colors = colors.replace($(this).text().trim(), "");
+        console.log(colors);
         $(this).remove();
       });
 
@@ -102,24 +104,33 @@
 
 
 
-      var sizes = "";
+      var sizes = "<%= @sizes %>";
 
       $("#add_size_btn").click(function() {
-        $('#my-tag-list').tags({
-            readOnly: true,
-            tagData: $('#add_size_option').val(),
-            beforeAddingTag: function(tag){ console.log(tag); }
-        });
+          $('#my-tag-list').tags({
+              tagData: $('#add_size_option').val(),
+          });
 
-        $('.edit_size_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_size_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
+          $('.edit_size_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_size_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
 
-        $(".label").click(function() {
-          $(this).remove();
-        });
+          $(".label").click(function() {
+            console.log($(this).text().trim());
+            sizes = sizes.replace($(this).text().trim(), "");
+            console.log(sizes);
+            $(this).remove();
+          });
 
-        sizes = sizes + $('#add_size_option').val() + " ";
-        $('#add_size_option').val("");
-        });
+          sizes = sizes + $('#add_size_option').val() + " ";
+          $('#add_size_option').val("");
+
+      });
+
+      $(".label").click(function() {
+        console.log($(this).text().trim());
+        sizes = sizes.replace($(this).text().trim(), "");
+        console.log(sizes);
+        $(this).remove();
+      });
 
       $("#edit_item_<%= @item.id %>").submit(function( event ) {
         var input = $("<input>")

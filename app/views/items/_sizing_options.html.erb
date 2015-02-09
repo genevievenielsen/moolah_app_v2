@@ -31,18 +31,14 @@
       });
 
       $('#my-tag-list').tags({
-            tagData: $('#add_size_option').val(),
+        tagData: $('#add_size_option').val(),
       });
 
-      // add a submit by enter key button
       $("#add_size_btn").click(function() {
 
         if ($('#add_size_option').val() == "") {
-
           alert("Please enter a size in the text field");
-
         } else {
-
           $('.size_tags').append($("<div class=\"tag label btn-info md\"> <span> " + $('#add_size_option').val() + "<a style=\"opacity: 0.6;\" class=\"remove\"><i class=\" fa fa-times\" style=\"color:white\"></i> </a> </span> </div>"));
 
           sizes = sizes + $('#add_size_option').val() + " ";
@@ -52,9 +48,7 @@
             sizes = sizes.replace($(this).text().trim(), "");
             $(this).remove();
           });
-
         }
-
       });
 
       $("#new_item").submit(function( event ) {

@@ -86,7 +86,17 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    # @color_option = @item.color_options
+
+     @colors = ""
+     @item.color_options.each do |color|
+       @colors = @colors + color.color + " "
+     end
+
+     @sizes = ""
+     @item.size_options.each do |size|
+       @sizes = @sizes + size.size + " "
+     end
+
   end
 
   # POST /items
@@ -95,18 +105,6 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.owner_id = current_user.id
     @item.university_id = current_user.university.id
-
-
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
-    end
 
     if params[:colors].present?
       color_options = params[:colors]
@@ -124,43 +122,59 @@ class ItemsController < ApplicationController
       end
     end
 
+    respond_to do |format|
+      if @item.save
+        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.json { render :show, status: :created, location: @item }
+      else
+        format.html { render :new }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
 
-
-
-    # if a color option is not present in the params destroy it
-
+    # create a new color unless it already exists
     if params[:colors].present?
       color_options = params[:colors]
       colors = color_options.split(" ")
       colors.each do |color|
         @color_option = @item.color_options.create(color: color) unless ColorOption.where(:item_id => @item.id).pluck(:color).include?(color)
-
       end
     end
 
-    # if params[:colors].present?
-    #   color_options = params[:colors].to_s
-    #   ColorOption.where(:item_id => @item.id).each do |color_option|
-    #     if color_options.include?(color_option.color)
-    #     else
-    #       color_option.destroy
-    #     end
-    #   end
-    # end
+    # if a color option is not present in the params destroy it
+    if params[:colors].present?
+      color_options = params[:colors].to_s
+      ColorOption.where(:item_id => @item.id).each do |color_option|
+        if color_options.include?(color_option.color)
+        else
+          color_option.destroy
+        end
+      end
+    end
 
 
-
-
+    # Create a new size unless it already exists
     if params[:sizes].present?
       size_options = params[:sizes]
       sizes = size_options.split(" ")
       sizes.each do |size|
-        @size_option = @item.size_options.create(size: size)
+        @size_option = @item.size_options.create(size: size) unless SizeOption.where(:item_id => @item.id).pluck(:size).include?(size)
+      end
+    end
+
+    # if a size option is not present in the params destroy it
+    if params[:sizes].present?
+      size_options = params[:sizes].to_s
+      SizeOption.where(:item_id => @item.id).each do |size_option|
+        if size_options.include?(size_option.size)
+        else
+          size_option.destroy
+        end
       end
     end
 
