@@ -29,8 +29,8 @@ class SelectedItemsController < ApplicationController
     @selected_item.user_id = params[:user_id]
     @selected_item.item_id = params[:item_id]
     @selected_item.cart_id = params[:cart_id]
-    @selected_item.size_option_id = params[:size_option]
-    @selected_item.color_option_id = params[:color_option]
+    @selected_item.size_option_id = params[:size_id]
+    @selected_item.color_option_id = params[:color_id]
 
 
     respond_to do |format|

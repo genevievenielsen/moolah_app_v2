@@ -88,7 +88,11 @@
           <p class="text-center">This item is required for all members of <%= item.club.name %></p>
           <p class="text-center">Purchase it now!</p>
         <% end  %>
-        <div class="btn col-sm-12"><%= render 'items/cart_button', item: item, cart: @cart %> </div>
+        <div class="btn col-sm-12"> <% if current_user.items_in_cart.include?(item) %>
+            <%= render "items/remove_from_cart_button", :item => item, :cart => @cart %>
+          <% else %>
+            <%= render "items/add_to_cart_button", :item => item, :cart => @cart %>
+          <% end %></div>
         <div class="clearfix"></div>
         <br>
         <% if item.carts.where(:paid => true).count > 0 %>
@@ -98,8 +102,41 @@
     </div>
 
   <% end %> <!-- closes the if statement -->
+  <script type="text/javascript">
+    $("#add_to_cart_<%= item.id %>").click(function(event){
+      var color_options = document.getElementById("color_option");
+      var color_option = color_options.options[color_options.selectedIndex].value;
+
+      var size_options = document.getElementById("size_option");
+      var size_option = size_options.options[size_options.selectedIndex].value;
+
+      if ( color_option == '') {
+        alert("Please select a color");
+        event.preventDefault();
+        event.stopPropagation();
+
+      } else {
+        console.log(color_option);
+        $("#add_to_cart_<%= item.id %>").prop('href', $("#add_to_cart_<%= item.id %>").prop('href') + "&color_id=" + color_option);
+      }
+
+      if ( size_option == '') {
+        alert("Please select a size");
+        event.preventDefault();
+        event.stopPropagation();
+
+      } else {
+        console.log(size_option);
+        $("#add_to_cart_<%= item.id %>").prop('href', $("#add_to_cart_<%= item.id %>").prop('href') + "&size_id=" + size_option);
+      }
+
+    });
+  </script>
 <% end %> <!-- closes the loop -->
 
 
 </div> <!-- closes tab content -->
 </div> <!-- closes row -->
+
+
+

@@ -18,6 +18,16 @@ $('#remove_from_cart_<%= @selected_item.item.id %>').fadeOut(function() {
       $("#add_to_cart_15").prop('href', $("#add_to_cart_<%= @selected_item.item.id %>").prop('href') + "&color_id=" + color_option);
     }
 
+    if ( size_option == '') {
+      alert("Please select a size");
+      event.preventDefault();
+      event.stopPropagation();
+
+    } else {
+      console.log(size_option);
+      $("#add_to_cart_15").prop('href', $("#add_to_cart_<%= @selected_item.item.id %>").prop('href') + "&size_id=" + size_option);
+    }
+
   });
 
 });

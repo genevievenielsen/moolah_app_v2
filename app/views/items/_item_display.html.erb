@@ -10,19 +10,32 @@
     <div class="row">
 
     <% if item.color_options.count > 1 %>
-    <div class="col-md-6">
-      <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Color"}) %>
-      <br>
-    </div>
-
+      <% if @selected_item.present?  %>
+         <div class="col-md-6">
+          <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color,
+          @selected_item.color_option_id), {class: "form-control", prompt: "Select a color"}) %>
+          <br>
+        </div>
+      <% else %>
+       <div class="col-md-6">
+        <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Select a color"}) %>
+        <br>
+      </div>
+      <% end %>
     <% end %>
 
     <% if item.size_options.count > 1 %>
-      <div class="col-md-6">
-      <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control"}) %>
-      <br>
-      </div>
-
+      <% if @selected_item.present?  %>
+         <div class="col-md-6">
+        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, @selected_item.size_option_id), {prompt: "Select a Size", class: "form-control"}) %>
+        <br>
+        </div>
+      <% else %>
+         <div class="col-md-6">
+        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Select a Size", class: "form-control"}) %>
+        <br>
+        </div>
+      <% end %>
     <% end %>
 
     </div>
@@ -36,3 +49,35 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  $("#add_to_cart_<%= item.id %>").click(function(event){
+    var color_options = document.getElementById("color_option");
+    var color_option = color_options.options[color_options.selectedIndex].value;
+
+    var size_options = document.getElementById("size_option");
+    var size_option = size_options.options[size_options.selectedIndex].value;
+
+    if ( color_option == '') {
+      alert("Please select a color");
+      event.preventDefault();
+      event.stopPropagation();
+
+    } else {
+      console.log(color_option);
+      $("#add_to_cart_<%= item.id %>").prop('href', $("#add_to_cart_<%= item.id %>").prop('href') + "&color_id=" + color_option);
+    }
+
+    if ( size_option == '') {
+      alert("Please select a size");
+      event.preventDefault();
+      event.stopPropagation();
+
+    } else {
+      console.log(size_option);
+      $("#add_to_cart_<%= item.id %>").prop('href', $("#add_to_cart_<%= item.id %>").prop('href') + "&size_id=" + size_option);
+    }
+
+  });
+</script>

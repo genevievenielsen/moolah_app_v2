@@ -74,14 +74,16 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-      @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
+    @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
+
+    @selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => @item.id )
 
   end
 
   # GET /items/new
   def new
     @item = Item.new
-    # @color_option = ColorOption.new
+
   end
 
   # GET /items/1/edit
