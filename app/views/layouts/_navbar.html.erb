@@ -16,13 +16,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <% if current_user.items_in_cart.count > 0 %>
-          <li><a href="/my_cart">My Cart (<%= current_user.items_in_cart.count %>)</a></li>
-        <% else %>
-          <li><a href="/my_cart">My Cart</a></li>
-        <% end %>
-        <li><a href="/my_items">My Items</a></li>
-        <li><a href="/my_clubs">My Clubs</a></li>
+
+          <li><a href="/my_cart" class="pull-right">My Cart <div class="cart_count pull-right">&nbsp;<%= render "selected_items/items_in_cart_count" %></div></a></li>
+          <li><a href="/my_items">My Items</a></li>
+          <li><a href="/my_clubs">My Clubs</a></li>
 
       </ul>
 

@@ -8,6 +8,9 @@
 <br>
 <div class="row">
   <% @items.each do |item| %>
-    <%= render "items/item_display", item: item, cart: @cart %>
+    <% @selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id ) %>
+    <div class="item_in_cart_<%= item.id %>">
+      <%= render "items/item_display", item: item, cart: @cart %>
+    </div>
   <% end  %>
 </div>
