@@ -11,29 +11,37 @@
 
     <% if item.color_options.count > 1 %>
       <% if @selected_item.present?  %>
+        <div class="color_selected_<%= item.id %>">
          <div class="col-md-6">
           <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color,
-          @selected_item.color_option_id), {class: "form-control", prompt: "Select a color"}) %>
+          @selected_item.color_option_id), {class: "form-control", prompt: "Color"}) %>
           <br>
         </div>
+        </div>
       <% else %>
+      <div class="color_unselected_<%= item.id %>">
        <div class="col-md-6">
-        <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Select a color"}) %>
+        <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Color"}) %>
         <br>
+      </div>
       </div>
       <% end %>
     <% end %>
 
     <% if item.size_options.count > 1 %>
       <% if @selected_item.present?  %>
+        <div class="size_selected_<%= item.id %>">
          <div class="col-md-6">
-        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, @selected_item.size_option_id), {prompt: "Select a Size", class: "form-control"}) %>
+        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, @selected_item.size_option_id), {prompt: "Size", class: "form-control"}) %>
         <br>
         </div>
+        </div>
       <% else %>
+        <div class="size_unselected_<%= item.id %>">
          <div class="col-md-6">
-        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Select a Size", class: "form-control"}) %>
+        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control"}) %>
         <br>
+        </div>
         </div>
       <% end %>
     <% end %>
