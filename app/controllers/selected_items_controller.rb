@@ -29,8 +29,8 @@ class SelectedItemsController < ApplicationController
     @selected_item.user_id = params[:user_id]
     @selected_item.item_id = params[:item_id]
     @selected_item.cart_id = params[:cart_id]
-
-
+    @selected_item.size_option_id = params[:size_option]
+    @selected_item.color_option_id = params[:color_option]
 
 
     respond_to do |format|
@@ -78,6 +78,6 @@ class SelectedItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def selected_item_params
-      params.require(:selected_item).permit(:item_id, :cart_id, :user_id, :size_option, :color_option)
+      params.require(:selected_item).permit(:item_id, :cart_id, :user_id, :size_option_id, :color_option_id)
     end
 end

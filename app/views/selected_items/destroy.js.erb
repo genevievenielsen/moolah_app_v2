@@ -1,3 +1,23 @@
 $('#remove_from_cart_<%= @selected_item.item.id %>').fadeOut(function() {
   $(this).replaceWith('<%= j(render('items/add_to_cart_button', :item => @selected_item.item, :cart => @selected_item.cart)) %>');
+
+  $("#add_to_cart_<%= @selected_item.item.id %>").click(function(event){
+    var color_options = document.getElementById("color_option");
+    var color_option = color_options.options[color_options.selectedIndex].value;
+
+    var size_options = document.getElementById("size_option");
+    var size_option = size_options.options[size_options.selectedIndex].value;
+
+    if ( color_option == '') {
+      alert("Please select a color");
+      event.preventDefault();
+      event.stopPropagation();
+
+    } else {
+      console.log(color_option);
+      $("#add_to_cart_15").prop('href', $("#add_to_cart_<%= @selected_item.item.id %>").prop('href') + "&color_id=" + color_option);
+    }
+
+  });
+
 });
