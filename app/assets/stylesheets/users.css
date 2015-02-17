@@ -1,14 +1,10 @@
-.club_caption {
+.user_caption {
   padding: 10px;
 }
 
-.item_member_count {
-  padding-bottom: 10px;
-}
-
-.club_display_panel {
+.user_display_panel {
   padding: 0px;
-  padding-bottom: 10px;
+
   border: 1.5px solid #C2C0C0;
   border-radius: 0px;
   border-bottom-width: 5px;

@@ -21,7 +21,7 @@
   <div id="color_select_box" id="my-tag-list" class="tag-list">
     <div class="bootstrap-tags bootstrap-3 edit_color_tags" id="medium">
       <% @item.color_options.each do |color| %>
-        <div class="tag label btn-info md"> <span><%= color.color %></span> <a><i class=" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white" style="color:white"></i> </a> </div>
+        <div class="tag label btn-info md pull-left"> <span><%= color.color %></span> <a><i class=" remove fa fa-times remove glyphicon glyphicon-remove-sign glyphicon-white" style="color:white"></i> </a> </div>
       <% end %>
       <br>
     </div>

@@ -3,18 +3,38 @@
 <br>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-offset-4 col-md-4">
     <div class="text-center">
       <img class="img-responsive img-circle center-block" width="170px" src="<%= current_user.university.image %>">
-        <div class="row">
-          <div class="verticalLine"></div>
-          <h1><%= current_user.university.name %></h1>
-          <div class="verticalLine"></div>
-        </div>
-      <h4><i class="fa fa-map-marker"></i>&nbsp;&nbsp;<%= current_user.university.location %></h4>
     </div>
   </div>
 </div>
+
+
+<div class="row">
+  <div class="col-md-3 pull-left">
+    <div class="vertical_line"></div>
+  </div>
+  <div class="col-md-6 pull-left">
+    <div class="text-center">
+      <h1><%= current_user.university.name %></h1>
+    </div>
+  </div>
+  <div class="col-md-3 pull-left">
+     <div class="vertical_line"></div>
+  </div>
+</div>
+
+
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <div class="text-center">
+        <h4><i class="fa fa-map-marker"></i>&nbsp;&nbsp;<%= current_user.university.location %></h4>
+      </div>
+    </div>
+  </div>
+
+
 
 <div class="row sub_title_row">
   <h3 class="pull-left"><%= pluralize(@items.count, 'Item') %></h3>
@@ -63,14 +83,6 @@
 
 <div class="row">
   <% @users.each do |user| %>
-  <div class="col-sm-4 col-md-3">
-    <div class="thumbnail">
-      <img class="img-responsive" src="<%= user.image %>">
-      <div class="caption">
-      <h3><%= "#{user.first_name} #{user.last_name}" %></h3>
-
-      </div>
-    </div>
-  </div>
+    <%= render "users/user_display", user: user %>
   <% end  %>
 </div>

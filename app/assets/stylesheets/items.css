@@ -16,6 +16,18 @@
   border-color:#C2C0C0;
 }
 
-.item_panel_image {
 
+/*SHOW PAGE*/
+
+.item_image_show {
+  padding: 0px;
+  border: 1.5px solid #C2C0C0;
+  /*border-radius: 0px;
+  border-bottom-width: 7px;
+  border-bottom-style: solid;
+  border-color:#C2C0C0;*/
+}
+
+.fa-chevron-right {
+  color:silver;
 }

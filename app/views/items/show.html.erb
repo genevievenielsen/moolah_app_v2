@@ -3,16 +3,16 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h1 class="pull-left"><%= @item.name.capitalize %></h1>
-    <div class="pull-left">
-      <hr class="divider">
-    </div>
+    <h1 class="pull-left "><%= @item.name.capitalize %></h1>
   </div>
+<!--   <div class="pull-left">
+    <div class="vertical_line"></div>
+  </div> -->
 </div>
 
 <div class="row">
   <div class="col-md-6">
-      <img class="img-responsive" src="<%= @item.image %>">
+      <img class="img-responsive item_image_show" src="<%= @item.image %>">
   </div>
 
   <div class="col-md-6">
@@ -82,12 +82,15 @@
       <div class="col-md-offset-4 col-md-4">
         <% if current_user.items_in_cart.include?(@item) %>
           <%= render "items/remove_from_cart_button", :item => @item, :cart => @cart %>
+          <br>
         <% else %>
           <%= render "items/add_to_cart_button", :item => @item, :cart => @cart %>
+          <br>
         <% end %>
       </div>
       <div class="col-md-offset-4 col-md-4">
       <% if current_user.items_in_cart.include?(@item) %>
+        <br>
         <%= link_to "View My Cart", my_cart_url %>
       <% end %>
       </div>

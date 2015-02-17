@@ -1,7 +1,5 @@
 <!-- selected item id are the same for both -->
 
-
-
 <div class="col-sm-4 col-md-3">
   <div class="panel panel-body item_display_panel">
     <img class="img-responsive item_panel_image" src="<%= item.image %>">
@@ -37,8 +35,8 @@
       <% if selected_item.present? %>
         <div class="size_selected_<%= item.id %>">
          <div class="col-md-6">
-        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, selected_item.size_option.id), {prompt: "Size", class: "form-control", id: "size_option_#{item.id}"}) %>
-        <br>
+          <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, selected_item.size_option.id), {prompt: "Size", class: "form-control", id: "size_option_#{item.id}"}) %>
+          <br>
         </div>
         </div>
       <% else %>

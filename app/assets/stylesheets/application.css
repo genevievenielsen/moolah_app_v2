@@ -46,6 +46,8 @@
 }
 */
 
+
+
 .btn{
   border-radius: 0px;
 }
@@ -59,11 +61,15 @@
 }
 
 
-.verticalLine {
-    border-left: thick solid black;
+.vertical_line {
+    border: thin solid black;
 }
 
 .sub_title_row {
   padding: 15px;
+}
+
+.divider {
+  width: 120px;
 }
 

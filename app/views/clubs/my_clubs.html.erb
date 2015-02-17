@@ -4,6 +4,8 @@
 
 <div class="row">
   <% @clubs.each do |club| %>
-    <%= render "clubs/club_display", club: club %>
+    <div class="my_club_<%= club.id %>">
+      <%= render "clubs/club_display", club: club %>
+    </div>
   <% end %>
 </div>
