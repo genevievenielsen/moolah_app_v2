@@ -65,6 +65,7 @@
 
 
 <script type="text/javascript">
+$(document).ready(function() {
   $("#add_to_cart_<%= item.id %>").click(function(event){
     var color_options = document.getElementById("color_option_<%= item.id %>");
     var color_option = color_options.options[color_options.selectedIndex].value;
@@ -89,6 +90,6 @@
       console.log(size_option);
       $("#add_to_cart_<%= item.id %>").prop('href', $("#add_to_cart_<%= item.id %>").prop('href') + "&size_id=" + size_option);
     }
-
+    });
   });
 </script>

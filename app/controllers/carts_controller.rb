@@ -14,19 +14,19 @@ class CartsController < ApplicationController
     end
 
     #This gets the venmo access token
-    current_user.venmo_auth_token = params[:code].to_s
-    current_user.save
+    # current_user.venmo_auth_token = params[:code].to_s
+    # current_user.save
 
-    @response = HTTParty.post("https://api.venmo.com/v1/oauth/access_token",
-    :query => {:client_id => ENV['VENMO_CLIENT_ID'], :client_secret => ENV['VENMO_CLIENT_SECRET'],
-    :code => "#{current_user.venmo_auth_token}"})
+    # @response = HTTParty.post("https://api.venmo.com/v1/oauth/access_token",
+    # :query => {:client_id => ENV['VENMO_CLIENT_ID'], :client_secret => ENV['VENMO_CLIENT_SECRET'],
+    # :code => "#{current_user.venmo_auth_token}"})
 
-    if @response.present? == {"error"=>{"message"=>"That Access Code has already been redeemed for an access token.", "code"=>257}}
-    else
-      current_user.venmo_access_token = @response["access_token"]
-      #current_user.venmo_email_address = @response["user"]["email"]
-      current_user.save
-    end
+    # if @response.present? == {"error"=>{"message"=>"That Access Code has already been redeemed for an access token.", "code"=>257}}
+    # else
+    #   current_user.venmo_access_token = @response["access_token"]
+    #   #current_user.venmo_email_address = @response["user"]["email"]
+    #   current_user.save
+    # end
   end
 
   def purchase_items

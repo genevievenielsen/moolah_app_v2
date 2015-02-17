@@ -8,7 +8,8 @@
 <br>
 
 <% @items.each do |item| %>
-    <%= render "items/item_display", item: item %>
+    <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id ) %>
+    <%= render "items/item_display", item: item, selected_item: selected_item %>
 <% end %>
 
 <br>

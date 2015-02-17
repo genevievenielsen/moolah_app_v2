@@ -10,6 +10,9 @@ class UniversitiesController < ApplicationController
   # GET /universities/1
   # GET /universities/1.json
   def show
+    @items = @university.items
+    @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
+
   end
 
   # GET /universities/new
