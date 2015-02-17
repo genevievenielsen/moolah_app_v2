@@ -30,7 +30,7 @@
 @import "main";*/
 
 
-.background_color {
+/*.background_color {
  background: rgb(226, 225, 225);
     -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -44,7 +44,7 @@
     bottom: 0;
     z-index: -2;
 }
-
+*/
 
 .btn{
   border-radius: 0px;
@@ -61,5 +61,9 @@
 
 .verticalLine {
     border-left: thick solid black;
+}
+
+.sub_title_row {
+  padding: 15px;
 }
 

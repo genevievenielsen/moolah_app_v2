@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row sub_title_row">
   <h3 class="pull-left"><%= pluralize(@items.count, 'Item') %></h3>
 
    <%= link_to "New Item",
@@ -38,7 +38,7 @@
 </div>
 
 
- <div class="row">
+ <div class="row sub_title_row">
    <h3 class="pull-left"><%= pluralize(@clubs.count, 'Club') %></h3>
 
     <%= link_to "New Club",
@@ -57,7 +57,10 @@
   <% end %>
 </div>
 
-<h3><%= pluralize(@users.count, 'User') %></h3>
+<div class="row sub_title_row">
+  <h3><%= pluralize(@users.count, 'User') %></h3>
+</div>
+
 <div class="row">
   <% @users.each do |user| %>
   <div class="col-sm-4 col-md-3">
