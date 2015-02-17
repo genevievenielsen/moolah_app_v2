@@ -15,3 +15,12 @@
   border-bottom-style: solid;
   border-color:#C2C0C0;
 }
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+  border-radius: 0px;
+}
+
+.nav>li>a:hover, .nav>li>a:focus {
+  border-radius: 0px;
+  border-bottom: 0px;
+}

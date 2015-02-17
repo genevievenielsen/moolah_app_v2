@@ -1,10 +1,18 @@
-<h1><%= current_user.university.name %> Items</h1>
+<br>
+<div class="row sub_title_row">
+  <div class="col-md-6">
 
-<div class="row">
-    <div class="col-md-12">
-        <%= link_to 'New Item', new_item_path, :class => "btn btn-default" %>
-    </div>
+    <h1 class="pull-left"><%= current_user.university.name %> Items</h1>
+ </div>
+ <div class="col-md-6">
+   <%= link_to 'New Item', new_item_path, :class => "btn btn-default pull-right" %>
+ </div>
+
+
+
 </div>
+
+
 <br>
 
 <% @items.each do |item| %>

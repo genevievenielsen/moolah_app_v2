@@ -1,11 +1,11 @@
-<h1>My Items</h1>
+<h1 class="sub_title_row">My Items</h1>
 <br>
 <div class="row">
-<div class="col-md-10 pull-left">
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a data-toggle="tab" href="#items_to_pay_for">Items to Pay For</a></li>
-    <li><a data-toggle="tab" role="tab" href="#purchased_items">Purchased Items</a></li>
-    <li><a data-toggle="tab" role="tab" href="#items_for_sale">Items For Sale</a></li>
+<div class="col-md-6 pull-left">
+  <ul class="nav nav-tabs my_items_nav_bar" role="tablist">
+    <li class="active nav_tab"><a data-toggle="tab" href="#items_to_pay_for">Items to Pay For</a></li>
+    <li class="nav_tab"><a data-toggle="tab" role="tab" href="#purchased_items">Purchased Items</a></li>
+    <li class="nav_tab"><a data-toggle="tab" role="tab" href="#items_for_sale">Items For Sale</a></li>
   </ul>
 </div>
 </div>
@@ -14,7 +14,7 @@
 <div class = "tab-content">
     <div id="items_to_pay_for" class="tab-pane active">
       <br>
-      <p>Items that are required by your clubs!</p>
+      <p class="sub_title_row">Items that are required by your clubs!</p>
       <br>
       <% @clubs.each do |club| %>
         <% club.required_items.each do |item| %>

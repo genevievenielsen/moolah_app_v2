@@ -31,3 +31,27 @@
 .fa-chevron-right {
   color:silver;
 }
+
+
+/*MY ITEMS*/
+
+.my_items_nav_bar {
+padding: 10px;
+}
+
+.nav_tab {
+  margin:0px;
+  border-radius: 0px;
+}
+
+.nav {
+  border-bottom: 0px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  border: thin solid gray;
+ /* color:white;*/
+  border-radius: 0px;
+  margin-bottom: 2px;
+
+}

@@ -6,9 +6,9 @@
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <% @category.each_with_index do |item, index| %>
     <% if index == 0 %>
-      <li class="active" ><a href="#item_<%= index %>" role="tab" data-toggle="tab"><%= item.name %><span class="badge pull-right">$<%= number_with_precision(item.price, precision: 2) %></span></a></li>
+      <li class="active " ><a href="#item_<%= index %>" role="tab" data-toggle="tab"><%= item.name %><span class="badge pull-right">$<%= number_with_precision(item.price, precision: 2) %></span></a></li>
     <% else %>
-      <li ><a href="#item_<%= index %>" role="tab" data-toggle="tab"><%= item.name %><span class="badge pull-right">$<%= number_with_precision(item.price, precision: 2) %></span></a></li>
+      <li><a href="#item_<%= index %>" role="tab" data-toggle="tab"><%= item.name %><span class="badge pull-right">$<%= number_with_precision(item.price, precision: 2) %></span></a></li>
     <% end %> <!-- this ends the if statement -->
   <% end %> <!-- this ends the loop -->
  </ul>
