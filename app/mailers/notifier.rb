@@ -1,6 +1,8 @@
 class Notifier < SendWithUsMailer::Base
     default from: 'no-reply@example.com'
 
+    # add you have payed for an item
+
     def payment_reminder_notification(item, email)
         assign(:account, email)
 

@@ -108,6 +108,16 @@ class ItemsController < ApplicationController
     @item.owner_id = current_user.id
     @item.university_id = current_user.university.id
 
+    respond_to do |format|
+      if @item.save
+        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.json { render :show, status: :created, location: @item }
+      else
+        format.html { render :new }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
+
     if params[:colors].present?
       color_options = params[:colors]
       colors = color_options.split(" ")
@@ -121,16 +131,6 @@ class ItemsController < ApplicationController
       sizes = size_options.split(" ")
       sizes.each do |size|
         @size_option = @item.size_options.create(size: size)
-      end
-    end
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end

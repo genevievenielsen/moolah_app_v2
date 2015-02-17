@@ -1,7 +1,10 @@
-<!-- this is the display for merchandise  -->
+  <!-- this is the display for merchandise  -->
 <div class="row">
-  <div class="com-md-12">
-    <h1><%= @item.name %></h1>
+  <div class="col-md-12">
+    <h1 class="pull-left"><%= @item.name.capitalize %></h1>
+    <div class="pull-left">
+      <hr class="divider">
+    </div>
   </div>
 </div>
 
@@ -12,29 +15,36 @@
 
   <div class="col-md-6">
     <div class="text-center">
-      <h4>$<%= @item.price %></h4>
+      <p class="price_show">$<%= number_with_precision(@item.price, precision: 2) %></p>
 
-      <h4><%= @item.description %></h4>
-      <h4><%= @item.carts.where(:paid => true).count %> Sold</h4>
+      <hr class="divider">
+
+      <p><%= @item.description %></p>
+      <p><%= @item.carts.where(:paid => true).count %> Sold</p>
+
+      <hr class="divider">
 
       <% if @item.required == true %>
-        <h4> Required For Members</h4>
         <% if current_user.paid_items.include?(@item) %>
+          <p> Required For Members</p>
         <% else %>
-          <h4>Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></h4>
+          <p>Required for Members - Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></p>
+
+          <hr class="divider">
+
         <% end %>
           <%= link_to "View Report", "/view_report/#{@item.id}" %>
           <br>
+
       <% else %>
-         <h4>Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></h4>
+         <p>Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></p>
       <% end %>
 
       <% if @item.color_options.count > 1 %>
         <% if @selected_item.present?  %>
           <div class="color_selected">
             <div class="col-md-offset-4 col-md-4">
-              <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => @item.id), :id, :color,
-              @selected_item.color_option_id), {class: "form-control", prompt: "Select a color"}) %>
+              <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => @item.id), :id, :color, @selected_item.color_option_id), {class: "form-control", prompt: "Select a color"}) %>
               <br>
             </div>
           </div>
@@ -92,8 +102,10 @@
 
 <% if current_user == @item.owner %>
   <div class="row">
+  <div class="col-md-12">
     <%= link_to 'Edit', edit_item_path(@item) %> |
     <%= link_to 'Destroy', item_url(@item), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
   </div>
 <% end %>
 

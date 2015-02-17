@@ -1,24 +1,32 @@
+<!-- selected item id are the same for both -->
+
+
+
 <div class="col-sm-4 col-md-3">
   <div class="panel panel-body item_display_panel">
     <img class="img-responsive" src="<%= item.image %>">
     <div class="caption">
-    <h3><%= link_to "#{item.name}", item %></h3>
+    <h3><%= link_to "#{item.name.capitalize}", item %></h3>
     <h5><%= link_to "#{item.club.name}", club_url(item.club) %></h5>
 
     <div class="row">
 
     <% if item.color_options.count > 1 %>
-      <% if @selected_item.present?  %>
+      <% if selected_item.present? %>
+        <%=  puts "It got here"  %>
+        <%= puts item.id %>
+        <%= puts selected_item.id %>
+        <%#= puts color_option %>
         <div class="color_selected_<%= item.id %>">
          <div class="col-md-6">
-          <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color, @selected_item.color_option_id), {class: "form-control", prompt: "Color"}) %>
+          <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color, selected_item.color_option.id), {class: "form-control", prompt: "Color", id: "color_option_#{item.id}"})   %>
           <br>
         </div>
         </div>
       <% else %>
       <div class="color_unselected_<%= item.id %>">
        <div class="col-md-6">
-        <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Color"}) %>
+        <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Color", id: "color_option_#{item.id}"}) %>
         <br>
       </div>
       </div>
@@ -26,17 +34,17 @@
     <% end %>
 
     <% if item.size_options.count > 1 %>
-      <% if @selected_item.present?  %>
+      <% if selected_item.present? %>
         <div class="size_selected_<%= item.id %>">
          <div class="col-md-6">
-        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, @selected_item.size_option_id), {prompt: "Size", class: "form-control"}) %>
+        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, selected_item.size_option.id), {prompt: "Size", class: "form-control", id: "size_option_#{item.id}"}) %>
         <br>
         </div>
         </div>
       <% else %>
         <div class="size_unselected_<%= item.id %>">
          <div class="col-md-6">
-        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control"}) %>
+        <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control", id: "size_option_#{item.id}"}) %>
         <br>
         </div>
         </div>
@@ -58,10 +66,10 @@
 
 <script type="text/javascript">
   $("#add_to_cart_<%= item.id %>").click(function(event){
-    var color_options = document.getElementById("color_option");
+    var color_options = document.getElementById("color_option_<%= item.id %>");
     var color_option = color_options.options[color_options.selectedIndex].value;
 
-    var size_options = document.getElementById("size_option");
+    var size_options = document.getElementById("size_option_<%= item.id %>");
     var size_option = size_options.options[size_options.selectedIndex].value;
 
     if ( color_option == '') {

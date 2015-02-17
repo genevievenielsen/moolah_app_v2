@@ -3,12 +3,18 @@
 <br>
 
 <div class="row">
-  <div class="text-center">
-    <h2><%= current_user.university.name %></h2>
-    <h4><i class="fa fa-map-marker"></i>&nbsp;&nbsp;<%= current_user.university.location %></h4>
+  <div class="col-md-12">
+    <div class="text-center">
+      <img class="img-responsive img-circle center-block" width="170px" src="<%= current_user.university.image %>">
+        <div class="row">
+          <div class="verticalLine"></div>
+          <h1><%= current_user.university.name %></h1>
+          <div class="verticalLine"></div>
+        </div>
+      <h4><i class="fa fa-map-marker"></i>&nbsp;&nbsp;<%= current_user.university.location %></h4>
+    </div>
   </div>
 </div>
-
 
 <div class="row">
   <h3 class="pull-left"><%= pluralize(@items.count, 'Item') %></h3>
@@ -26,8 +32,8 @@
 
 <div class="row">
   <% @items.each do |item| %>
-    <% @selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id ) %>
-    <%= render "items/item_display", item: item %>
+    <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id ) %>
+    <%= render "items/item_display", item: item, selected_item: selected_item %>
   <% end  %>
 </div>
 

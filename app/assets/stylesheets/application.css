@@ -53,4 +53,13 @@
 
 .form-control {
   border-radius: 0px;
+   -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
 }
+
+
+.verticalLine {
+    border-left: thick solid black;
+}
+

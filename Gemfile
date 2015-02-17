@@ -35,7 +35,13 @@ gem 'starter_generators', :git => "git://github.com/rbetina/starter_generators.g
 gem 'rails', '4.1.5'
 # gem 'rails 3.2.14'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
+# Use sqlite3 as the database for Active Record
+group :development do
+  gem 'sqlite3'
+end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
