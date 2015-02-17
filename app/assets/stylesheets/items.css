@@ -2,13 +2,20 @@
   font-size: 18px;
 }
 
-.item_display_panel {
+.item_caption {
   padding: 10px;
-  padding-top:20px;
-  padding-bottom:20px;
-  border: 1px solid #C2C0C0;
+}
+
+.item_display_panel {
+  padding: 0px;
+
+  border: 1.5px solid #C2C0C0;
   border-radius: 0px;
   border-bottom-width: 5px;
   border-bottom-style: solid;
   border-color:#C2C0C0;
+}
+
+.item_panel_image {
+
 }

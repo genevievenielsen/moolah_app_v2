@@ -4,8 +4,8 @@
 
 <div class="col-sm-4 col-md-3">
   <div class="panel panel-body item_display_panel">
-    <img class="img-responsive" src="<%= item.image %>">
-    <div class="caption">
+    <img class="img-responsive item_panel_image" src="<%= item.image %>">
+    <div class="caption item_caption">
     <h3><%= link_to "#{item.name.capitalize}", item %></h3>
     <h5><%= link_to "#{item.club.name}", club_url(item.club) %></h5>
 

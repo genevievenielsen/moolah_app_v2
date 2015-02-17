@@ -1,7 +1,7 @@
 <div class="col-sm-4 col-md-3">
     <div class="panel panel-body item_display_panel">
       <img class="img-responsive img-thumnail" src="<%= club.image %>">
-      <div class="caption">
+      <div class="caption club_caption">
       <h3><%= link_to "#{club.name}", club %></h3>
       <div class="row col-offset-md-1 col-md-11 col-offset-sm-1 col-offset-sm-11">
         <%= pluralize(club.members.count, 'member') %>,
