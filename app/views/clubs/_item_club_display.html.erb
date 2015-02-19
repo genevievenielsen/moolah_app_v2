@@ -16,6 +16,9 @@
 
 <div class="tab-content">
 <% @category.each_with_index do |item, index| %>
+  <% cart = Cart.where(:user_id => current_user.id, :paid => false) %>
+  <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id, :cart => cart ) %>
+
   <% if index == 0 %>
      <div class="tab-pane active" id="item_<%= index %>" >
       <div class="col-sm-6 col-md-6 pull-left merchandiseDisplay">
@@ -48,10 +51,10 @@
         <div class="row">
 
         <% if item.color_options.count > 1 %>
-          <% if @selected_item.present?  %>
+          <% if selected_item.present? %>
             <div class="color_selected_<%= item.id %>">
              <div class="col-md-6">
-              <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color, @selected_item.color_option_id), {class: "form-control", prompt: "Color"}) %>
+              <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color, selected_item.color_option_id), {class: "form-control", prompt: "Color"}) %>
               <br>
             </div>
             </div>
@@ -66,10 +69,10 @@
         <% end %>
 
         <% if item.size_options.count > 1 %>
-          <% if @selected_item.present?  %>
+          <% if selected_item.present?  %>
             <div class="size_selected_<%= item.id %>">
              <div class="col-md-6">
-            <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, @selected_item.size_option_id), {prompt: "Size", class: "form-control"}) %>
+            <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, selected_item.size_option_id), {prompt: "Size", class: "form-control"}) %>
             <br>
             </div>
             </div>
@@ -82,11 +85,7 @@
             </div>
           <% end %>
         <% end %>
-
         </div>
-
-
-
         <div class="btn col-sm-12">
           <% if current_user.items_in_cart.include?(item) %>
             <%= render "items/remove_from_cart_button", :item => item, :cart => @cart %>
@@ -103,6 +102,7 @@
       </div>
     </div>
 
+  <!-- if the item is not the first -->
   <% else %>
     <div class="tab-pane" id="item_<%= index %>" >
       <div class="col-sm-6 col-md-6 pull-right  merchandiseDisplay">
@@ -131,6 +131,51 @@
           <p class="text-center">This item is required for all members of <%= item.club.name %></p>
           <p class="text-center">Purchase it now!</p>
         <% end  %>
+
+
+      <div class="row">
+
+      <% if item.color_options.count > 1 %>
+        <% if selected_item.present? %>
+          <div class="color_selected_<%= item.id %>">
+           <div class="col-md-6">
+            <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color, selected_item.color_option_id), {class: "form-control", prompt: "Color"}) %>
+            <br>
+          </div>
+          </div>
+        <% else %>
+        <div class="color_unselected_<%= item.id %>">
+         <div class="col-md-6">
+          <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Color"}) %>
+          <br>
+        </div>
+        </div>
+        <% end %>
+      <% end %>
+
+      <% if item.size_options.count > 1 %>
+        <% if selected_item.present?  %>
+          <div class="size_selected_<%= item.id %>">
+           <div class="col-md-6">
+          <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, selected_item.size_option_id), {prompt: "Size", class: "form-control"}) %>
+          <br>
+          </div>
+          </div>
+        <% else %>
+          <div class="size_unselected_<%= item.id %>">
+           <div class="col-md-6">
+          <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control"}) %>
+          <br>
+          </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      </div>
+
+
+
+
         <div class="btn col-sm-12"> <% if current_user.items_in_cart.include?(item) %>
             <%= render "items/remove_from_cart_button", :item => item, :cart => @cart %>
           <% else %>

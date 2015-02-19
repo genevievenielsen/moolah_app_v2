@@ -10,11 +10,10 @@
     <div class="row">
 
     <% if item.color_options.count > 1 %>
-      <% if selected_item.present? %>
+      <% if selected_item.present?  %>
         <%=  puts "It got here"  %>
         <%= puts item.id %>
         <%= puts selected_item.id %>
-        <%#= puts color_option %>
         <div class="color_selected_<%= item.id %>">
          <div class="col-md-6">
           <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color, selected_item.color_option.id), {class: "form-control", prompt: "Color", id: "color_option_#{item.id}"})   %>
