@@ -11,11 +11,30 @@
       </div>
       <% end %>
 
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3 pull-left">
+    <div class="vertical_line"></div>
+  </div>
+  <div class="col-md-6 pull-left">
     <div class="text-center">
         <h2><%= @club.name %></h2>
-        <h4><%= @club.description %></h4>
-        <h4><%= @club.website %></h4>
+    </div>
+  </div>
+  <div class="col-md-3 pull-left">
+     <div class="vertical_line"></div>
+  </div>
+</div>
 
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="text-center">
+        <h5><%= @club.description %></h5>
+<!--         <h5><%#= @club.website %></h5>
+ -->
         <% if @club.members.include?(current_user)  %>
             <%= render 'memberships/unjoin_button', :club => @club %>
         <% else %>
@@ -26,6 +45,7 @@
     <div class="text-center">
     <a href="/club_emails/<%= @club.id %>">Import Club Email List</a>
   </div>
+</div>
 </div>
 
 <br>
