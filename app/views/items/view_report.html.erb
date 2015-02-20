@@ -1,6 +1,7 @@
 
 <div class="row">
   <h1><%= @item.name.capitalize %> Report</h1>
+  <hr class="divider">
 </div>
 
 <div class="row">
@@ -11,9 +12,9 @@
 <% @item.club.members.each do |member| %>
 
   <div class="row">
-    <div class="col-md-4">
-      <%= image_tag "#{member.try(:image)}", :class => "pull-left img-responsive img-circle", :width => "75px", :height => "75px" %>
-      <h4 class="pull-left"><%= "#{member.first_name} #{member.last_name}" " - " "#{member.email}"%> </h4>
+    <div class="col-md-7">
+      <%= image_tag "#{member.try(:image)}", :class => "pull-left img-responsive img-circle", :width => "50px", :height => "50px" %>
+      <h4 class="pull-left">&nbsp;&nbsp;<%= "#{member.first_name} #{member.last_name}" " - " "#{member.email}"%> </h4>
     </div>
     <% if member.paid_items.include?(@item) %>
       <i class="fa fa-check-circle-o fa-2x col-md-2" style="display:inline"></i>
@@ -21,7 +22,7 @@
       <i class="fa fa-times-circle-o fa-2x col-md-2" style="display:inline"></i>
     <% end %>
   </div>
-
+  <hr class="divider">
 <% end %>
 
 <br>
@@ -29,14 +30,13 @@
 <% @item.club.emails.each do |email| unless @item.club.members.pluck(:email).include?(email.email)%>
 
   <div class="row">
-    <div class="col-md-4">
-      <%= image_tag "#{email.try(:image)}", :class => "pull-left img-responsive img-circle", :width => "75px", :height => "75px" %>
-      <h4 class="pull-left"><%= "#{email.first_name} #{email.last_name}" " - " "#{email.email}"%> </h4>
+    <div class="col-md-7">
+      <%= image_tag "#{email.try(:image)}", :class => "pull-left img-responsive img-circle", :width => "50px", :height => "50px" %>
+      <h4 class="pull-left">&nbsp;&nbsp;<%= "#{email.first_name} #{email.last_name}" " - " "#{email.email}"%> </h4>
     </div>
-
       <i class="fa fa-times-circle-o fa-2x col-md-2" style="display:inline"></i>
-
   </div>
+  <hr class="divider">
 <% end %>
 <% end %>
 

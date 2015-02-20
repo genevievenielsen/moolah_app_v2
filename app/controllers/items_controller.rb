@@ -20,16 +20,17 @@ class ItemsController < ApplicationController
 
       params[:items].each do |item|
 
-      puts item
+        puts item
 
-      res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
+        res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
                                      user_id: '145434160922624933',
                                      note: item[1]['note'],
                                      target: item[1]['target'],
                                      amount: '0.10',
                                      audience: 'private')
 
-      puts res.body
+        puts res.body
+        Notifier.payment_confirmation(item, current_user).deliver
       end
 
     # Changes order status to paid

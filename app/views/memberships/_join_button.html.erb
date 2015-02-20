@@ -1,7 +1,7 @@
 <%= link_to("Join",
             memberships_url(:user_id => current_user.id, :club_id => club.id),
             :method => "post",
-            :class => "btn btn-success btn-sm",
+            :class => "btn btn-success btn-sm join_button",
             :remote => "true",
             :id => "join_button_#{club.id}") %>
 

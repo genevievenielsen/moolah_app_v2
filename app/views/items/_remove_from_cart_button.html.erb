@@ -2,7 +2,7 @@
 
    <%= link_to "Remove from Cart",
                 selected_item_url(selected_item.id),
-                :class => "btn btn-default",
+                :class => "btn btn-default remove_from_cart",
                 :method => "delete",
                 :remote => "true",
                 :id => "remove_from_cart_#{item.id}" %>

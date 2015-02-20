@@ -19,6 +19,26 @@ class Notifier < SendWithUsMailer::Base
             recipient_address: email.email)
     end
 
+    def payment_confirmation(item, user)
+        assign(:account, email)
+
+        # assign(:item_image, item.image.url)
+
+        assign(:user_name, email.first_name)
+
+        assign(:club_name, item.club.name)
+
+        assign(:item_name, item.name)
+
+        assign(:item_price, item.price)
+
+        assign(:item_description, item.description)
+
+        mail(
+            email_id: ENV['PAYMENT_EMAIL_ID'],
+            recipient_address: email.email)
+    end
+
     def imported_email_welcome(email, club)
         assign(:email_name, email.first_name)
 

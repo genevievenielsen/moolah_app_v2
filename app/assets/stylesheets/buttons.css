@@ -1,1 +1,16 @@
+.add_to_cart {
+  border-radius: 15px;
+}
 
+.remove_from_cart {
+  border-radius: 15px;
+}
+
+
+.join_button {
+  border-radius: 15px;
+}
+
+.unjoin_button {
+  border-radius: 15px;
+}
