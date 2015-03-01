@@ -1,5 +1,9 @@
-<div class="size_unselected">
-  <div class="col-md-offset-4 col-md-4 ">
-    <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => @item.id), :id, :size), {prompt: "Select a Size", class: "form-control"}) %>
+<div class="row">
+  <div class="size_unselected_show_<%= item.id %>">
+    <div class="col-md-offset-4 col-md-4 ">
+      <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => @item.id), :id, :size), {prompt: "Select a Size", class: "form-control"}) %>
+    </div>
   </div>
+
 </div>
+<br>
