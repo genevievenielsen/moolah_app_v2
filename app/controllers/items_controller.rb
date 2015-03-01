@@ -63,6 +63,14 @@ class ItemsController < ApplicationController
         @outstanding_payments += 1
       end
      end
+
+    @emails = 0
+      @item.club.emails.each do |email| unless @item.club.members.pluck(:email).include?(email.email)
+        @emails += 1
+      end
+    end
+
+    @total_outstanding = @outstanding_payments + @emails
   end
   # GET /items
   # GET /items.json

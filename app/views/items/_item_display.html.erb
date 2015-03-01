@@ -70,7 +70,7 @@ $(document).ready(function() {
     var size_options = document.getElementById("size_option_<%= item.id %>");
     var size_option = size_options.options[size_options.selectedIndex].value;
 
-    if ( color_option == '') {
+    if ( color_option === '') {
       alert("Please select a color");
       event.preventDefault();
       event.stopPropagation();
@@ -79,7 +79,7 @@ $(document).ready(function() {
       $("#add_to_cart_<%= item.id %>").prop('href', $("#add_to_cart_<%= item.id %>").prop('href') + "&color_id=" + color_option);
     }
 
-    if ( size_option == '') {
+    if ( size_option === '') {
       alert("Please select a size");
       event.preventDefault();
       event.stopPropagation();

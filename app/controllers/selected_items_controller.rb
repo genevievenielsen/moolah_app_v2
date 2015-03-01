@@ -62,6 +62,10 @@ class SelectedItemsController < ApplicationController
   # DELETE /selected_items/1
   # DELETE /selected_items/1.json
   def destroy
+    @item = Item.find(@selected_item.item)
+    @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
+
+    puts @item
     @selected_item.destroy
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Item was successfully removed from your cart.' }

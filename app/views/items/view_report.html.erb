@@ -2,17 +2,20 @@
 <div class="row">
   <h1><%= @item.name.capitalize %> Report</h1>
   <hr class="divider">
+  <h3><%= pluralize(@total_outstanding, 'Payment')  %> Outstanding</h3>
+   <hr class="divider">
 </div>
 
 <div class="row">
 </div>
 <h3>Members of <%= @item.club.name %> on Moolah</h3>
 <p><%= pluralize(@purchases, 'Member') %> Paid,  <%= pluralize(@outstanding_payments, 'Payment')  %> Outstanding</p>
+<hr class="divider">
 
 <% @item.club.members.each do |member| %>
 
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
       <%= image_tag "#{member.try(:image)}", :class => "pull-left img-responsive img-circle", :width => "50px", :height => "50px" %>
       <h4 class="pull-left">&nbsp;&nbsp;<%= "#{member.first_name} #{member.last_name}" " - " "#{member.email}"%> </h4>
     </div>
@@ -27,10 +30,13 @@
 
 <br>
 <h3>Email List</h3>
+<p> <%= pluralize(@emails, 'Payment')  %> Outstanding</p>
+<hr class="divider">
+
 <% @item.club.emails.each do |email| unless @item.club.members.pluck(:email).include?(email.email)%>
 
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
       <%= image_tag "#{email.try(:image)}", :class => "pull-left img-responsive img-circle", :width => "50px", :height => "50px" %>
       <h4 class="pull-left">&nbsp;&nbsp;<%= "#{email.first_name} #{email.last_name}" " - " "#{email.email}"%> </h4>
     </div>

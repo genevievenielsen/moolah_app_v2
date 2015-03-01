@@ -1,22 +1,22 @@
-$('#remove_from_cart_<%= @selected_item.item.id %>').fadeOut(function() {
-  $(this).replaceWith('<%= j(render('items/add_to_cart_button', :item => @selected_item.item, :cart => @selected_item.cart)) %>');
+$('#remove_from_cart_<%= @item.id %>').fadeOut(function() {
+  $(this).replaceWith('<%= j(render('items/add_to_cart_button', :item => @item, :cart => @cart)) %>');
 
   //cart page
-  $('.item_in_cart_<%= @selected_item.item.id %>').remove();
+  $('.item_in_cart_<%= @item.id %>').remove();
 
   //show page
-  $('.color_selected').html('<%= j(render('items/color_unselected_show', :@item => @selected_item.item)) %>');
-  $('.color_unselected').html('<%= j(render('items/color_unselected_show', :@item => @selected_item.item)) %>');
+  $('.color_selected').html('<%= j(render('items/color_unselected_show', :item => @item)) %>');
+  $('.color_unselected').html('<%= j(render('items/color_unselected_show', :item => @item)) %>');
 
-  $('.size_selected').html('<%= j(render('items/size_unselected_show', :@item => @selected_item.item)) %>');
-  $('.size_unselected').html('<%= j(render('items/size_unselected_show', :@item => @selected_item.item)) %>');
+  $('.size_selected').html('<%= j(render('items/size_unselected_show', :item => @item)) %>');
+  $('.size_unselected').html('<%= j(render('items/size_unselected_show', :item => @item )) %>');
 
   //index page
-  $('.color_selected_<%= @selected_item.item.id %>').html('<%= j(render('items/color_unselected_index', :item => @selected_item.item)) %>');
-  $('.color_unselected_<%= @selected_item.item.id %>').html('<%= j(render('items/color_unselected_index', :item => @selected_item.item)) %>');
+  $('.color_selected_<%= @item.id %>').html('<%= j(render('items/color_unselected_index', :item => @item)) %>');
+  $('.color_unselected_<%= @item.id %>').html('<%= j(render('items/color_unselected_index', :item => @item)) %>');
 
-  $('.size_selected_<%= @selected_item.item.id %>').html('<%= j(render('items/size_unselected_index', :item => @selected_item.item)) %>');
-  $('.size_unselected_<%= @selected_item.item.id %>').html('<%= j(render('items/size_unselected_index', :item => @selected_item.item)) %>');
+  $('.size_selected_<%= @item.id %>').html('<%= j(render('items/size_unselected_index', :item => @item)) %>');
+  $('.size_unselected_<%= @item.id %>').html('<%= j(render('items/size_unselected_index', :item => @item)) %>');
 
   //navbar
   $('.cart_count').html("<%= escape_javascript(render "selected_items/items_in_cart_count") %>");
