@@ -14,9 +14,7 @@ class Item < ActiveRecord::Base
   has_many :carts, :through => :selected_items, :source => :cart
 
   has_many :color_options
-  accepts_nested_attributes_for :color_options, allow_destroy: true
 
   has_many :size_options
-  accepts_nested_attributes_for :size_options, allow_destroy: true
 
 end
