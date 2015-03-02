@@ -14,3 +14,7 @@
 .unjoin_button {
   border-radius: 15px;
 }
+
+.home_button {
+  border-radius: 0px;
+}
