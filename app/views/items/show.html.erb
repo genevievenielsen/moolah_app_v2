@@ -112,7 +112,7 @@
   $("#add_to_cart_<%= @item.id %>").click(function(event){
     var color_options = document.getElementById("color_option_<%= @item.id %>");
     var color_option = color_options.options[color_options.selectedIndex].value;
-    var size_options = document.getElementById("size_option__<%= @item.id %>");
+    var size_options = document.getElementById("size_option_<%= @item.id %>");
     var size_option = size_options.options[size_options.selectedIndex].value;
     if ( color_option == '') {
       alert("Please select a color");

@@ -1,11 +1,13 @@
-<div class="row">
-<div class="color_unselected_show_<%= item.id %>">
+
+
   <div class="col-md-offset-4 col-md-4 ">
     <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => @item.id), :id, :color, 0), {class: "form-control", prompt: "Select a color", id: "color_option_#{item.id}"}) %>
     <br>
   </div>
-</div>
-</div>
+
+
+
+
 <script type="text/javascript">
 $(document).ready(function() {
   $("#add_to_cart_<%= item.id %>").click(function(event){
@@ -15,7 +17,7 @@ $(document).ready(function() {
     var size_options = document.getElementById("size_option_<%= item.id %>");
     var size_option = size_options.options[size_options.selectedIndex].value;
 
-    if ( color_option === '') {
+    if ( color_option == '') {
       alert("Please select a color");
       event.preventDefault();
       event.stopPropagation();
@@ -23,8 +25,7 @@ $(document).ready(function() {
       console.log(color_option);
       $("#add_to_cart_<%= item.id %>").prop('href', $("#add_to_cart_<%= item.id %>").prop('href') + "&color_id=" + color_option);
     }
-
-    if ( size_option === '') {
+    if ( size_option == '') {
       alert("Please select a size");
       event.preventDefault();
       event.stopPropagation();
@@ -32,6 +33,7 @@ $(document).ready(function() {
       console.log(size_option);
       $("#add_to_cart_<%= item.id %>").prop('href', $("#add_to_cart_<%= item.id %>").prop('href') + "&size_id=" + size_option);
     }
-    });
   });
+ });
 </script>
+

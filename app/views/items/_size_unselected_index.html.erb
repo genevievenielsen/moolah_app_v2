@@ -1,4 +1,4 @@
 
   <div class="col-md-6 pull-left">
-    <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control"}) %>
+    <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control", id: "size_option_#{item.id}"}) %>
   </div>
