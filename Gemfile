@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #for images
-gem "fog-aws"
+gem "fog"
 
 #for assets on heroku
 gem 'rails_12factor', group: :production
