@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  # after_create :send_welcome_email
+  after_create :send_welcome_email
   after_create :check_club_email_lists
 
   validates :first_name, :presence => true
