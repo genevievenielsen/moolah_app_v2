@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#to get assets working on heroku
+gem 'rails_12factor', group: :production
 
 #jquery
 gem "jquery-ui-rails"
