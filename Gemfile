@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
-#to get assets working on heroku
+#for images
+gem "fog-aws"
+
+#for assets on heroku
 gem 'rails_12factor', group: :production
 
 #jquery
