@@ -37,9 +37,13 @@
         <% if current_user.paid_items.include?(@item) %>
           <p> Required For Members</p>
         <% else %>
-          <p>Required for Members - Purchase by <%= @item.expiration_date.strftime("%A %B %d, %Y")  %></p>
+          <% if @item.expiration_date.present?  %>
+            <p>Required for Members - Purchase by
+              <%= @item.expiration_date.strftime("%A %B %d, %Y") %>
+            </p>
+            <hr class="divider item_divider">
+          <% end %>
 
-          <hr class="divider item_divider">
 
         <% end %>
           <%= link_to "View Report", "/view_report/#{@item.id}" %>
