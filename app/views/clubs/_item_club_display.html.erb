@@ -44,7 +44,7 @@
 
         <p class="text-center lead"><%= link_to "#{item.name}", item_url(item) %> </p>
         <% if item.required == true %>
-          <% if @item.expiration_date.present?  %>
+          <% if item.expiration_date.present?  %>
             <p>Required for Members - Purchase by
               <%= item.expiration_date.strftime("%A %B %d, %Y") %>
             </p>
