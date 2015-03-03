@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :size_options
-
   resources :color_options
+
+  resources :size_options
 
   get('/home', {:controller => 'users', :action => 'home'})
 

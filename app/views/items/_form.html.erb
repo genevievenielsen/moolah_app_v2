@@ -63,7 +63,9 @@
 
   <% if current_page?(new_item_url) %>
   <% else %>
+    <% if @item.category == "Merchandise" %>
      <%= render "items/edit_size_and_color" %>
+    <% end %>
   <% end %>
 
   <div class="actions">
