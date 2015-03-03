@@ -17,7 +17,7 @@
 <div class="tab-content">
 <% @category.each_with_index do |item, index| %>
   <% cart = Cart.where(:user_id => current_user.id, :paid => false) %>
-  <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id, :cart => cart ) %>
+  <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id.to_s, :cart => cart ) %>
 
   <% if index == 0 %>
      <div class="tab-pane active" id="item_<%= index %>" >
@@ -46,7 +46,7 @@
         <% if item.required == true %>
           <% if @item.expiration_date.present?  %>
             <p>Required for Members - Purchase by
-              <%= @item.expiration_date.strftime("%A %B %d, %Y") %>
+              <%= item.expiration_date.strftime("%A %B %d, %Y") %>
             </p>
             <hr class="divider item_divider">
           <% end %>
@@ -143,14 +143,14 @@
         <% if selected_item.present? %>
           <div class="color_selected_<%= item.id %>">
            <div class="col-md-6">
-            <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color, selected_item.color_option_id), {class: "form-control", prompt: "Color"}) %>
+            <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id.to_s), :id, :color, selected_item.color_option_id), {class: "form-control", prompt: "Color"}) %>
             <br>
           </div>
           </div>
         <% else %>
         <div class="color_unselected_<%= item.id %>">
          <div class="col-md-6">
-          <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Color"}) %>
+          <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id.to_s), :id, :color), {class: "form-control", prompt: "Color"}) %>
           <br>
         </div>
         </div>
@@ -161,14 +161,14 @@
         <% if selected_item.present?  %>
           <div class="size_selected_<%= item.id %>">
            <div class="col-md-6">
-          <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, selected_item.size_option_id), {prompt: "Size", class: "form-control"}) %>
+          <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id.to_s), :id, :size, selected_item.size_option_id), {prompt: "Size", class: "form-control"}) %>
           <br>
           </div>
           </div>
         <% else %>
           <div class="size_unselected_<%= item.id %>">
            <div class="col-md-6">
-          <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control"}) %>
+          <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id.to_s), :id, :size), {prompt: "Size", class: "form-control"}) %>
           <br>
           </div>
           </div>
@@ -178,13 +178,13 @@
       </div>
 
 
-
-
-        <div class="btn col-sm-12"> <% if current_user.items_in_cart.include?(item) %>
+        <div class="btn col-sm-12">
+          <% if current_user.items_in_cart.include?(item) %>
             <%= render "items/remove_from_cart_button", :item => item, :cart => @cart %>
           <% else %>
             <%= render "items/add_to_cart_button", :item => item, :cart => @cart %>
-          <% end %></div>
+          <% end %>
+        </div>
         <div class="clearfix"></div>
         <br>
         <% if item.carts.where(:paid => true).count > 0 %>
