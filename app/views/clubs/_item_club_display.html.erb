@@ -44,8 +44,12 @@
 
         <p class="text-center lead"><%= link_to "#{item.name}", item_url(item) %> </p>
         <% if item.required == true %>
-          <p class="text-center">This item is required for all members of <%= item.club.name %>.</p>
-          <p class="text-center">Purchase it now!</p>
+          <% if @item.expiration_date.present?  %>
+            <p>Required for Members - Purchase by
+              <%= @item.expiration_date.strftime("%A %B %d, %Y") %>
+            </p>
+            <hr class="divider item_divider">
+          <% end %>
         <% end  %>
 
         <div class="row">
@@ -54,14 +58,14 @@
           <% if selected_item.present? %>
             <div class="color_selected_<%= item.id %>">
              <div class="col-md-6">
-              <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color, selected_item.color_option_id), {class: "form-control", prompt: "Color"}) %>
+              <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id.to_s), :id, :color, selected_item.color_option_id), {class: "form-control", prompt: "Color"}) %>
               <br>
             </div>
             </div>
           <% else %>
           <div class="color_unselected_<%= item.id %>">
            <div class="col-md-6">
-            <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id), :id, :color), {class: "form-control", prompt: "Color"}) %>
+            <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id.to_s), :id, :color), {class: "form-control", prompt: "Color"}) %>
             <br>
           </div>
           </div>
@@ -72,14 +76,14 @@
           <% if selected_item.present?  %>
             <div class="size_selected_<%= item.id %>">
              <div class="col-md-6">
-            <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size, selected_item.size_option_id), {prompt: "Size", class: "form-control"}) %>
+            <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id.to_s), :id, :size, selected_item.size_option_id), {prompt: "Size", class: "form-control"}) %>
             <br>
             </div>
             </div>
           <% else %>
             <div class="size_unselected_<%= item.id %>">
              <div class="col-md-6">
-            <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id), :id, :size), {prompt: "Size", class: "form-control"}) %>
+            <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => item.id.to_s), :id, :size), {prompt: "Size", class: "form-control"}) %>
             <br>
             </div>
             </div>
