@@ -24,14 +24,12 @@ class ColorOptionsController < ApplicationController
   # POST /color_options
   # POST /color_options.json
   def create
-    @color_option = ColorOption.new
-    @color_option.color = params[:color_option]
+    @color_option = ColorOption.new(color_option_params)
 
     respond_to do |format|
       if @color_option.save
         format.html { redirect_to @color_option, notice: 'Color option was successfully created.' }
         format.json { render :show, status: :created, location: @color_option }
-        format.js
       else
         format.html { render :new }
         format.json { render json: @color_option.errors, status: :unprocessable_entity }
