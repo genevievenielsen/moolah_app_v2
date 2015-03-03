@@ -153,14 +153,14 @@ class ItemsController < ApplicationController
       color_options = params[:colors]
       colors = color_options.split(" ")
       colors.each do |color|
-        @color_option = @item.color_options.create(color: color) unless ColorOption.where(:item_id => @item.id).pluck(:color).include?(color)
+        @color_option = @item.color_options.create(color: color) unless ColorOption.where(:item_id => @item.id.to_s).pluck(:color).include?(color)
       end
     end
 
     # if a color option is not present in the params destroy it
     if params[:colors].present?
       color_options = params[:colors].to_s
-      ColorOption.where(:item_id => @item.id).each do |color_option|
+      ColorOption.where(:item_id => @item.id.to_s).each do |color_option|
         if color_options.include?(color_option.color)
         else
           color_option.destroy
@@ -174,14 +174,14 @@ class ItemsController < ApplicationController
       size_options = params[:sizes]
       sizes = size_options.split(" ")
       sizes.each do |size|
-        @size_option = @item.size_options.create(size: size) unless SizeOption.where(:item_id => @item.id).pluck(:size).include?(size)
+        @size_option = @item.size_options.create(size: size) unless SizeOption.where(:item_id => @item.id.to_s).pluck(:size).include?(size)
       end
     end
 
     # if a size option is not present in the params destroy it
     if params[:sizes].present?
       size_options = params[:sizes].to_s
-      SizeOption.where(:item_id => @item.id).each do |size_option|
+      SizeOption.where(:item_id => @item.id.to_s).each do |size_option|
         if size_options.include?(size_option.size)
         else
           size_option.destroy
