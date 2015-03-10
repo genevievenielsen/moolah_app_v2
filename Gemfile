@@ -5,6 +5,7 @@ gem "fog"
 
 #for assets on heroku
 gem 'rails_12factor', group: :production
+gem 'rails_serve_static_assets'
 
 #jquery
 gem "jquery-ui-rails"
