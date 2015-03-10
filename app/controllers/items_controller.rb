@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+  class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
    def venmo_pay
@@ -26,11 +26,13 @@ class ItemsController < ApplicationController
                                      user_id: '145434160922624933',
                                      note: item[1]['note'],
                                      target: item[1]['target'],
-                                     amount: '0.10',
+                                     amount: item[1]['amount'],
                                      audience: 'private')
 
         puts res.body
-        Notifier.payment_confirmation(item, current_user).deliver
+
+        puts item
+        Notifier.payment_confirmation(current_user, item[1]['note'], item[1]['amount']).deliver
       end
 
     # Changes order status to paid
