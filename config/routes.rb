@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :color_options
-
-  resources :size_options
-
   get('/home', {:controller => 'users', :action => 'home'})
 
   get('/my_cart', {:controller => 'carts', :action => 'my_cart'})
   get('/my_items', {:controller => 'items', :action => 'my_items'})
   get('/my_clubs', {:controller => 'clubs', :action => 'my_clubs'})
   get('/purchase_items', {:controller => 'carts', :action => 'purchase_items'})
+
+  get('/moolah_icon', {:controller => 'pages', :action => 'moolah_icon'})
 
   get('/club_emails/:id', {:controller => 'emails', :action => 'club_emails'})
   post('/import_emails/:id', {:controller => 'emails', :action => 'import_emails'})
@@ -24,6 +22,9 @@ Rails.application.routes.draw do
   post '/venmo_pay' => 'items#venmo_pay', :as => 'venmo_pay'
   # get '/auth/venmo/callback' => 'users/omniauth_callbacks#venmo'
 
+  resources :color_options
+
+  resources :size_options
 
   resources :universities
 

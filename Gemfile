@@ -15,6 +15,8 @@ gem 'sprockets'
 gem 'bootstrap-sass', '3.2.0.2'
 # gem 'font-awesome-sass'
 
+gem 'quiet_assets'
+
 gem 'httparty'
 
 gem 'omniauth'
