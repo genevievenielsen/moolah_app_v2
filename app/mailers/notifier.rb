@@ -24,7 +24,7 @@ class Notifier < SendWithUsMailer::Base
 
         # assign(:item_image, item.image.url)
 
-        assign(:user_name, email.first_name)
+        assign(:first_name, email.first_name)
 
         assign(:club_name, item.club.name)
 
