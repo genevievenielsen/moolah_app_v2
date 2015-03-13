@@ -3,7 +3,7 @@
 <br>
 
 <div class="row">
-  <div class="col-md-offset-4 col-md-4">
+  <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4">
     <div class="text-center">
       <img class="img-responsive img-circle center-block" width="100px" height="100px" src="<%= current_user.university.image %>">
     </div>
@@ -43,19 +43,24 @@
               new_item_path,
               :class => "btn btn-sm btn-primary home_button pull-right"
    %>
-   <%= link_to "All Items",
-              items_path,
-              :class => "btn btn-sm btn-primary home_button pull-right"
-   %>
 </div>
 
 
 <div class="row">
+  <% @item_count = 1  %>
+
   <% @items.each do |item| %>
-    <% cart = Cart.where(:user_id => current_user.id, :paid => false) %>
-    <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id, :cart => cart ) %>
-    <%= render "items/item_display", item: item, selected_item: selected_item %>
-  <% end  %>
+    <% if @item_count <= 4 %>
+      <% cart = Cart.where(:user_id => current_user.id, :paid => false) %>
+      <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id, :cart => cart ) %>
+      <%= render "items/item_display", item: item, selected_item: selected_item %>
+    <% end %>
+    <% @item_count += 1 %>
+  <% end %>
+
+  <% if @items.all.count > 4 %>
+    <%= link_to "View More >>", items_path, :class => "pull-right" %>
+  <% end %>
 </div>
 
  <hr class="divider"></hr>
@@ -67,28 +72,34 @@
                new_club_path,
                :class => "btn btn-sm btn-primary home_button pull-right"
     %>
-    <%= link_to "All Clubs",
-               clubs_path,
-               :class => "btn btn-sm btn-primary home_button pull-right"
-    %>
  </div>
 
 <div class="row">
+  <% @club_count = 1  %>
+
   <% @clubs.each do |club| %>
-    <%= render "clubs/club_display", club: club %>
+    <% if @club_count <= 4 %>
+      <%= render "clubs/club_display", club: club %>
+    <% end %>
+    <% @club_count += 1 %>
+  <% end %>
+
+  <% if @clubs.all.count > 4 %>
+    <%= link_to "View More >>", clubs_path, :class => "pull-right" %>
   <% end %>
 </div>
 
 
- <hr class="divider"></hr>
+<!--  <hr class="divider"></hr>
 
 
 <div class="row sub_title_row">
-  <h3><%= pluralize(@users.count, 'User') %></h3>
+  <h3><%#= pluralize(@users.count, 'User') %></h3>
 </div>
 
 <div class="row">
-  <% @users.each do |user| %>
-    <%= render "users/user_display", user: user %>
-  <% end  %>
+  <%# @users.each do |user| %>
+    <%#= render "users/user_display", user: user %>
+  <%# end  %>
 </div>
+ -->
