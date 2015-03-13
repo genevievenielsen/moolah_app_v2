@@ -2,13 +2,12 @@
 
 <div class="col-sm-4 col-md-3">
   <div class="panel panel-body item_display_panel">
-    <img class="img-responsive item_panel_image" src="<%= item.image %>">
+    <img class="img-responsive item_panel_image" src="<%= item.image %>" height="150px">
     <div class="caption item_caption">
     <h3><%= link_to "#{item.name.capitalize}", item %></h3>
     <h5><%= link_to "#{item.club.name}", club_url(item.club) %></h5>
 
     <div class="row">
-
     <% if item.color_options.count > 1 %>
       <% if selected_item.present?  %>
         <%=  puts "It got here"  %>
@@ -47,7 +46,6 @@
         </div>
       <% end %>
     <% end %>
-
     </div>
 
     <% if current_user.items_in_cart.include?(item) %>
