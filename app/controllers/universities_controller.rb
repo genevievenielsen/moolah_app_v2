@@ -12,6 +12,7 @@ class UniversitiesController < ApplicationController
   def show
     @items = @university.items
     @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
+    @clubs = @university.clubs
 
   end
 

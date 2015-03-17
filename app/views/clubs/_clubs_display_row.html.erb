@@ -1,0 +1,23 @@
+ <div class="row sub_title_row">
+   <h3 class="pull-left"><%= pluralize(@clubs.count, 'Club') %></h3>
+
+    <%= link_to "New Club",
+               new_club_path,
+               :class => "btn btn-sm btn-primary home_button pull-right"
+    %>
+ </div>
+
+<div class="row">
+  <% @club_count = 1  %>
+
+  <% @clubs.each do |club| %>
+    <% if @club_count <= 4 %>
+      <%= render "clubs/club_display", club: club %>
+    <% end %>
+    <% @club_count += 1 %>
+  <% end %>
+
+  <% if @clubs.all.count > 4 %>
+    <%= link_to "View More >>", clubs_path, :class => "pull-right" %>
+  <% end %>
+</div>

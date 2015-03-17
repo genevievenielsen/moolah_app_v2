@@ -8,21 +8,21 @@
   <div class="col-md-2">
   <div class="pull-right">
     <% if current_user == @item.owner %>
-        <%= link_to 'Edit', edit_item_path(@item) %> |
-        <%= link_to "Delete", item_url(@item), method: :delete, data: { confirm: 'Are you sure?', :class => "btn btn-default" } %>
+        <%= link_to "<i class=\"fa fa-pencil-square-o\"></i>".html_safe, edit_item_path(@item), :class => "btn btn-xs btn-default edit_button" %>
+        <%= link_to "<i class=\"fa fa-times\"></i>".html_safe, item_url(@item), method: :delete, :class => "btn btn-xs btn-default edit_button", data: { confirm: 'Are you sure?'} %>
     <% end %>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 col-sm-6">
       <img class="img-responsive item_image_show" src="<%= @item.image %>">
       <br>
         <p><%= link_to "#{@item.university.name}", university_url(@item.university) %> / <%= link_to "#{@item.club.name}", university_url(@item.club) %> / <%= @item.name %></p>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6 col-sm-6">
     <div class="text-center">
       <p class="price_show">$<%= number_with_precision(@item.price, precision: 2) %></p>
 

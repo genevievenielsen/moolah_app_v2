@@ -10,7 +10,7 @@
       </ul>
     </div>
     <div >
-      <%= link_to 'Add New Item', new_item_path, :class => "col-md-2 pull-right btn btn-sm btn-default" %>
+      <%= link_to 'Add New Item', new_item_path, :class => "col-md-2 pull-right btn btn-sm btn-primary home_button" %>
     </div>
   </div>  <!-- this closes the row -->
 
@@ -46,7 +46,7 @@
         </div>
       <% end %>
     </div>
-    <h4>Club Email List</h4>
+    <h4 class="text-center">Club Email List</h4>
       <% Email.where(:club_id => @club.id).each do |email| %>
         <%= email.email %>
       <% end %>

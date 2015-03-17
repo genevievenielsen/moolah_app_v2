@@ -6,8 +6,8 @@
 
       <% if current_user == @club.owner %>
       <div class="pull-right">
-        <%= link_to 'Edit', edit_club_path(@club) %> |
-        <%= link_to 'Destroy', club_url(@club), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to "<i class=\"fa fa-pencil-square-o\"></i>".html_safe, edit_club_path(@club), :class => "btn btn-xs btn-default edit_button" %>
+        <%= link_to "<i class=\"fa fa-times\"></i>".html_safe, club_url(@club), method: :delete, :class => "btn btn-xs btn-default edit_button", data: { confirm: 'Are you sure?' } %>
       </div>
       <% end %>
 
