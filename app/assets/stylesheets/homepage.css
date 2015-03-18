@@ -1,0 +1,36 @@
+body, html{
+  height: 100%;
+}
+
+#cover_wrapper {
+  position: relative;
+  height: 100%;
+  z-index: 3;
+
+}
+
+#homepage_cover_photo {
+  z-index: 1;
+  height: 100%;
+}
+
+.backgroundshadowing {
+  background: rgba(0,0,0,0.45);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+
+#homepage_cover_text {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin:auto;
+    color:white;
+}
