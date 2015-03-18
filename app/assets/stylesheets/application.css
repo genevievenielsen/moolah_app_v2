@@ -78,3 +78,25 @@
   font-size: 24px;
 }
 
+.alert-warning {
+  position: fixed;
+  width: 100%;
+  top: 50px;
+  left:0;
+  border-radius: 0px;
+  border-width: 0px;
+  z-index: 1000;
+}
+
+.alert-success{
+  position: fixed;
+  width: 100%;
+  top: 50px;
+  left:0;
+  border-radius: 0px;
+  border-width: 0px;
+  z-index: 1000;
+
+}
+
+

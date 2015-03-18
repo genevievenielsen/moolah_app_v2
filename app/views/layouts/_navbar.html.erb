@@ -1,4 +1,35 @@
+<!-- THE COLOR OF THE NAVBAR -->
 
+
+<% if current_page?(new_user_session_url) %>
+  <style type="text/css">
+    .navbar-default {
+      background-color: transparent;
+      border-color: #ffffff
+    }
+    .navbar-header {
+      background-color: transparent;
+    }
+
+    .navbar-default .navbar-nav>li>a {
+      color: #ffffff;
+    }
+
+    .navbar-default .navbar-brand {
+      color: #ffffff;
+    }
+  </style>
+<% else %>
+  <style type="text/css">
+    .navbar-default {
+      background-color: #e7e7e7;
+      border-color: #ffffff
+    }
+    .navbar-header {
+      background-color: #e7e7e7;
+    }
+  </style>
+<% end %>
 
 <% if user_signed_in? %>
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
