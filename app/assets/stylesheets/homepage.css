@@ -34,3 +34,7 @@ body, html{
     margin:auto;
     color:white;
 }
+
+.explanation {
+  font-weight: 100;
+}
