@@ -27,13 +27,13 @@ body, html{
 
 
 #homepage_cover_text {
-    z-index: 10;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin:auto;
-    color:white;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin:auto;
+  color:white;
 }
 
 .explanation {
