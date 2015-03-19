@@ -39,3 +39,7 @@ body, html{
 .explanation {
   font-weight: 100;
 }
+
+div.hidden {
+    display: none;
+}
