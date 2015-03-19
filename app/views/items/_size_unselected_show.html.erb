@@ -1,7 +1,7 @@
 <div class="row">
   <div class="size_unselected_show_<%= item.id %>">
     <div class="col-md-offset-4 col-md-4 ">
-      <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => @item.id), :id, :size), {prompt: "Select a Size", class: "form-control", id: "size_option_#{item.id}"}) %>
+      <%= select_tag("size_option", options_from_collection_for_select(SizeOption.where(:item_id => @item.id.to_s), :id, :size), {prompt: "Select a Size", class: "form-control", id: "size_option_#{item.id}"}) %>
     </div>
   </div>
 

@@ -1,7 +1,7 @@
 
 
   <div class="col-md-offset-4 col-md-4 ">
-    <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => @item.id), :id, :color, 0), {class: "form-control", prompt: "Select a color", id: "color_option_#{item.id}"}) %>
+    <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => @item.id.to_s), :id, :color, 0), {class: "form-control", prompt: "Select a color", id: "color_option_#{item.id}"}) %>
     <br>
   </div>
 
