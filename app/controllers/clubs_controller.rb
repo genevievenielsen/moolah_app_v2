@@ -31,6 +31,12 @@ class ClubsController < ApplicationController
   def create
     @club = Club.new(club_params)
     @club.owner_id = current_user.id
+
+    @membership = Membership.new
+    @membership.club = @club
+    @membership.user = current_user
+    @membership.save
+
     respond_to do |format|
       if @club.save
         format.html { redirect_to @club, notice: 'Club was successfully created.' }

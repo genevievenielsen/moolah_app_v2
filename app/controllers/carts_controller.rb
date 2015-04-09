@@ -4,14 +4,6 @@ class CartsController < ApplicationController
   def my_cart
     @items = current_user.items_in_cart
     @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
-    # if @cart.present?
-    #   @cart_price = 0
-    #   @note = ""
-    #   @cart.items.each do |item|
-    #     @cart_price = @cart_price + item.price
-    #     @note = @note + " #{item.name},"
-    #    end
-    # end
 
     # This gets the venmo access token
     current_user.venmo_auth_token = params[:code].to_s

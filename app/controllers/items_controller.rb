@@ -20,8 +20,6 @@
 
       params[:items].each do |item|
 
-        puts item
-
         res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
                                      user_id: '145434160922624933',
                                      note: item[1]['note'],
@@ -29,19 +27,35 @@
                                      amount: item[1]['amount'],
                                      audience: 'private')
 
-        puts res.body
+          puts res.body
+
+          if res.body.include?"error"
+             @error_message = res.body
+             # Note
+             # This is res.body when there is an error
+             # {"error": {"message": "The amount specified is not a sandbox test amount", "code": 503}}
+             redirect_to :back, notice: "An error occured in your venmo payment - #{res.body["error"]["message"]}"
+             break
+          end
 
         puts item
         Notifier.payment_confirmation(current_user, item[1]['note'], item[1]['amount']).deliver
       end
 
-    # Changes order status to paid
-    @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
-    # if settled then change to pay, but for each item
-    # if one fails, have that remain in the cart and the others are removed
-    @cart.paid = true
-    @cart.save
-    redirect_to home_url, notice: 'You have successfully paid for your cart with Venmo!'
+
+      if @error_message.present? && @error_message.include?("error")
+      else
+        # Changes order status to paid
+        @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
+        # if settled then change to pay, but for each item
+        # if one fails, have that remain in the cart and the others are removed
+        @cart.paid = true
+        @cart.save
+        redirect_to home_url, notice: 'You have successfully paid for your cart with Venmo!'
+      end
+
+
+
   end
 
   def my_items
@@ -87,7 +101,7 @@
   def show
     @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
 
-    @selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => @item.id )
+    @selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => @item.id.to_s )
 
   end
 
@@ -207,7 +221,7 @@
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Item was successfully deleted.' }
       format.json { head :no_content }
     end
   end

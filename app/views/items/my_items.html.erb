@@ -31,7 +31,7 @@
 
   <div id="purchased_items" class="tab-pane ">
     <br>
-    <p>Items you have already purchased!</p>
+    <p class="sub_title_row">Items you have already purchased!</p>
     <br>
       <% @paid_items.each do |item| %>
         <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id ) %>
@@ -43,7 +43,7 @@
 
     <div id="items_for_sale" class="tab-pane ">
     <br>
-    <p>Items you are offering for sale!</p>
+    <p class="sub_title_row">Items you are offering for sale!</p>
     <br>
       <% @items_for_sale.each do |item| %>
         <% selected_item = SelectedItem.find_by(:user_id => current_user.id, :item_id => item.id ) %>
