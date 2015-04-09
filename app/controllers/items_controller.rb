@@ -29,12 +29,17 @@
 
           puts res.body
 
+
           if res.body.include?"error"
              @error_message = res.body
+             @error_message = @error_message.split("message\": ")
+             @message = @error_message[1]
+             @message = @message.split(",")
+             @explanation = @message[0]
              # Note
              # This is res.body when there is an error
              # {"error": {"message": "The amount specified is not a sandbox test amount", "code": 503}}
-             redirect_to :back, notice: "An error occured in your venmo payment - #{res.body["error"]["message"]}"
+             redirect_to :back, notice: "An error occured in your venmo payment - #{@explanation}"
              break
           end
 
@@ -43,7 +48,7 @@
       end
 
 
-      if @error_message.present? && @error_message.include?("error")
+      if @error_message.present?
       else
         # Changes order status to paid
         @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
