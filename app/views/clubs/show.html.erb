@@ -1,55 +1,57 @@
 <br>
 <div class="row">
-  <div class="col-md-12">
-
-      <img class="img-responsive img-circle center-block" width="200px" src="<%= @club.image %>">
-
-      <% if current_user == @club.owner %>
-      <div class="pull-right">
-        <%= link_to "<i class=\"fa fa-pencil-square-o\"></i>".html_safe, edit_club_path(@club), :class => "btn btn-xs btn-default edit_button" %>
-        <%= link_to "<i class=\"fa fa-times\"></i>".html_safe, club_url(@club), method: :delete, :class => "btn btn-xs btn-default edit_button", data: { confirm: 'Are you sure?' } %>
-      </div>
-      <% end %>
-
+  <div class="col-md-4 border-right">
+    <img class="img-responsive img-rounded center-block club" width="200px" src="<%= @club.image %>">
   </div>
-</div>
 
-<div class="row">
-<!--   <div class="col-md-3 pull-left">
-    <div class="vertical_line"></div>
-  </div> -->
-  <div class="col-md-offset-3 col-md-6 ">
+  <div class="col-md-4">
     <div class="text-center">
         <h2><%= @club.name %></h2>
-    </div>
-  </div>
-<!--   <div class="col-md-3 pull-left">
-     <div class="vertical_line"></div>
-  </div>
-</div>
- -->
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="text-center">
         <h5><%= @club.description %></h5>
-<!--         <h5><%#= @club.website %></h5>
- -->
+
         <% if @club.owner == current_user  %>
             <%= render 'memberships/unjoin_button', :club => @club %>
         <% else %>
             <%= render 'memberships/join_button', :club => @club %>
         <% end %>
-    </div>
 
-  <% if @club.members.include?(current_user)  %>
+        <% if @club.members.include?(current_user)  %>
+          <div class="text-center">
+            <a href="/club_emails/<%= @club.id %>">Import Club Email List</a>
+          </div>
+        <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-4 border-left">
+    <% if current_user == @club.owner %>
+      <div class="pull-right">
+        <%= link_to "<i class=\"fa fa-pencil-square-o\"></i>".html_safe, edit_club_path(@club), :class => "btn btn-xs btn-default edit_button" %>
+        <%= link_to "<i class=\"fa fa-times\"></i>".html_safe, club_url(@club), method: :delete, :class => "btn btn-xs btn-default edit_button", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
     <div class="text-center">
-      <a href="/club_emails/<%= @club.id %>">Import Club Email List</a>
+      <br>
+      <br>
+      <br>
+      <%= link_to 'Add New Item', new_item_path, :class => "btn btn-md btn-primary home_button" %>
+      <br>
+      <br>
+      <br>
     </div>
-  <% end %>
-</div>
+
+  </div>
+
+
 </div>
 
+<br>
+<br>
+
+ <hr class="divider"></hr>
+
+<br>
 <br>
 <%= render "clubs/items_club_display" %>
 
