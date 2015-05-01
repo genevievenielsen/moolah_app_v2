@@ -1,10 +1,11 @@
 <br>
+<br>
 <div class="row">
-  <div class="col-md-4 border-right">
-    <img class="img-responsive img-rounded center-block club" width="200px" src="<%= @club.image %>">
+  <div class="col-md-4">
+    <img class="img-rounded img-responsive center-block club" width="200px" height="200px" src="<%= @club.image %>">
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4 border-left border-right">
     <div class="text-center">
         <h2><%= @club.name %></h2>
         <h5><%= @club.description %></h5>
@@ -20,10 +21,12 @@
             <a href="/club_emails/<%= @club.id %>">Import Club Email List</a>
           </div>
         <% end %>
+
+        <br>
     </div>
   </div>
 
-  <div class="col-md-4 border-left">
+  <div class="col-md-4">
     <% if current_user == @club.owner %>
       <div class="pull-right">
         <%= link_to "<i class=\"fa fa-pencil-square-o\"></i>".html_safe, edit_club_path(@club), :class => "btn btn-xs btn-default edit_button" %>
