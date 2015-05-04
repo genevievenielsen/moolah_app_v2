@@ -1,26 +1,2 @@
-.navbar-fixed-top {
-  height: 60px;
-}
-
-.navbar-default .navbar-nav>.active>a {
-  height: 59px;
-  background-color: #f2f2f2;
-  color:#777;
-  border-bottom: 5px solid #777;
-  border-bottom-width: 15px;
-
-}
-
-.navbar-default .navbar-nav>.active>a:active {
-  height: 59px;
-  background-color: #f2f2f2;
-}
-
-
-/*darker color on hover */
-.navbar-default .navbar-nav>li>a:hover{
-  height: 59px;
-  background-color: #e7e7e7;
-}
 
 

@@ -11,12 +11,17 @@
       background-color: transparent;
     }
 
-    .navbar-default .navbar-nav>li>a {
+    .navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>.active>a:active, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-brand, .navbar-default .navbar-brand:active, .navbar-default .navbar-brand:hover  {
       color: #ffffff;
     }
 
-    .navbar-default .navbar-brand {
-      color: #ffffff;
+    .navbar-default .navbar-nav>li>a:active {
+      border-bottom: 5px solid #d3d3d3;
+    }
+
+    /*transparent on hover */
+    .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-brand:hover  {
+      background: rgba(211, 211, 211, 0.5);
     }
 
     .navbar_color {
@@ -24,17 +29,43 @@
       border-color: #ffffff;
     }
 
-
   </style>
+
+
+
 <% else %>
   <style type="text/css">
     .navbar-default {
       background-color: #F2F2F2;
       border-color: #ffffff
     }
+
     .navbar-header {
       background-color: #F2F2F2;
     }
+
+    .navbar-fixed-top {
+      height: 60px;
+    }
+
+    .navbar-default .navbar-nav>.active>a {
+      height: 59px;
+      background-color: #f2f2f2;
+      color:#777;
+      border-bottom: 5px solid #777;
+    }
+
+    .navbar-default .navbar-nav>.active>a:active {
+      height: 59px;
+      background-color: #f2f2f2;
+    }
+
+    /*darker color on hover */
+    .navbar-default .navbar-nav>li>a:hover{
+      height: 59px;
+      background-color: #e7e7e7;
+    }
+
   </style>
 <% end %>
 
@@ -64,7 +95,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="/users/edit" class="pull-right"><%= current_user.first_name %></a></li>
+          <li class="<%= 'active' if current_page?(edit_user_registration_url) %>"><a href="/users/edit" class="pull-right"><%= current_user.first_name %></a></li>
           <li><a href="/users/sign_out" data-method="delete">Sign out</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
