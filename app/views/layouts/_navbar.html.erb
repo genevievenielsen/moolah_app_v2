@@ -29,11 +29,11 @@
 <% else %>
   <style type="text/css">
     .navbar-default {
-      background-color: #e7e7e7;
+      background-color: #F2F2F2;
       border-color: #ffffff
     }
     .navbar-header {
-      background-color: #e7e7e7;
+      background-color: #F2F2F2;
     }
   </style>
 <% end %>
@@ -57,9 +57,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-          <li><a href="/my_cart" class="pull-right">My Cart <div class="cart_count pull-right"><%= render "selected_items/items_in_cart_count" %></div></a></li>
-          <li><a href="/my_items">My Items</a></li>
-          <li><a href="/my_clubs">My Clubs</a></li>
+          <li class="<%= 'active' if current_page?(my_cart_url) %>"><a href="/my_cart" class="pull-right">My Cart <div class="cart_count pull-right"><%= render "selected_items/items_in_cart_count" %></div></a></li>
+          <li class="<%= 'active' if current_page?(my_items_url) %>"><a href="/my_items">My Items</a></li>
+          <li class="<%= 'active' if current_page?(my_clubs_url) %>"><a href="/my_clubs">My Clubs</a></li>
 
       </ul>
 
