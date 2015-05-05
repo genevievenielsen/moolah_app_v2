@@ -2,17 +2,22 @@
 
 <div class="col-sm-4 col-md-3">
   <div class="panel panel-body item_display_panel">
-    <img class="img-responsive item_panel_image" src="<%= item.image %>" height="150px">
-    <div class="caption item_caption">
+
+    <div class="item_image">
+      <img class="img-responsive item_panel_image" src="<%= item.image %>">
+    </div>
+
+    <div class="panel panel-body item_price_panel">
+      <p>$<%= number_with_precision(item.price, precision: 2) %></p>
+    </div>
+
+    <div class="caption item_caption_panel">
     <h3><%= link_to "#{item.name.capitalize}", item %></h3>
     <h5><%= link_to "#{item.club.name}", club_url(item.club) %></h5>
 
     <div class="row">
     <% if item.color_options.count > 1 %>
       <% if selected_item.present?  %>
-        <%=  puts "It got here"  %>
-        <%= puts item.id %>
-        <%= puts selected_item.id %>
         <div class="color_selected_<%= item.id %>">
          <div class="col-md-6 col-sm-6">
           <%= select_tag("color_option", options_from_collection_for_select(ColorOption.where(:item_id => item.id.to_s), :id, :color, selected_item.color_option.id), {class: "form-control", prompt: "Color", id: "color_option_#{item.id}"})   %>
