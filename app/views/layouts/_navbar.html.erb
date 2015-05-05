@@ -1,12 +1,22 @@
 <!-- THE COLOR OF THE NAVBAR -->
+<style type="text/css">
+  .navbar-fixed-top {
+    height: 60px;
+  }
 
+  .navbar-default .navbar-nav>.active>a:active, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.active>a, .navbar-brand   {
+    height: 59px;
+  }
+
+</style>
 
 <% if current_page?(new_user_session_url) %>
   <style type="text/css">
     .navbar-default {
       background-color: transparent;
-      border-color: #ffffff
-    }
+      border-color: #ffffff;
+/*      border-color: transparent;
+*/    }
     .navbar-header {
       background-color: transparent;
     }
@@ -16,7 +26,13 @@
     }
 
     .navbar-default .navbar-nav>li>a:active {
-      border-bottom: 5px solid #d3d3d3;
+      border-bottom: 5px solid #ffffff;
+    }
+
+    .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover {
+      color: #ffffff;
+      background-color: #000000;
+      border-bottom: 5px solid #ffffff;
     }
 
     /*transparent on hover */
@@ -28,9 +44,16 @@
       background-color: #000000;
       border-color: #ffffff;
     }
-
   </style>
 
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('.nav.navbar-nav > li').on('click', function (e) {
+        $('.nav.navbar-nav > li').removeClass('active');
+        $(this).addClass('active');
+    });
+    });
+  </script>
 
 
 <% else %>
@@ -44,25 +67,18 @@
       background-color: #F2F2F2;
     }
 
-    .navbar-fixed-top {
-      height: 60px;
-    }
-
-    .navbar-default .navbar-nav>.active>a {
-      height: 59px;
+    .navbar-default .navbar-nav>.active>a, a.navbar-brand.moolah.active {
       background-color: #f2f2f2;
       color:#777;
       border-bottom: 5px solid #777;
     }
 
-    .navbar-default .navbar-nav>.active>a:active {
-      height: 59px;
+    .navbar-default .navbar-nav>.active>a:active, a.navbar-brand.moolah.active:active, a.navbar-brand.moolah:active  {
       background-color: #f2f2f2;
     }
 
     /*darker color on hover */
-    .navbar-default .navbar-nav>li>a:hover{
-      height: 59px;
+    .navbar-default .navbar-nav>li>a:hover, a.navbar-brand.moolah.active:hover, a.navbar-brand.moolah:hover  {
       background-color: #e7e7e7;
     }
 
@@ -80,7 +96,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/home" class="navbar-brand moolah">Moolah</a>
+      <% if current_page?(home_url) || current_page?(root_url) %>
+        <a href="/home" class="navbar-brand moolah active" >Moolah</a>
+      <% else %>
+        <a href="/home" class="navbar-brand moolah" >Moolah</a>
+      <% end %>
+
     </div>
 
     <div class="container">
@@ -96,7 +117,7 @@
 
       <ul class="nav navbar-nav navbar-right">
           <li class="<%= 'active' if current_page?(edit_user_registration_url) %>"><a href="/users/edit" class="pull-right"><%= current_user.first_name %></a></li>
-          <li><a href="/users/sign_out" data-method="delete">Sign out</a></li>
+          <li class="<%= 'active' if current_page?(destroy_user_session_url) %>"><a href="/users/sign_out" data-method="delete">Sign out</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
     </div>
