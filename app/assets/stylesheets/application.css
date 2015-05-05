@@ -47,22 +47,11 @@
 */
 
 
-
-/*.btn{
-  border-radius: 0px;
-}
-*/
-
 .form-control {
   border-radius: 0px;
    -webkit-border-radius: 0;
      -moz-border-radius: 0;
           border-radius: 0;
-}
-
-
-.vertical_line {
-    border: thin solid black;
 }
 
 .sub_title_row {

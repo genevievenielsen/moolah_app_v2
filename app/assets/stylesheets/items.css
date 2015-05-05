@@ -14,6 +14,19 @@
   border-bottom-width: 5px;
   border-bottom-style: solid;
   border-color:#C2C0C0;
+
+  height:380px;
+  width: 230px;
+  position: relative;
+  margin: 0;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.item_panel_image {
+  width:100%;
+  border-radius: 0px;
+  max-height: 180px;
 }
 
 
@@ -22,10 +35,6 @@
 .item_image_show {
   padding: 0px;
   border: 1.5px solid #C2C0C0;
-  /*border-radius: 0px;
-  border-bottom-width: 7px;
-  border-bottom-style: solid;
-  border-color:#C2C0C0;*/
 }
 
 .fa-chevron-right {
@@ -50,7 +59,6 @@ padding: 10px;
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
   border: thin solid gray;
- /* color:white;*/
   border-radius: 0px;
   margin-bottom: 2px;
 
