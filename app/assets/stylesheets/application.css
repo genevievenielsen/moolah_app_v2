@@ -30,32 +30,11 @@
 @import "main";*/
 
 
-/*.background_color {
- background: rgb(226, 225, 225);
-    -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-size: 100%;
-  position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -2;
-}
-*/
-
-
 .form-control {
   border-radius: 0px;
    -webkit-border-radius: 0;
      -moz-border-radius: 0;
           border-radius: 0;
-}
-
-.sub_title_row {
-  padding: 15px;
 }
 
 .item_divider {

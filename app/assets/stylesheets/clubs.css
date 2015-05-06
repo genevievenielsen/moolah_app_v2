@@ -16,6 +16,17 @@
   border-color:#C2C0C0;
 }
 
+.club_panel_image {
+  width:100%;
+  border-radius: 0px;
+  max-height: 190px;
+  border-bottom: 1.5px solid #C2C0C0;
+}
+
+.club_panel_hover {
+  box-shadow: 1.5px 1.5px 1.5px 1.5px #C2C0C0;
+}
+
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
   border-radius: 0px;
 }

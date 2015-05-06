@@ -1,21 +1,38 @@
 <div class="col-sm-4 col-md-3">
     <div class="panel panel-body club_display_panel">
-      <img class="img-responsive img-thumnail" src="<%= club.image %>">
+
+      <img class="img-responsive img-thumnail club_panel_image" src="<%= club.image %>">
+
       <div class="caption club_caption">
-      <h3><%= link_to "#{club.name}", club %></h3>
-      <div class="row col-offset-md-1 col-md-11 col-offset-sm-1 col-offset-sm-11 item_member_count">
-        <%= pluralize(club.members.count, 'member') %>,
-        <%= pluralize(club.items.count, 'item') %>
-      </div>
-      <br>
-      <br>
-      <div class="pull-left">
-      <% if club.members.include?(current_user)  %>
-          <%= render 'memberships/unjoin_button', :club => club %>
-      <% else %>
-          <%= render 'memberships/join_button', :club => club %>
-      <% end %>
-      </div>
+        <h3><%= link_to "#{club.name}", club %></h3>
+        <div class="row col-offset-md-1 col-md-11 col-offset-sm-1 col-offset-sm-11 item_member_count">
+          <%= pluralize(club.members.count, 'member') %>,
+          <%= pluralize(club.items.count, 'item') %>
+        </div>
+        <br>
+        <br>
+        <div class="pull-left">
+          <% if club.members.include?(current_user)  %>
+              <%= render 'memberships/unjoin_button', :club => club %>
+          <% else %>
+              <%= render 'memberships/join_button', :club => club %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $(".club_display_panel").hover(
+      function () {
+        $(this).addClass('club_panel_hover');
+      },
+      function () {
+        $(this).removeClass('club_panel_hover');
+      }
+    );
+
+  });
+</script>

@@ -1,8 +1,14 @@
+
 .home_text {
   color: #333;
 }
 
-
 .vertical_line {
     border-bottom: 1px solid #C2C0C0;
 }
+
+.sub_title_row {
+  padding-left: 15px;
+
+}
+
