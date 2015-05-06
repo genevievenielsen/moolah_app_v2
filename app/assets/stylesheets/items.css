@@ -29,7 +29,7 @@
 .item_panel_image {
   width:100%;
   border-radius: 0px;
-  max-height: 180px;
+  max-height: 190px;
   border-bottom: 1.5px solid #C2C0C0;
   position: absolute;
 }
@@ -37,7 +37,7 @@
 .item_price_panel {
   border-radius: 0px;
   border: 1.5px solid #C2C0C0;
-  height: 50px;
+  height: 60px;
   width: 70px;
   top: 170px;
   left: 140px;
