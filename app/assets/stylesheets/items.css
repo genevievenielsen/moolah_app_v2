@@ -42,10 +42,13 @@
   top: 170px;
   left: 140px;
   margin-top: -25px;
- /* z-index: 100;*/
   position: absolute;
 }
 
+.item_panel_hover {
+  /*border: 3px solid #C2C0C0;*/
+  box-shadow: 1.5px 1.5px 1.5px 1.5px #C2C0C0;
+}
 
 /*SHOW PAGE*/
 

@@ -65,6 +65,8 @@
 
 
 <script type="text/javascript">
+
+// create color and size option code
 $(document).ready(function() {
   $("#add_to_cart_<%= item.id %>").click(function(event){
     var color_options = document.getElementById("color_option_<%= item.id %>");
@@ -91,5 +93,16 @@ $(document).ready(function() {
       $("#add_to_cart_<%= item.id %>").prop('href', $("#add_to_cart_<%= item.id %>").prop('href') + "&size_id=" + size_option);
     }
     });
+
+    $(".item_display_panel").hover(
+      function () {
+        $(this).addClass('item_panel_hover');
+      },
+      function () {
+        $(this).removeClass('item_panel_hover');
+      }
+    );
+
+
   });
 </script>
