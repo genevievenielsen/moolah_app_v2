@@ -41,6 +41,10 @@
   width: 120px;
 }
 
+.dark_gray_text {
+  color: #484848;
+}
+
 .moolah {
   font-family: 'Amaranth', sans-serif;
   font-size: 24px;

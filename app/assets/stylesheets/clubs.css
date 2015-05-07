@@ -24,6 +24,11 @@
 
 }
 
+.club_show_divider {
+  margin-left: 15px;
+  margin-right: -15px;
+}
+
 .club_panel_image {
   width:100%;
   border-radius: 0px;
