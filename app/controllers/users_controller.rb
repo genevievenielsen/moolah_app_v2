@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def home
+    @university = current_user.university
     @clubs = current_user.university.clubs
     @items = current_user.university.items
     @users = current_user.university.users

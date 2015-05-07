@@ -67,18 +67,19 @@
   padding: 10px;
 }
 
-.nav_tab {
+/*.nav_tab {
   margin:0px;
   border-radius: 0px;
 }
 
 .nav {
   border-bottom: 0px;
-}
+}*/
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-  border: thin solid gray;
   border-radius: 0px;
-  margin-bottom: 2px;
+}
 
+.nav-tabs>li>a {
+  color: #555;
 }
