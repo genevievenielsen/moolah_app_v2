@@ -6,8 +6,8 @@
   </div>
 
   <div class="col-md-4 border-left border-right">
-    <div class="text-center">
-        <h2><%= @club.name %></h2>
+    <div class="text-center dark_gray_text">
+        <h2 class="dark_gray_text"><%= @club.name %></h2>
         <h5><%= @club.description %></h5>
 
         <% if @club.owner == current_user  %>
