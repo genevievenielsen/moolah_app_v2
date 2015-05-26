@@ -85,14 +85,35 @@
       end
      end
 
-    @emails = 0
-      @item.club.emails.each do |email| unless @item.club.members.pluck(:email).include?(email.email)
-        @emails += 1
+      @emails = 0
+        @item.club.emails.each do |email| unless @item.club.members.pluck(:email).include?(email.email)
+          @emails += 1
+        end
       end
-    end
 
     @total_outstanding = @outstanding_payments + @emails
   end
+
+  def mark_paid
+    @item = Item.find(params[:id])
+    @user = current_user
+
+    @selected_item = SelectedItem.new
+    @selected_item.item_id = @item.id
+    @selected_item.user_id = @current_user.id
+    @selected_item.save
+
+    @cart = Cart.find_or_create_by(:id => @selected_item.cart_id)
+    @cart.paid = true
+    @cart.user = current_user
+    @cart.save
+
+    @selected_item.cart_id = @cart.id
+    @selected_item.save
+
+    redirect_to :back, :notice => "Marked as paid!"
+  end
+
   # GET /items
   # GET /items.json
   def index

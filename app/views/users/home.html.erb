@@ -3,15 +3,14 @@
 <div class="row">
   <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4">
     <div class="text-center">
-      <img class="img-responsive img-circle center-block" width="100px" height="100px" src="<%= current_user.university.image %>">
+      <img class="img-responsive img-square center-block" width="150px" height="150px" src="<%= current_user.university.image %>">
     </div>
   </div>
 
   <div class="col-md-4">
     <div class="pull-right">
       <% if current_user == @university.owner %>
-          <%= link_to "<i class=\"fa fa-pencil-square-o\"></i>".html_safe, edit_university_path(@university), :class => "btn btn-xs btn-default edit_button" %>
-          <%= link_to "<i class=\"fa fa-times\"></i>".html_safe, university_url(@university), method: :delete, :class => "btn btn-xs btn-default edit_button", data: { confirm: 'Are you sure?'} %>
+        <%= link_to "<i class=\"fa fa-pencil-square-o\"></i>".html_safe, edit_university_path(@university), :class => "btn btn-xs btn-default edit_button" %>
       <% end %>
     </div>
   </div>

@@ -6,8 +6,7 @@
    <!-- <hr class="divider"> -->
 </div>
 
-<div class="row">
-</div>
+
 <h3>Members of <%= @item.club.name %> on Moolah</h3>
 <p><%= pluralize(@purchases, 'Member') %> Paid,  <%= pluralize(@outstanding_payments, 'Payment')  %> Outstanding</p>
 <hr class="divider">
@@ -15,15 +14,29 @@
 <% @item.club.members.each do |member| %>
 
   <div class="row">
+
+  <!-- Member image and name -->
     <div class="col-md-8">
       <%= image_tag "#{member.try(:image)}", :class => "pull-left img-responsive img-circle", :width => "50px", :height => "50px" %>
       <h4 class="pull-left">&nbsp;&nbsp;<%= "#{member.first_name} #{member.last_name}" " - " "#{member.email}"%> </h4>
     </div>
+
+  <!-- Paid or unpaid icon -->
     <% if member.paid_items.include?(@item) %>
       <i class="fa fa-check-circle-o fa-2x col-md-2" style="display:inline"></i>
     <% else %>
       <i class="fa fa-times-circle-o fa-2x col-md-2" style="display:inline"></i>
     <% end %>
+
+  <!-- Mark as paid button -->
+    <%# if @item.club.owner == current_user %>
+      <% if member.paid_items.include?(@item) %>
+      <% else %>
+        <div class="col-md-2">
+          <%= link_to "Mark as Paid", "/mark_paid/#{@item.id}" %>
+        </div>
+      <% end %>
+    <%# end %>
   </div>
   <hr class="divider">
 <% end %>
