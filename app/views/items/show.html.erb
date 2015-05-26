@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-10">
-    <h1 class="pull-left "><%= @item.name.capitalize %></h1>
+    <h1 class="pull-left home_text"><%= @item.name.capitalize %></h1>
   </div>
   <div class="col-md-2">
   <div class="pull-right">
@@ -15,12 +15,17 @@
   </div>
 </div>
 
+
+
 <div class="row">
   <div class="col-md-6 col-sm-6">
-      <img class="img-responsive item_image_show" src="<%= @item.image %>">
+    <a href="#" data-toggle="modal" data-target="#item_image">
+      <img class="img-responsive item_image_show" src="<%= @item.image %>" >
+    </a>
       <br>
-        <p><%= link_to "#{@item.university.name}", university_url(@item.university) %> / <%= link_to "#{@item.club.name}", university_url(@item.club) %> / <%= @item.name %></p>
+        <p ><%= link_to "#{@item.university.name}", university_url(@item.university) %> / <%= link_to "#{@item.club.name}", university_url(@item.club) %> / <%= @item.name %></p>
   </div>
+
 
   <div class="col-md-6 col-sm-6">
     <div class="text-center">
@@ -103,6 +108,7 @@
       <% if current_user.items_in_cart.include?(@item) %>
         <br>
         <%= link_to "View My Cart", my_cart_url %>
+        <br>
       <% end %>
       </div>
     </div>
@@ -110,6 +116,20 @@
 </div>
 <br>
 <br>
+
+<!-- Image Modal -->
+<div class="modal fade" id="item_image" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+       <div class="modal-header">
+          <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <img class="img-responsive item_image_show" src="<%= @item.image %>" >
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <script type="text/javascript">
