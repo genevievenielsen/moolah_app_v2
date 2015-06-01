@@ -11,6 +11,8 @@
           <%= hidden_field_tag "items[#{counter}][amount]", @items[counter][:price] %>
           <%= hidden_field_tag "items[#{counter}][transaction_id]", @cart.id %>
 
+          <%= hidden_field_tag "items[#{counter}][id]", @items[counter][:id] %>
+
           <%= hidden_field_tag "items[#{counter}][target]", @cart.items[counter].owner.email %>
 
           <% counter += 1 %>

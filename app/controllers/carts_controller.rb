@@ -2,6 +2,7 @@ class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   def my_cart
+    @selected_items = SelectedItem.where(:user_id => current_user.id, :paid => nil)
     @items = current_user.items_in_cart
     @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
 

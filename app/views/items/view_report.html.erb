@@ -33,7 +33,7 @@
       <% if member.paid_items.include?(@item) %>
       <% else %>
         <div class="col-md-2">
-          <%= link_to "Mark as Paid", "/mark_paid/#{@item.id}" %>
+          <%= link_to "Mark as Paid", "/mark_paid/#{@item.id}", :class => "btn btn-default" %>
         </div>
       <% end %>
     <%# end %>

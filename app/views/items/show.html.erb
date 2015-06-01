@@ -23,7 +23,7 @@
       <img class="img-responsive item_image_show" src="<%= @item.image %>" >
     </a>
       <br>
-        <p ><%= link_to "#{@item.university.name}", university_url(@item.university) %> / <%= link_to "#{@item.club.name}", university_url(@item.club) %> / <%= @item.name %></p>
+        <p ><%= link_to "#{@item.university.name}", university_url(@item.university) %> / <%= link_to "#{@item.club.name}", club_url(@item.club) %> / <%= @item.name %></p>
   </div>
 
 

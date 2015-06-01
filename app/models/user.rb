@@ -70,8 +70,12 @@ class User < ActiveRecord::Base
     SelectedItem.where( :cart_id => self.unpaid_carts.pluck(:id))
   end
 
+  # def items_in_cart
+  #   Item.where(:id => self.unpaid_selected_items.pluck(:item_id))
+  # end
+
   def items_in_cart
-    Item.where(:id => self.unpaid_selected_items.pluck(:item_id))
+    Item.where(:id => self.selected_items.where(:paid => nil).pluck(:item_id))
   end
 
 

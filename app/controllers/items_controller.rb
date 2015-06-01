@@ -1,23 +1,27 @@
   class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
-   def venmo_pay
+  def venmo_pay
 
      # REAL
 
-     #uri = URI('https://api.venmo.com/v1/payments')
+     # uri = URI(ENV['VENMO_LINK'])
 
-     #res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
-                                     #email: params['email'],
-                                     #actor: params['actor'],
-                                     #note: params['note'],
-                                     #target: params['target'],
-                                     #amount: params['amount'],
-                                     #audience: 'private')
+     # error_array = []
+     # params[:items].each do |item|
+
+     # res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
+     #                                actor_id: item[1]['actor'],
+     #                                note: item[1]['note'],
+     #                                target: item[1]['target'],
+     #                                amount: item[1]['amount'],
+     #                                audience: 'private')
+     #   puts res.body
 
     # SANDBOX
       uri = URI('https://sandbox-api.venmo.com/v1/payments')
 
+      error_array = []
       params[:items].each do |item|
 
         res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
@@ -27,40 +31,37 @@
                                      amount: item[1]['amount'],
                                      audience: 'private')
 
-          puts res.body
-
-
-          if res.body.include?"error"
-             @error_message = res.body
-             @error_message = @error_message.split("message\": ")
-             @message = @error_message[1]
-             @message = @message.split(",")
-             @explanation = @message[0]
-             # Note
-             # This is res.body when there is an error
-             # {"error": {"message": "The amount specified is not a sandbox test amount", "code": 503}}
-             redirect_to :back, notice: "An error occured in your venmo payment - #{@explanation}"
-             break
-          end
-
-        puts item
-        Notifier.payment_confirmation(current_user, item[1]['note'], item[1]['amount']).deliver
+        puts res.body
+        if res.body.include?"error"
+           @error_message = res.body
+           @error_message = @error_message.split("message\": ")
+           @message = @error_message[1]
+           @message = @message.split(",")
+           @explanation = @message[0]
+           # Note
+           # This is res.body when there is an error
+           # {"error": {"message": "The amount specified is not a sandbox test amount", "code": 503}}
+            error_array.push(@explanation)
+        else
+          # Changes order status to paid
+          @cart = Cart.find_by(user_id: current_user.id)
+          @selected_item = @cart.selected_items.find_by(:item_id => item[1]['id'].to_i)
+          @selected_item.paid = true
+          @selected_item.save
+          Notifier.payment_confirmation(current_user, item[1]['note'], item[1]['amount']).deliver
+        end
       end
 
-
-      if @error_message.present?
+      if error_array.present? && error_array.length > 0
+       redirect_to :back, notice: "An error occured in your venmo payment - #{error_array.each do |error|
+        puts error.to_s
+       end}"
       else
-        # Changes order status to paid
-        @cart = Cart.find_by(:user_id => current_user.id, :paid => false)
-        # if settled then change to pay, but for each item
-        # if one fails, have that remain in the cart and the others are removed
+        redirect_to home_url, notice: 'You have successfully paid for your cart with Venmo!'
+        @cart = Cart.find_by(user_id: current_user.id)
         @cart.paid = true
         @cart.save
-        redirect_to home_url, notice: 'You have successfully paid for your cart with Venmo!'
       end
-
-
-
   end
 
   def my_items
