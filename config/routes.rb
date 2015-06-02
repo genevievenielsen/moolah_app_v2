@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post('/import_emails/:id', {:controller => 'emails', :action => 'import_emails'})
 
   get('/view_report/:id', {:controller => 'items', :action => 'view_report'})
-  get('/mark_paid/:id', {:controller => 'items', :action => 'mark_paid'})
+  get('/mark_paid/:item_id/:user_id', {:controller => 'items', :action => 'mark_paid'})
 
   devise_for :users, :controllers => {  :registrations => "registrations" }
   #devise_for :users, :controllers => {  :registrations => "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }

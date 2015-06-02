@@ -1,45 +1,47 @@
 
 <div class="row">
-  <h1><%= @item.name.capitalize %> Report</h1>
-  <!-- <hr class="divider"> -->
-  <h3><%= pluralize(@total_outstanding, 'Payment')  %> Outstanding</h3>
-   <!-- <hr class="divider"> -->
+  <div class="col-md-8 pull-left">
+    <h1><%= @item.name.capitalize %> Report</h1>
+    <h3><%= pluralize(@total_outstanding, 'Payment')  %>  Outstanding</h3>
+  </div>
+  <div class="col-md-4 pul-right">
+    <h1>$ <%= number_with_precision(@amount_raised, precision: 2) %></h1>
+      <h3>Collected</h3>
+  </div>
 </div>
 
-
-<h3>Members of <%= @item.club.name %> on Moolah</h3>
-<p><%= pluralize(@purchases, 'Member') %> Paid,  <%= pluralize(@outstanding_payments, 'Payment')  %> Outstanding</p>
-<hr class="divider">
-
-<% @item.club.members.each do |member| %>
-
-  <div class="row">
-
-  <!-- Member image and name -->
-    <div class="col-md-8">
-      <%= image_tag "#{member.try(:image)}", :class => "pull-left img-responsive img-circle", :width => "50px", :height => "50px" %>
-      <h4 class="pull-left">&nbsp;&nbsp;<%= "#{member.first_name} #{member.last_name}" " - " "#{member.email}"%> </h4>
-    </div>
-
-  <!-- Paid or unpaid icon -->
-    <% if member.paid_items.include?(@item) %>
-      <i class="fa fa-check-circle-o fa-2x col-md-2" style="display:inline"></i>
-    <% else %>
-      <i class="fa fa-times-circle-o fa-2x col-md-2" style="display:inline"></i>
-    <% end %>
-
-  <!-- Mark as paid button -->
-    <%# if @item.club.owner == current_user %>
-      <% if member.paid_items.include?(@item) %>
-      <% else %>
-        <div class="col-md-2">
-          <%= link_to "Mark as Paid", "/mark_paid/#{@item.id}", :class => "btn btn-default" %>
+<div class="row">
+  <div class="col-md-12">
+    <h3>Members of <%= @item.club.name %> on Moolah</h3>
+    <p><%= pluralize(@members_who_paid, 'Member') %> Paid,  <%= pluralize(@outstanding_payments, 'Payment')  %>   Outstanding</p>
+    <hr class="divider">
+    <% @item.club.members.each do |member| %>
+      <div class="row">
+      <!-- Member image and name -->
+        <div class="col-md-8">
+          <%= image_tag "#{member.try(:image)}", :class => "pull-left img-responsive img-circle", :width => "50px", :height => "50px" %>
+          <h4 class="pull-left">&nbsp;&nbsp;<%= "#{member.first_name} #{member.last_name}" " - " "#{member.email}"%> </h4>
         </div>
-      <% end %>
-    <%# end %>
+      <!-- Paid or unpaid icon -->
+        <% if member.paid_items.include?(@item) %>
+          <i class="fa fa-check-circle-o fa-2x col-md-2" style="display:inline"></i>
+        <% else %>
+          <i class="fa fa-times-circle-o fa-2x col-md-2" style="display:inline"></i>
+        <% end %>
+      <!-- Mark as paid button -->
+        <%# if @item.club.owner == current_user %>
+          <% if member.paid_items.include?(@item) %>
+          <% else %>
+            <div class="col-md-2">
+              <%= link_to "Mark as Paid", "/mark_paid/#{@item.id}/#{member.id}", :class => "btn btn-default" %>
+            </div>
+          <% end %>
+        <%# end %>
+      </div>
+      <hr class="divider">
+    <% end %>
   </div>
-  <hr class="divider">
-<% end %>
+</div>
 
 <br>
 <h3>Email List</h3>

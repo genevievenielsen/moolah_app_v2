@@ -6,9 +6,15 @@ class CartsController < ApplicationController
     @items = current_user.items_in_cart
     @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
 
+    
     # This gets the venmo access token
     current_user.venmo_auth_token = params[:code].to_s
     current_user.save
+
+    cookies[:venmo_access_token] = {
+      value: params[:code].to_s,
+      expires: 30.minutes.from_now
+    }
 
     @response = HTTParty.post("https://api.venmo.com/v1/oauth/access_token",
     :query => {:client_id => ENV['VENMO_CLIENT_ID'], :client_secret => ENV['VENMO_CLIENT_SECRET'],
@@ -20,6 +26,7 @@ class CartsController < ApplicationController
       #current_user.venmo_email_address = @response["user"]["email"]
       current_user.save
     end
+    
   end
 
   def purchase_items

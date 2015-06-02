@@ -5,32 +5,32 @@
 
      # REAL
 
-     uri = URI(ENV['VENMO_LINK'])
+     # uri = URI(ENV['VENMO_LINK'])
 
-     error_array = []
-     params[:items].each do |item|
+     # error_array = []
+     # params[:items].each do |item|
 
-     res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
-                                    email: item[1]['email'],
-                                    actor_id: item[1]['actor'],
-                                    note: item[1]['note'],
-                                    target: item[1]['target'],
-                                    amount: item[1]['amount'],
-                                    audience: 'private')
-       puts res.body
+     # res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
+     #                                email: item[1]['email'],
+     #                                actor_id: item[1]['actor'],
+     #                                note: item[1]['note'],
+     #                                target: item[1]['target'],
+     #                                amount: item[1]['amount'],
+     #                                audience: 'private')
+     #   puts res.body
 
     # SANDBOX
-      # uri = URI('https://sandbox-api.venmo.com/v1/payments')
+      uri = URI('https://sandbox-api.venmo.com/v1/payments')
 
-      # error_array = []
-      # params[:items].each do |item|
+      error_array = []
+      params[:items].each do |item|
 
-      #   res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
-      #                                user_id: '145434160922624933',
-      #                                note: item[1]['note'],
-      #                                target: item[1]['target'],
-      #                                amount: item[1]['amount'],
-      #                                audience: 'private')
+        res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
+                                     user_id: '145434160922624933',
+                                     note: item[1]['note'],
+                                     target: item[1]['target'],
+                                     amount: item[1]['amount'],
+                                     audience: 'private')
 
       # puts res.body
         if res.body.include?"error"
@@ -75,40 +75,44 @@
   end
 
   def view_report
-     @item = Item.find(params[:id])
+    @item = Item.find(params[:id])
 
-     @outstanding_payments = 0
-     @purchases = 0
-     @item.club.members.each do |member|
-      if member.paid_items.include?(@item)
-        @purchases += 1
-      else
-        @outstanding_payments += 1
-      end
+    @outstanding_payments = 0
+    @members_who_paid = 0
+    @item.club.members.each do |member|
+     if member.paid_items.include?(@item)
+       @members_who_paid += 1
+     else
+       @outstanding_payments += 1
      end
+    end
 
-      @emails = 0
-        @item.club.emails.each do |email| unless @item.club.members.pluck(:email).include?(email.email)
-          @emails += 1
-        end
+    @emails = 0
+      @item.club.emails.each do |email| unless @item.club.members.pluck(:email).include?(email.email)
+        @emails += 1
       end
+    end
 
     @total_outstanding = @outstanding_payments + @emails
+
+    @number_of_purchases = SelectedItem.where(item_id: @item.id, paid: true).count
+    @amount_raised = @number_of_purchases * @item.price
+
   end
 
   def mark_paid
-    @item = Item.find(params[:id])
-    @user = current_user
+    @item = Item.find(params[:item_id])
+    @user = User.find(params[:user_id])
 
     @selected_item = SelectedItem.new
     @selected_item.item_id = @item.id
-    @selected_item.user_id = @current_user.id
+    @selected_item.user_id = @user.id
     @selected_item.paid = true
     @selected_item.save
 
     @cart = Cart.find_or_create_by(:id => @selected_item.cart_id)
     @cart.paid = true
-    @cart.user = current_user
+    @cart.user = @user
     @cart.save
 
     @selected_item.cart_id = @cart.id

@@ -7,13 +7,9 @@
 </div>
 <br>
 <div class="row">
-
     <% @selected_items.each do |selected_item| %>
       <div class="item_in_cart_<%= selected_item.item_id %>">
         <%= render "items/item_display", item: selected_item.item, cart: @cart, selected_item: selected_item  %>
       </div>
-
   <% end %>
-
-
 </div>

@@ -22,15 +22,16 @@
      <%= render 'clubs/item_club_display' %>
     </div>
 
+    <div  id="Donations" class="tab-pane ">
+    <% @category = @items.where(:category => "Donations") %>
+     <%= render 'clubs/item_club_display' %>
+    </div>
+
     <div  id="Deals" class="tab-pane ">
     <% @category = @items.where(:category => "Deals") %>
      <%= render 'clubs/item_club_display' %>
     </div>
 
-    <div  id="Donations" class="tab-pane ">
-    <% @category = @items.where(:category => "Donations") %>
-     <%= render 'clubs/item_club_display' %>
-    </div>
 
     <div id="Members" class="tab-pane">
     <br>
