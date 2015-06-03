@@ -18,10 +18,10 @@
 
         <% if @club.owner == current_user  %>
           <div class="text-center">
-            <a href="/club_emails/<%= @club.id %>">Import Club Email List</a>
+            <%= link_to "Import Club Email List", club_emails_url(@club) %><br>
+            <%= link_to "View Leadership", leadership_url(@club) %>
           </div>
         <% end %>
-
         <br>
     </div>
   </div>
@@ -47,8 +47,6 @@
 </div>
 
 <br>
-<!-- <br>
-<hr class="divider club_show_divider"></hr> -->
 <br>
 <%= render "clubs/items_club_display" %>
 <br>

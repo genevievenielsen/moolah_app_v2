@@ -1,8 +1,12 @@
 class ClubsController < ApplicationController
-  before_action :set_club, only: [:show, :edit, :update, :destroy]
+  before_action :set_club, only: [:show, :edit, :update, :destroy, :leadership]
 
   def my_clubs
     @clubs = current_user.clubs
+  end
+
+  def leadership
+   
   end
   # GET /clubs
   # GET /clubs.json

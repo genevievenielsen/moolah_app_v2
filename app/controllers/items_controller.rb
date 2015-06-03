@@ -26,11 +26,11 @@
       params[:items].each do |item|
 
         res = Net::HTTP.post_form(uri, access_token: current_user.venmo_access_token,
-                                     user_id: '145434160922624933',
-                                     note: item[1]['note'],
-                                     target: item[1]['target'],
-                                     amount: item[1]['amount'],
-                                     audience: 'private')
+                                       user_id: '145434160922624933',
+                                       note: item[1]['note'],
+                                       target: item[1]['target'],
+                                       amount: item[1]['amount'],
+                                       audience: 'private')
 
       # puts res.body
         if res.body.include?"error"
@@ -45,7 +45,7 @@
             error_array.push(@explanation.strip)
         else
           # Changes order status to paid
-          @cart = Cart.find_by(user_id: current_user.id)
+          @cart = Cart.find_or_create_by(user_id: current_user.id, :paid => false)
           @selected_item = @cart.selected_items.find_by(:item_id => item[1]['id'].to_i)
           @selected_item.paid = true
           @selected_item.save

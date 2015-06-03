@@ -9,11 +9,13 @@ Rails.application.routes.draw do
 
   get('/moolah_icon', {:controller => 'pages', :action => 'moolah_icon'})
 
-  get('/club_emails/:id', {:controller => 'emails', :action => 'club_emails'})
-  post('/import_emails/:id', {:controller => 'emails', :action => 'import_emails'})
+  get('/club_emails/:id', {:controller => 'emails', :action => 'club_emails', :as => "club_emails"})
+  post('/import_emails/:id', {:controller => 'emails', :action => 'import_emails', :as => "import_emails"})
 
-  get('/view_report/:id', {:controller => 'items', :action => 'view_report'})
-  get('/mark_paid/:item_id/:user_id', {:controller => 'items', :action => 'mark_paid'})
+  get('/leadership/:id', {:controller => 'clubs', :action => 'leadership', :as => "leadership"})
+
+  get('/view_report/:id', {:controller => 'items', :action => 'view_report', :as => "view_report"})
+  get('/mark_paid/:item_id/:user_id', {:controller => 'items', :action => 'mark_paid', :as => "mark_paid"})
 
   devise_for :users, :controllers => {  :registrations => "registrations" }
   #devise_for :users, :controllers => {  :registrations => "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
