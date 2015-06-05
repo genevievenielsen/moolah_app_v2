@@ -1,9 +1,10 @@
 
-<% if current_user.unpaid_selected_items.count > 0 %>
-  <% if current_user.venmo_access_token.present? %>
+<% if current_user.items_in_cart.count > 0 && @items != nil %>
+  <% if current_user.venmo_access_token.present? && current_user.venmo_access_token != nil %>
 
       <%= form_tag venmo_pay_url do %>
         <% counter = 0 %>
+        <%= print @items %>
           <% while counter < current_user.unpaid_selected_items.count %>
           <%= hidden_field_tag "items[#{counter}][email]", current_user.email %>
           <%= hidden_field_tag "items[#{counter}][actor]", current_user %>

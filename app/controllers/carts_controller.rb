@@ -2,38 +2,31 @@ class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   def my_cart
-    @selected_items = SelectedItem.where(:user_id => current_user.id, :paid => nil)
-    @items = current_user.items_in_cart
+    # @selected_items = SelectedItem.where(:user_id => current_user.id, :paid => nil)
     @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
+    @items = @cart.items
 
     
     # This gets the venmo auth token
-    current_user.venmo_auth_token = params[:code].to_s
-    current_user.save
+    if params[:code].present?
+      current_user.venmo_auth_token = params[:code].to_s
+      current_user.save
+    end
 
-    # Create a cookie with the venmo access token
-    # cookies[:venmo_auth_token] = {
-    #   value: params[:code],
-    #   expires: 30.minutes.from_now
-    # }
 
+  
     @response = HTTParty.post("https://api.venmo.com/v1/oauth/access_token",
     :query => {:client_id => ENV['VENMO_CLIENT_ID'], :client_secret => ENV['VENMO_CLIENT_SECRET'],
     :code => "#{current_user.venmo_auth_token}"})
 
-    # @response = HTTParty.post("https://api.venmo.com/v1/oauth/access_token",
-    # :query => {:client_id => ENV['VENMO_CLIENT_ID'], :client_secret => ENV['VENMO_CLIENT_SECRET'],
-    # :code => cookies[:venmo_auth_token].to_s})
-
-    if @response.present? == {"error"=>{"message"=>"That Access Code has already been redeemed for an access token.", "code"=>257}}
+    if @response.present? && @response == {"error"=>{"message"=>"That Access Code has already been redeemed for an access token.", "code"=>257}}
     else
+
+      if @response["access_token"].present?
       current_user.venmo_access_token = @response["access_token"]
-      # cookies[:venmo_access_token] = {
-      #   value: @response["access_token"],
-      #   expires: 30.minutes.from_now
-      # }
-      #current_user.venmo_email_address = @response["user"]["email"]
+      current_user.venmo_email_address = @response["user"]["email"]
       current_user.save
+     end
     end
     
   end
