@@ -12,6 +12,10 @@
 //
 //= require jquery
 
+//= require jsapi
+
+//= require chartkick
+
 //= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks

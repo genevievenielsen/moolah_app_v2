@@ -10,6 +10,9 @@ gem 'rails_serve_static_assets'
 #jquery
 gem "jquery-ui-rails"
 
+#graphs
+gem "chartkick"
+
 #styling
 gem 'sprockets'
 gem 'bootstrap-sass', '3.2.0.2'
