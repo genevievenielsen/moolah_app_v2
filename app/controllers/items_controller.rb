@@ -58,10 +58,10 @@
         error
        end}"
       else
-        redirect_to home_url, notice: 'You have successfully paid for your cart with Venmo!'
         @cart = Cart.find_by(user_id: current_user.id)
         @cart.paid = true
         @cart.save
+        redirect_to home_url, notice: 'You have successfully paid for your cart with Venmo!'
       end
   end
 

@@ -10,7 +10,13 @@
   </div>
 </div>
 
-<%= bar_chart Item.group(:name).sum(:price) %>
+
+<%= pie_chart Item.where(:club => @item.club).group(:name).sum(:price) %>
+
+<!-- which colors have been purchased -->
+<%#= pie_chart SelectedItem.where(:item_id => @item.id).group(:color_option_id) %>
+
+
 <div class="row">
   <div class="col-md-12">
     <h3>Members of <%= @item.club.name %> on Moolah</h3>

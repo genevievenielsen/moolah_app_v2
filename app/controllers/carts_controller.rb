@@ -2,9 +2,10 @@ class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   def my_cart
-    # @selected_items = SelectedItem.where(:user_id => current_user.id, :paid => nil)
+    @selected_items = SelectedItem.where(:user_id => current_user.id, :paid => nil)
     @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
     @items = @cart.items
+
 
     
     # This gets the venmo auth token
