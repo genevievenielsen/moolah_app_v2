@@ -70,7 +70,6 @@
     @cart = Cart.find_or_create_by(:user_id => current_user.id, :paid => false)
 
     @paid_items = current_user.paid_items
-
     @items_for_sale = current_user.items_for_sale
   end
 

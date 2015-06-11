@@ -1,44 +1,48 @@
 source 'https://rubygems.org'
 
-#for images
+#images
 gem "fog"
+gem 'carrierwave'
 
-#for assets on heroku
+# heroku
 gem 'rails_12factor', group: :production
 gem 'rails_serve_static_assets'
 
-#jquery
+# jquery
 gem "jquery-ui-rails"
 
-#graphs
+# graphs
 gem "chartkick"
 
-#styling
+# styling
 gem 'sprockets'
 gem 'bootstrap-sass', '3.2.0.2'
+gem "font-awesome-rails"
 # gem 'font-awesome-sass'
+
+# authentication
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-venmo'
+
+# post requests
+gem 'httparty'
+
+# excel files
+gem 'roo'
+
+# CRON jobs
+gem 'whenever', :require => false
+
+# emails
+gem 'sendwithus_ruby_action_mailer'
+
+# environmental variables
+gem 'figaro'
+
 
 gem 'quiet_assets'
 
-gem 'httparty'
-
-gem 'omniauth'
-
-gem 'omniauth-venmo'
-
-gem 'whenever', :require => false
-
-gem 'figaro'
-
-gem 'sendwithus_ruby_action_mailer'
-
-gem 'roo'
-
-gem "font-awesome-rails"
-
-gem 'carrierwave'
-
-gem 'devise'
 
 gem 'starter_generators', :git => "git://github.com/rbetina/starter_generators.git", :branch => "kiei925"
 

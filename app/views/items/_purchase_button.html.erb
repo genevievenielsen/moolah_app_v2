@@ -6,7 +6,7 @@
         <% counter = 0 %>
         <%= print @items %>
           <% while counter < current_user.unpaid_selected_items.count %>
-          <%= hidden_field_tag "items[#{counter}][email]", current_user.email %>
+          <%= hidden_field_tag "items[#{counter}][email]", current_user.venmo_email_address %>
           <%= hidden_field_tag "items[#{counter}][actor]", current_user %>
           <%= hidden_field_tag "items[#{counter}][note]", @items[counter][:name] %>
           <%= hidden_field_tag "items[#{counter}][amount]", @items[counter][:price] %>
