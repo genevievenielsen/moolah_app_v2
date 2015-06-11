@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# app speed
+gem 'puma'
+
 # background jobs
 gem "sidekiq"
 
