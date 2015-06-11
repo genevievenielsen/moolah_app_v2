@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
-#images
+# background jobs
+gem "sidekiq"
+
+# images
 gem "fog"
 gem 'carrierwave'
 

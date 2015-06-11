@@ -49,7 +49,7 @@
           @selected_item = @cart.selected_items.find_by(:item_id => item[1]['id'].to_i)
           @selected_item.paid = true
           @selected_item.save
-          Notifier.payment_confirmation(current_user, item[1]['note'], item[1]['amount']).deliver
+          # Notifier.payment_confirmation(current_user, item[1]['note'], item[1]['amount']).deliver
         end
       end
 
@@ -58,7 +58,7 @@
         error
        end}"
       else
-        @cart = Cart.find_by(user_id: current_user.id)
+        @cart = Cart.find_by(user_id: current_user.id, :paid => false)
         @cart.paid = true
         @cart.save
         redirect_to home_url, notice: 'You have successfully paid for your cart with Venmo!'

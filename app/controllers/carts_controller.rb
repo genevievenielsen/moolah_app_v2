@@ -7,23 +7,24 @@ class CartsController < ApplicationController
     @items = @cart.items
 
 
-    # This gets the venmo auth token
+    # Run this code after user logins in from venmo
     if params[:code].present?
-      # clear the venmo auth token after 30 minutes 
       current_user.venmo_auth_token = params[:code].to_s
       current_user.save
-    end
 
-    @response = HTTParty.post("https://api.venmo.com/v1/oauth/access_token",
-    :query => {:client_id => ENV['VENMO_CLIENT_ID'], :client_secret => ENV['VENMO_CLIENT_SECRET'],
-    :code => "#{current_user.venmo_auth_token}"})
+      @response = HTTParty.post("https://api.venmo.com/v1/oauth/access_token",
+      :query => {:client_id => ENV['VENMO_CLIENT_ID'], :client_secret => ENV['VENMO_CLIENT_SECRET'],
+      :code => "#{current_user.venmo_auth_token}"})
 
-    if @response.present? && @response == {"error"=>{"message"=>"That Access Code has already been redeemed for an access token.", "code"=>257}}
-    else
-      if @response["access_token"].present?
-        current_user.venmo_access_token = @response["access_token"]
-        current_user.venmo_email_address = @response["user"]["email"]
-        current_user.save
+      if @response.present? && @response == {"error"=>{"message"=>"That Access Code has already been redeemed for an access token.", "code"=>257}}
+      else
+        if @response["access_token"].present?
+          current_user.venmo_access_token = @response["access_token"]
+          current_user.venmo_email_address = @response["user"]["email"]
+          current_user.save
+          user_id = current_user.id.to_s
+          VenmoWorker.perform_in(30.seconds, user_id)
+        end
       end
     end
   end
@@ -33,7 +34,6 @@ class CartsController < ApplicationController
     @cart.paid = true
     @cart.save
     redirect_to :back, notice: 'You have successfully purchased your cart!'
-
   end
 
   # GET /carts
