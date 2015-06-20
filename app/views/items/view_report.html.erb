@@ -11,10 +11,11 @@
 </div>
 
 
-<%= pie_chart Item.where(:club => @item.club).group(:name).sum(:price) %>
+<%#= pie_chart Item.where(:club => @item.club).group(:name).sum(:price) %>
 
 <!-- which colors have been purchased -->
-<%#= pie_chart SelectedItem.where(:item_id => @item.id).group(:color_option_id) %>
+<%#= pie_chart SelectedItem.where(:paid => true, :item_id => "#{@item.id}").group(:color_option_id) %>
+<%= puts "this is the item id #{@item.id}"  %>
 
 
 <div class="row">

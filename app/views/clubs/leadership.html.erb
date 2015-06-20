@@ -2,11 +2,26 @@
 <br>
 <br>
 
-<h1>This is the leadership page of <%= @club.name %></h1>
+<div class="row">
+	<div class="col-md-12">
+		<h1 class="pull-left"><%= @club.name %> Leadership</h1>
+		<% if current_user == @club.owner %>
+			<%= link_to "New Club Leader", new_club_leadership_url(@club), class: "pull-right btn btn-default" %>
+		<% end %>
+	</div>
+</div>
 
-<p>leader first name</p>
-<p>leader last name</p>
-<p>leader image</p>
-<p>leader title</p>
+<br>
+<br>
 
-<button class="btn btn-default">Add leader</button>
+<div class="row">
+<% @club_leaders.each do |leader| %>
+	<div class="col-md-2">
+		<img class="img-responsive img-circle" src="<%= leader.image %>">
+		<p><%= leader.first_name %> <%= leader.last_name %></p>
+		<p><i><%= leader.title %></i></p>
+	</div>
+<% end %>
+</div>
+
+	

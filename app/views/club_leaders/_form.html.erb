@@ -1,0 +1,41 @@
+<%= form_for(@club_leader) do |f| %>
+  <% if @club_leader.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@club_leader.errors.count, "error") %> prohibited this club_leader from being saved:</h2>
+
+      <ul>
+      <% @club_leader.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.label :first_name, :class => "control-label" %><br>
+      <%= f.text_field :first_name, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :last_name, :class => "control-label" %><br>
+      <%= f.text_field :last_name, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :title, :class => "control-label" %><br>
+      <%= f.text_field :title, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :image, :class => "control-label" %>
+      <%= f.file_field :image, :class => "form-control" %>
+    </div>
+
+    <%= f.hidden_field :club_id, :value => @club.id %>
+
+    <div class="actions">
+      <%= f.submit :class => "btn btn-default form-group " %>
+    </div>
+  </div>
+</div>
+  
+<% end %>

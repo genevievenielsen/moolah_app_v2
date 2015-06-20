@@ -23,7 +23,7 @@
 
 $(document).ready(function() {
 
-  // $('.alert').delay(4000).fadeOut('slow');
+  $('.alert').delay(4000).fadeOut('slow');
 
   $("#item_expiration_date").datepicker({ dateFormat: "DD d MM, yy" });
 

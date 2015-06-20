@@ -14,6 +14,8 @@ class Club < ActiveRecord::Base
 
   has_many :emails
 
+  has_many :club_leaders
+
   def required_items
     Item.where(:id => self.items.where(:required => true).pluck(:id))
   end

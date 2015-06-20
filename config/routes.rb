@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get('/home', {:controller => 'users', :action => 'home'})
 
   get('/my_cart', {:controller => 'carts', :action => 'my_cart'})
@@ -44,6 +45,11 @@ Rails.application.routes.draw do
   resources :clubs
 
   resources :club_admins
+
+  resources :club_leaders
+
+    get('/club_leaders/new/:id', {:controller => 'club_leaders', :action => 'new', :as => "new_club_leadership"})
+
 
 
 end

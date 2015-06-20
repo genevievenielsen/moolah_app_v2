@@ -6,7 +6,9 @@ class ClubsController < ApplicationController
   end
 
   def leadership
-   
+   @club_leader = ClubLeader.new
+
+   @club_leaders = @club.club_leaders
   end
   # GET /clubs
   # GET /clubs.json
