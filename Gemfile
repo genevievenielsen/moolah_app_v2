@@ -17,6 +17,9 @@ gem 'rails_serve_static_assets'
 # jquery
 gem "jquery-ui-rails"
 
+# angular for JS support
+gem 'angularjs-rails'
+
 # graphs
 gem "chartkick"
 

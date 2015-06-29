@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   resources :club_leaders
 
-    get('/club_leaders/new/:id', {:controller => 'club_leaders', :action => 'new', :as => "new_club_leadership"})
+  get('/club_leaders/new/:id', {:controller => 'club_leaders', :action => 'new', :as => "new_club_leadership"})
 
 
 

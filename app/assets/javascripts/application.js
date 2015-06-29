@@ -16,6 +16,7 @@
 
 //= require chartkick
 
+//= require angular
 //= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
